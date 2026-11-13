@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
   <title>QuizFlow — Tạo đề thi</title>
   <link rel="stylesheet" href="../../assets/css/variables.css">
@@ -12,12 +12,13 @@
   <link rel="stylesheet" href="../../assets/css/teacher-sidebar.css">
   <link rel="stylesheet" href="../../assets/css/exam-builder.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
   <script src="../../assets/js/motion.js" defer></script>
   <script src="../../assets/js/ui.js" defer></script>
   <script src="../../assets/js/teacher-sidebar.js" defer></script>
   <script src="../../assets/js/exam-builder.js" defer></script>
 </head>
-<body>
+<body class="builder-page">
   <div class="app app--exam-builder teacher-page">
     <aside class="sidebar teacher-sidebar" data-teacher-sidebar data-current-page="exam-builder" aria-label="Điều hướng giáo viên">
       <section class="sidebar-workspace" data-sidebar-workspace>
@@ -62,7 +63,7 @@
             <h2 id="schedule-title">Thời gian &amp; lớp được giao</h2>
             <p class="builder-card-description">Thiết lập khung giờ và không gian tổ chức kỳ thi.</p>
             <div class="builder-time-grid">
-              <div class="field"><label for="exam-duration">Thời lượng (phút)</label><input class="input" id="exam-duration" type="number" min="1" step="1" value="30" aria-describedby="exam-error"></div>
+              <div class="field"><label for="exam-duration">Thời lượng (phút)</label><input class="input" id="exam-duration" inputmode="numeric" type="number" min="1" step="1" value="30" aria-describedby="exam-error"></div>
               <div class="field"><label for="exam-opens">Giờ mở đề</label><input class="input" id="exam-opens" type="datetime-local" value="2026-11-13T08:00" aria-describedby="exam-error"></div>
               <div class="field"><label for="exam-closes">Giờ đóng đề</label><input class="input" id="exam-closes" type="datetime-local" value="2026-11-13T09:00" aria-describedby="exam-error"></div>
             </div>
@@ -85,7 +86,7 @@
                 <div class="builder-dial-controls">
                   <button class="btn btn--small" type="button" data-count-target="count-easy" data-count-step="-1" aria-label="Giảm số câu Dễ">−</button>
                   <span class="builder-count-value builder-easy">
-                    <input class="input builder-easy" id="count-easy" type="number" min="0" step="1" value="2" data-generator-count data-label="Dễ" data-available="72" aria-describedby="generator-warning">
+                    <input class="input builder-easy" id="count-easy" type="number" inputmode="numeric" min="0" step="1" value="2" data-generator-count data-label="Dễ" data-available="72" aria-describedby="generator-warning">
                     <span class="builder-count-roll" aria-hidden="true"><span class="builder-count-before"></span><span class="builder-count-after"></span></span>
                   </span>
                   <button class="btn btn--small" type="button" data-count-target="count-easy" data-count-step="1" aria-label="Tăng số câu Dễ">＋</button>
@@ -97,7 +98,7 @@
                 <div class="builder-dial-controls">
                   <button class="btn btn--small" type="button" data-count-target="count-medium" data-count-step="-1" aria-label="Giảm số câu Trung bình">−</button>
                   <span class="builder-count-value builder-medium">
-                    <input class="input builder-medium" id="count-medium" type="number" min="0" step="1" value="2" data-generator-count data-label="Trung bình" data-available="53" aria-describedby="generator-warning">
+                    <input class="input builder-medium" id="count-medium" type="number" inputmode="numeric" min="0" step="1" value="2" data-generator-count data-label="Trung bình" data-available="53" aria-describedby="generator-warning">
                     <span class="builder-count-roll" aria-hidden="true"><span class="builder-count-before"></span><span class="builder-count-after"></span></span>
                   </span>
                   <button class="btn btn--small" type="button" data-count-target="count-medium" data-count-step="1" aria-label="Tăng số câu Trung bình">＋</button>
@@ -109,7 +110,7 @@
                 <div class="builder-dial-controls">
                   <button class="btn btn--small" type="button" data-count-target="count-hard" data-count-step="-1" aria-label="Giảm số câu Khó">−</button>
                   <span class="builder-count-value builder-hard">
-                    <input class="input builder-hard" id="count-hard" type="number" min="0" step="1" value="1" data-generator-count data-label="Khó" data-available="3" aria-describedby="generator-warning">
+                    <input class="input builder-hard" id="count-hard" type="number" inputmode="numeric" min="0" step="1" value="1" data-generator-count data-label="Khó" data-available="3" aria-describedby="generator-warning">
                     <span class="builder-count-roll" aria-hidden="true"><span class="builder-count-before"></span><span class="builder-count-after"></span></span>
                   </span>
                   <button class="btn btn--small" type="button" data-count-target="count-hard" data-count-step="1" aria-label="Tăng số câu Khó">＋</button>

@@ -3,6 +3,7 @@
   'use strict';
 
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mousePreference = window.matchMedia('(hover: hover) and (pointer: fine)');
 
   // Các hiệu ứng JavaScript đọc tùy chọn hiện tại, kể cả khi đổi trong phiên xem.
   window.QuizFlowMotion = Object.freeze({
@@ -39,7 +40,7 @@
     // Đọc khung và ghi biến tọa độ tối đa một lần mỗi frame cho thẻ dưới chuột.
     function updateSpotlight() {
       frame = 0;
-      if (!activeCard || preference.matches) {
+      if (!activeCard || preference.matches || !mousePreference.matches) {
         return;
       }
       const bounds = activeCard.getBoundingClientRect();
@@ -62,7 +63,7 @@
     }
 
     document.addEventListener('pointermove', (event) => {
-      if (event.pointerType !== 'mouse' || preference.matches) {
+      if (event.pointerType !== 'mouse' || preference.matches || !mousePreference.matches) {
         return;
       }
       const card = event.target.closest('.motion-card');
@@ -93,6 +94,7 @@
       }
     });
     window.addEventListener('blur', clearSpotlight);
+    mousePreference.addEventListener('change', clearSpotlight);
     preference.addEventListener('change', () => {
       if (preference.matches) {
         clearSpotlight();

@@ -172,6 +172,9 @@
     dialogOpeners.set(dialog, opener);
     dialog.returnValue = '';
     dialog.showModal();
+    if (dialog.classList.contains('nav-drawer')) {
+      trigger.setAttribute('aria-expanded', 'true');
+    }
   }
 
   // Giữ kích thước nút sao chép bằng cách thay nhãn trên một lớp phủ tạm thời.
@@ -370,6 +373,9 @@
   });
   document.addEventListener('close', (event) => {
     if (event.target instanceof HTMLDialogElement && !event.target.open) {
+      if (event.target.classList.contains('nav-drawer')) {
+        document.querySelector('.nav-open')?.setAttribute('aria-expanded', 'false');
+      }
       closingDialogs.delete(event.target);
       dialogOpeners.delete(event.target);
       event.target.classList.remove('is-closing');
@@ -381,5 +387,75 @@
   }, true);
 
   window.QuizFlowUI = Object.freeze({ closeDialog, showToast });
+
+  // Menu dùng dialog gốc để khóa nền, hỗ trợ Esc/chạm nền và trả focus.
+  function initializeResponsiveUi() {
+    const app = document.querySelector('.app');
+    const sidebar = app?.querySelector(':scope > .sidebar');
+    const topbar = app?.querySelector('.topbar');
+    if (sidebar && topbar) {
+      const breakpoint = getComputedStyle(document.documentElement).getPropertyValue('--breakpoint-sidebar').trim();
+      const desktop = window.matchMedia(`(min-width: ${breakpoint})`);
+      const dialog = document.createElement('dialog');
+      dialog.id = 'app-navigation';
+      dialog.className = 'drawer nav-drawer';
+      dialog.setAttribute('aria-label', 'Menu điều hướng');
+      const open = document.createElement('button');
+      open.className = 'btn btn--icon nav-open';
+      open.type = 'button';
+      open.dataset.dialogOpen = dialog.id;
+      open.setAttribute('aria-controls', dialog.id);
+      open.setAttribute('aria-haspopup', 'dialog');
+      open.setAttribute('aria-expanded', 'false');
+      open.setAttribute('aria-label', 'Mở menu điều hướng');
+      open.textContent = '☰';
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'btn btn--icon nav-close';
+      close.dataset.dialogClose = '';
+      close.setAttribute('aria-label', 'Đóng menu điều hướng');
+      close.autofocus = true;
+      close.textContent = '×';
+      sidebar.prepend(close);
+      topbar.prepend(open);
+      document.body.append(dialog);
+      function updateMenu() {
+        if (desktop.matches) {
+          const wasOpen = dialog.open;
+          if (wasOpen) dialog.close();
+          app.prepend(sidebar);
+          open.setAttribute('aria-expanded', 'false');
+          if (wasOpen) sidebar.querySelector('[aria-current="page"], a[href]')?.focus({ preventScroll: true });
+        } else {
+          sidebar.classList.remove('anim-slide-in-right');
+          const hadFocus = sidebar.contains(document.activeElement);
+          dialog.append(sidebar);
+          if (hadFocus) open.focus({ preventScroll: true });
+        }
+      }
+      desktop.addEventListener('change', updateMenu);
+      dialog.addEventListener('click', (event) => {
+        if (event.target.closest('a[href]')) void closeDialog(dialog);
+      });
+      updateMenu();
+    }
+
+    // Dự trữ đúng chiều cao dock khi xuống dòng, đổi hướng hoặc đổi phông chữ.
+    const dock = document.querySelector('.builder-dock');
+    if (dock && 'ResizeObserver' in window) {
+      const observer = new ResizeObserver((entries) => {
+        const height = entries[0].borderBoxSize?.[0]?.blockSize || dock.getBoundingClientRect().height;
+        const rootSize = Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+        document.body.style.setProperty('--builder-dock-space', `${height / rootSize}rem`);
+      });
+      observer.observe(dock);
+    }
+  }
+  // Script defer chạy khi readyState là interactive; chờ sidebar giáo viên dựng xong.
+  if (document.readyState !== 'complete') {
+    document.addEventListener('DOMContentLoaded', initializeResponsiveUi, { once: true });
+  } else {
+    initializeResponsiveUi();
+  }
 
 })();

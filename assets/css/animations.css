@@ -154,8 +154,14 @@
   content: '';
 }
 
-.btn--primary:not(:disabled, [aria-disabled='true']):is(:hover, :focus-visible)::after {
+.btn--primary:not(:disabled, [aria-disabled='true']):focus-visible::after {
   animation: motion-shimmer var(--dur-hero) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:not(:disabled, [aria-disabled='true']):hover::after {
+    animation: motion-shimmer var(--dur-hero) var(--ease-out);
+  }
 }
 
 .btn:not(:disabled, [aria-disabled='true']):active,

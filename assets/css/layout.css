@@ -2,10 +2,10 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--app-gap);
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: var(--app-gutter);
   background-color: var(--bg);
   background-image: var(--aurora);
@@ -112,9 +112,11 @@
   height: 1.125rem;
 }
 
-.sidebar-nav-item:hover {
-  background-color: var(--surface-hover);
-  color: var(--text);
+@media (hover: hover) and (pointer: fine) {
+  .sidebar-nav-item:hover {
+    background-color: var(--surface-hover);
+    color: var(--text);
+  }
 }
 
 /* aria-current giúp công nghệ hỗ trợ nhận biết mục điều hướng hiện tại. */
@@ -273,20 +275,20 @@
 }
 
 .bento-grid--two {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .bento-grid--three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .bento-grid--split {
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--split-gap);
 }
 
 .bento-grid--builder {
-  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--split-gap);
 }
 

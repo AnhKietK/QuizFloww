@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
   <title>QuizFlow — Quản lý người dùng</title>
   <link rel="stylesheet" href="../../assets/css/variables.css">
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../../assets/css/components.css">
   <link rel="stylesheet" href="../../assets/css/admin-users.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
   <script src="../../assets/js/motion.js" defer></script>
   <script src="../../assets/js/ui.js" defer></script>
   <script src="../../assets/js/admin-users.js" defer></script>
@@ -154,67 +155,67 @@
             <p>Quản lý vai trò và trạng thái truy cập của từng tài khoản.</p></div>
         </header>
         <div class="table-scroll" role="region" aria-label="Danh sách tài khoản" tabindex="0">
-          <table class="data-table admin-table">
+          <table class="data-table admin-table" role="table">
             <caption class="visually-hidden">Tài khoản người dùng và thao tác quản trị</caption>
             <colgroup><col class="admin-col-account"><col class="admin-col-name"><col class="admin-col-student"><col class="admin-col-role"><col class="admin-col-status"><col class="admin-col-actions"></colgroup>
             <thead><tr><th scope="col">TÀI KHOẢN</th><th scope="col">HỌ VÀ TÊN</th><th scope="col">MÃ SV</th><th scope="col">VAI TRÒ</th><th scope="col">TRẠNG THÁI</th><th scope="col">THAO TÁC QUYỀN</th></tr></thead>
             <tbody>
-              <tr data-user-row data-user-role="student" data-user-status="active">
-                <td><div class="identity"><span class="avatar" aria-hidden="true">HS</span><div><strong data-username>son.nguyen</strong><small>Tham gia 02/11/2026</small></div></div></td>
-                <td data-fullname>Nguyễn Hoàng Sơn</td><td><span class="badge" data-student-id>SV2026001</span></td>
-                <td><span class="status" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Sinh viên</span></td>
-                <td><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
-                <td><div class="admin-actions">
+              <tr role="row" data-user-row data-user-role="student" data-user-status="active">
+                <td role="cell" data-label="Tài khoản"><div class="identity"><span class="avatar" aria-hidden="true">HS</span><div><strong data-username>son.nguyen</strong><small>Tham gia 02/11/2026</small></div></div></td>
+                <td data-fullname role="cell" data-label="Họ và tên">Nguyễn Hoàng Sơn</td><td role="cell" data-label="Mã sinh viên"><span class="badge" data-student-id>SV2026001</span></td>
+                <td role="cell" data-label="Vai trò"><span class="status" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Sinh viên</span></td>
+                <td role="cell" data-label="Trạng thái"><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
+                <td role="cell" data-label="Thao tác"><div class="admin-actions">
                   <button class="btn btn--small" type="button" data-user-action="grant" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Cấp quyền giáo viên cho son.nguyen"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-switch"/></svg>Cấp quyền GV</button>
                   <button class="btn btn--small btn--danger" type="button" data-user-action="lock" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Khóa tài khoản son.nguyen">Khóa</button>
                 </div></td>
               </tr>
-              <tr data-user-row data-user-role="teacher" data-user-status="active">
-                <td><div class="identity"><span class="avatar admin-avatar--emerald" aria-hidden="true">MK</span><div><strong data-username>kiet.tran</strong><small>Tham gia 28/10/2026</small></div></div></td>
-                <td data-fullname>Trần Minh Kiệt</td><td><span class="text-muted" data-student-id aria-label="Không áp dụng">—</span></td>
-                <td><span class="status status--accent" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Giáo viên</span></td>
-                <td><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
-                <td><div class="admin-actions">
+              <tr role="row" data-user-row data-user-role="teacher" data-user-status="active">
+                <td role="cell" data-label="Tài khoản"><div class="identity"><span class="avatar admin-avatar--emerald" aria-hidden="true">MK</span><div><strong data-username>kiet.tran</strong><small>Tham gia 28/10/2026</small></div></div></td>
+                <td data-fullname role="cell" data-label="Họ và tên">Trần Minh Kiệt</td><td role="cell" data-label="Mã sinh viên"><span class="text-muted" data-student-id aria-label="Không áp dụng">—</span></td>
+                <td role="cell" data-label="Vai trò"><span class="status status--accent" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Giáo viên</span></td>
+                <td role="cell" data-label="Trạng thái"><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
+                <td role="cell" data-label="Thao tác"><div class="admin-actions">
                   <button class="btn btn--small" type="button" data-user-action="revoke" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Thu hồi quyền giáo viên của kiet.tran"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-switch"/></svg>Thu hồi quyền GV</button>
                   <button class="btn btn--small btn--danger" type="button" data-user-action="lock" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Khóa tài khoản kiet.tran">Khóa</button>
                 </div></td>
               </tr>
-              <tr data-user-row data-user-role="student" data-user-status="locked">
-                <td><div class="identity"><span class="avatar admin-avatar--rose" aria-hidden="true">TA</span><div><strong data-username>anh.tran</strong><small>Tham gia 03/11/2026</small></div></div></td>
-                <td data-fullname>Trần Tuấn Anh</td><td><span class="badge" data-student-id>SV2026014</span></td>
-                <td><span class="status" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Sinh viên</span></td>
-                <td><span class="status status--danger"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-lock"/></svg>Đã khóa</span></td>
-                <td><div class="admin-actions">
+              <tr role="row" data-user-row data-user-role="student" data-user-status="locked">
+                <td role="cell" data-label="Tài khoản"><div class="identity"><span class="avatar admin-avatar--rose" aria-hidden="true">TA</span><div><strong data-username>anh.tran</strong><small>Tham gia 03/11/2026</small></div></div></td>
+                <td data-fullname role="cell" data-label="Họ và tên">Trần Tuấn Anh</td><td role="cell" data-label="Mã sinh viên"><span class="badge" data-student-id>SV2026014</span></td>
+                <td role="cell" data-label="Vai trò"><span class="status" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Sinh viên</span></td>
+                <td role="cell" data-label="Trạng thái"><span class="status status--danger"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-lock"/></svg>Đã khóa</span></td>
+                <td role="cell" data-label="Thao tác"><div class="admin-actions">
                   <button class="btn btn--small" type="button" data-user-action="grant" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Cấp quyền giáo viên cho anh.tran"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-switch"/></svg>Cấp quyền GV</button>
                   <button class="btn btn--small admin-unlock" type="button" data-user-action="unlock" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Mở khóa tài khoản anh.tran">Mở khóa</button>
                 </div></td>
               </tr>
-              <tr data-user-row data-user-role="student" data-user-status="active">
-                <td><div class="identity"><span class="avatar admin-avatar--gold" aria-hidden="true">NH</span><div><strong data-username>huy.nguyen</strong><small>Tham gia 05/11/2026</small></div></div></td>
-                <td data-fullname>Nguyễn Minh Huy</td><td><span class="badge" data-student-id>SV2026028</span></td>
-                <td><span class="status" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Sinh viên</span></td>
-                <td><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
-                <td><div class="admin-actions">
+              <tr role="row" data-user-row data-user-role="student" data-user-status="active">
+                <td role="cell" data-label="Tài khoản"><div class="identity"><span class="avatar admin-avatar--gold" aria-hidden="true">NH</span><div><strong data-username>huy.nguyen</strong><small>Tham gia 05/11/2026</small></div></div></td>
+                <td data-fullname role="cell" data-label="Họ và tên">Nguyễn Minh Huy</td><td role="cell" data-label="Mã sinh viên"><span class="badge" data-student-id>SV2026028</span></td>
+                <td role="cell" data-label="Vai trò"><span class="status" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Sinh viên</span></td>
+                <td role="cell" data-label="Trạng thái"><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
+                <td role="cell" data-label="Thao tác"><div class="admin-actions">
                   <button class="btn btn--small" type="button" data-user-action="grant" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Cấp quyền giáo viên cho huy.nguyen"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-switch"/></svg>Cấp quyền GV</button>
                   <button class="btn btn--small btn--danger" type="button" data-user-action="lock" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Khóa tài khoản huy.nguyen">Khóa</button>
                 </div></td>
               </tr>
-              <tr data-user-row data-user-role="teacher" data-user-status="active">
-                <td><div class="identity"><span class="avatar admin-avatar--rose" aria-hidden="true">TH</span><div><strong data-username>ha.le</strong><small>Tham gia 25/10/2026</small></div></div></td>
-                <td data-fullname>Lê Thanh Hà</td><td><span class="text-muted" data-student-id aria-label="Không áp dụng">—</span></td>
-                <td><span class="status status--accent" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Giáo viên</span></td>
-                <td><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
-                <td><div class="admin-actions">
+              <tr role="row" data-user-row data-user-role="teacher" data-user-status="active">
+                <td role="cell" data-label="Tài khoản"><div class="identity"><span class="avatar admin-avatar--rose" aria-hidden="true">TH</span><div><strong data-username>ha.le</strong><small>Tham gia 25/10/2026</small></div></div></td>
+                <td data-fullname role="cell" data-label="Họ và tên">Lê Thanh Hà</td><td role="cell" data-label="Mã sinh viên"><span class="text-muted" data-student-id aria-label="Không áp dụng">—</span></td>
+                <td role="cell" data-label="Vai trò"><span class="status status--accent" data-role-label><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Giáo viên</span></td>
+                <td role="cell" data-label="Trạng thái"><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
+                <td role="cell" data-label="Thao tác"><div class="admin-actions">
                   <button class="btn btn--small" type="button" data-user-action="revoke" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Thu hồi quyền giáo viên của ha.le"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-switch"/></svg>Thu hồi quyền GV</button>
                   <button class="btn btn--small btn--danger" type="button" data-user-action="lock" data-dialog-open="user-confirm" aria-controls="user-confirm" aria-haspopup="dialog" aria-label="Khóa tài khoản ha.le">Khóa</button>
                 </div></td>
               </tr>
-              <tr class="admin-protected-row" data-user-row data-user-role="admin" data-user-status="active">
-                <td><div class="identity"><span class="avatar" aria-hidden="true">QT</span><div><strong data-username>admin</strong><small>Tài khoản hệ thống</small></div></div></td>
-                <td data-fullname>Quản trị hệ thống</td><td><span class="text-muted" data-student-id aria-label="Không áp dụng">—</span></td>
-                <td><span class="status status--warning"><span aria-hidden="true">◇</span><span data-role-label>Quản trị viên</span></span></td>
-                <td><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
-                <td><p class="admin-protected-label" id="root-account-policy"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-shield"/></svg>Tài khoản gốc — Bảo vệ hệ thống</p>
+              <tr class="admin-protected-row" role="row" data-user-row data-user-role="admin" data-user-status="active">
+                <td role="cell" data-label="Tài khoản"><div class="identity"><span class="avatar" aria-hidden="true">QT</span><div><strong data-username>admin</strong><small>Tài khoản hệ thống</small></div></div></td>
+                <td role="cell" data-label="Họ và tên" data-fullname>Quản trị hệ thống</td><td role="cell" data-label="Mã sinh viên"><span class="text-muted" data-student-id aria-label="Không áp dụng">—</span></td>
+                <td role="cell" data-label="Vai trò"><span class="status status--warning"><span aria-hidden="true">◇</span><span data-role-label>Quản trị viên</span></span></td>
+                <td role="cell" data-label="Trạng thái"><span class="status status--success"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-check"/></svg>Hoạt động</span></td>
+                <td role="cell" data-label="Thao tác"><p class="admin-protected-label" id="root-account-policy"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-shield"/></svg>Tài khoản gốc — Bảo vệ hệ thống</p>
                   <div class="admin-actions">
                     <button class="btn btn--small" type="button" data-user-action="revoke" data-dialog-open="user-confirm" aria-describedby="root-account-policy" disabled><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-switch"/></svg>Thay đổi quyền</button>
                     <button class="btn btn--small" type="button" data-user-action="lock" data-dialog-open="user-confirm" aria-describedby="root-account-policy" disabled>Khóa</button>

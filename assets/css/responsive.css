@@ -1,0 +1,261 @@
+/* Mobile-first. Chỉ ba ngưỡng min-width ở cuối tệp; đối chiếu variables.css. */
+:root {
+  --glass-blur: 6px;
+  --glass-blur-overlay: 10px;
+}
+
+/* Khung và nội dung co theo vùng nhìn, không che phần tai thỏ. */
+.app {
+  padding: max(var(--app-gutter), env(safe-area-inset-top))
+    max(var(--app-gutter), env(safe-area-inset-right))
+    max(var(--app-gutter), env(safe-area-inset-bottom))
+    max(var(--app-gutter), env(safe-area-inset-left));
+}
+.app-main { min-width: 0; }
+:where(h1, h2, h3, p, small, strong, code, dt, dd, label, button, a) { overflow-wrap: anywhere; }
+h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
+.page-heading { margin-block: 1.5rem; gap: 1rem; }
+.topbar, .section-header, .card-header, .card-footer { gap: 0.75rem; }
+.breadcrumb { min-width: 0; }
+.breadcrumb ol { gap: 0.5rem; }
+.glass-card { padding: clamp(1rem, 1.5vw, 1.375rem); }
+.table-card { padding: 0; }
+.cluster, .identity > div, .topbar-actions { min-width: 0; }
+.identity { align-items: flex-start; }
+.motion-aurora { display: none; }
+
+/* Menu dùng cùng dialog và luồng trả focus với modal. */
+.nav-open { flex: 0 0 auto; }
+.nav-close { align-self: flex-end; flex: 0 0 auto; }
+.app > .sidebar { display: none; }
+.nav-drawer {
+  inset: 0 auto 0 0;
+  width: min(var(--nav-drawer-width), calc(100% - 2rem));
+  max-width: 100%;
+  max-height: 100dvh;
+  margin: 0 auto 0 0;
+  padding: 0;
+  border: 0;
+  border-right: 1px solid var(--line-strong);
+  border-radius: 0 1rem 1rem 0;
+}
+.nav-drawer[open] { --overlay-x: -100%; }
+.nav-drawer > .sidebar {
+  display: flex;
+  min-height: 100dvh;
+  padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  border: 0;
+  border-radius: 0;
+  backdrop-filter: none;
+}
+.sidebar-workspace { margin-block: 1.25rem; }
+.nav-close + .sidebar-brand { margin-top: 0.25rem; }
+.nav-open[aria-expanded='true'] { border-color: var(--purple); }
+
+/* Vùng chạm và chữ dễ đọc, gồm cả các biến thể nút nhỏ. */
+:is(button, .btn, .segmented-button, .sidebar-nav-item, .chip) {
+  min-inline-size: var(--touch-target);
+  min-block-size: var(--touch-target);
+}
+.btn { max-width: 100%; white-space: normal; }
+.btn--icon { width: var(--touch-target); flex: 0 0 var(--touch-target); }
+:is(.app, .modal, .drawer) :is(.input, .select, .textarea) {
+  min-height: var(--touch-target);
+  font-size: 1rem;
+}
+.segmented { flex-wrap: wrap; width: 100%; }
+.segmented-button { flex: 1 1 auto; white-space: normal; }
+.form-grid { grid-template-columns: minmax(0, 1fr); }
+.status, .chip, .badge { max-width: 100%; overflow-wrap: anywhere; }
+.chip { flex-wrap: wrap; }
+.toggle { flex-wrap: wrap; }
+.toggle-track { flex: 0 0 2.25rem; }
+.toggle-state { min-width: 0; }
+.table-scroll { overscroll-behavior-inline: contain; }
+.data-table { min-width: 38rem; }
+.data-table th, .data-table td { overflow-wrap: anywhere; }
+.modal {
+  width: min(var(--dialog-width, 31.25rem), calc(100% - 1rem));
+  max-height: calc(100dvh - 1rem);
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  border-radius: 1.25rem 1.25rem 0.75rem 0.75rem;
+}
+.dialog-header { gap: 0.5rem; }
+.dialog-header h2 { font-size: clamp(1.125rem, 3vw, 1.4375rem); }
+.dialog-actions { flex-direction: column; align-items: stretch; }
+.dialog-actions > .btn { width: 100%; }
+.drawer:not(.nav-drawer) {
+  width: 100%;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+.toast {
+  right: max(var(--app-gutter), env(safe-area-inset-right));
+  bottom: max(var(--app-gutter), env(safe-area-inset-bottom));
+  width: min(28rem, calc(100% - max(var(--app-gutter), env(safe-area-inset-left)) - max(var(--app-gutter), env(safe-area-inset-right))));
+}
+.builder-page > .toast { bottom: calc(var(--builder-dock-space, 0rem) + var(--app-gutter)); }
+
+/* K1: nhãn cột nằm trên từng ô, giữ nguyên dữ liệu và thao tác của hàng. */
+.admin-filter-group { flex-wrap: wrap; min-width: 0; width: 100%; }
+.admin-filter-row { align-items: stretch; }
+.admin-search kbd { white-space: normal; }
+.admin-actions { flex-wrap: wrap; }
+.admin-table { display: block; min-width: 0; }
+.admin-table colgroup { display: none; }
+.admin-table thead {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.admin-table tbody { display: grid; gap: 1rem; padding: 1rem; }
+.admin-table tbody tr { display: grid; min-width: 0; border: 1px solid var(--line); border-radius: var(--radius-md); }
+.admin-table tbody td {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.375rem;
+  padding: 0.75rem;
+}
+.admin-table td[data-label]::after { order: -1; content: attr(data-label); color: var(--muted); font-size: 0.875rem; }
+.admin-pagination .btn { min-width: var(--touch-target); min-height: var(--touch-target); }
+
+/* K2: dải môn cuộn nội bộ, thẻ lớp tự co theo khung. */
+.workspace-subject-strip {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(min(85%, 14rem), 1fr);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 0.25rem;
+}
+.workspace-subject { scroll-snap-align: start; }
+.workspace-subject-select { inset-block-start: 5rem; }
+.workspace-class-search { width: 100%; }
+.workspace-join-code { flex-wrap: wrap; }
+.workspace-join-code code { font-size: clamp(1rem, 4vw, 1.3125rem); letter-spacing: 0.06em; }
+.workspace-member, .workspace-form-owner { flex-wrap: wrap; gap: 0.75rem; }
+.workspace-member .identity { flex-basis: 65%; }
+.workspace-overview dl > div + div { padding-left: 0; border-left: 0; }
+.workspace-owner-note { margin-left: 0; }
+.workspace-class-footer .btn { flex-grow: 1; }
+
+/* K3: ngân hàng trước, nhập Excel sau; chọn tệp hỗ trợ cảm ứng. */
+.question-options, .question-editor-options { grid-template-columns: minmax(0, 1fr); }
+.question-filter-subject { flex-basis: 100%; }
+.question-option { align-items: flex-start; }
+.question-filter-row { align-items: stretch; }
+.import-debugger .data-table { min-width: 30rem; }
+.import-debugger-header, .import-debugger-footer, .import-file-summary { flex-wrap: wrap; }
+.import-dropzone { padding: 1rem; }
+
+/* K4: dock cố định có khoảng dự trữ đo theo nội dung, kể cả khi đổi phông chữ. */
+.builder-page { padding-bottom: var(--builder-dock-space, 0rem); }
+.builder-title-input { width: 100%; }
+.builder-page .builder-title-input { font-size: clamp(1.125rem, 3vw, 1.5rem); }
+.builder-time-grid, .builder-dials, .builder-preview-options { grid-template-columns: minmax(0, 1fr); }
+.builder-dial .input { min-width: 3.25rem; font-size: 1.5rem; }
+.builder-dial-controls { flex-wrap: wrap; }
+.builder-question-row, .builder-summary > div { flex-wrap: wrap; }
+.builder-question-row > :first-child { flex: 1 1 12rem; }
+.builder-dock {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 5;
+  margin: 0;
+  border-radius: 1rem 1rem 0 0;
+  gap: 0.5rem;
+  padding: 0.75rem max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+}
+.builder-dock > .cluster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; width: 100%; }
+.builder-publish-wrap { grid-column: 1 / -1; }
+.builder-publish-wrap > .btn { width: 100%; }
+.builder-dock .btn { padding: 0.625rem; }
+.builder-publish-wrap { min-width: 0; }
+
+/* K5: CSV nằm trong luồng, cột mã sinh viên vẫn hiện khi cuộn bảng. */
+.analytics-filters { grid-template-columns: minmax(0, 1fr); }
+.analytics-table { min-width: 75rem; }
+.analytics-table :is(th, td):first-child { position: sticky; left: 0; z-index: 1; background: var(--surface); }
+.analytics-table time { font-size: 0.875rem; }
+.analytics-detail-summary > div { flex-wrap: wrap; gap: 0.5rem; }
+.analytics-publish > :last-child { flex-wrap: wrap; }
+.catalog-card .btn { align-self: stretch; }
+
+/* ≥768px / 48rem: tablet dọc. */
+@media (min-width: 48rem) {
+  .bento-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .form-grid, .question-options, .question-editor-options, .builder-preview-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .segmented { width: fit-content; }
+  .admin-filter-group { width: auto; }
+  .admin-table { display: table; min-width: 70rem; }
+  .admin-table colgroup { display: table-column-group; }
+  .admin-table thead { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .admin-table tbody { display: table-row-group; padding: 0; }
+  .admin-table tbody tr { display: table-row; border: 0; border-radius: 0; }
+  .admin-table tbody td { display: table-cell; padding: 1.125rem 0.625rem; }
+  .admin-table tbody td:first-child { padding-left: 1.375rem; }
+  .admin-table tbody td:last-child { padding-right: 1.375rem; }
+  .admin-table td[data-label]::after { content: none; }
+  .dialog-actions { flex-direction: row; align-items: center; }
+  .dialog-actions > .btn { width: auto; }
+  .modal { width: min(var(--dialog-width, 31.25rem), calc(100% - 3rem)); max-height: calc(100dvh - 3rem); padding: 1.8125rem; border-radius: var(--radius-xl); }
+  .drawer:not(.nav-drawer) { width: min(35rem, calc(100% - 3rem)); padding: 1.875rem 1.75rem; }
+  .builder-time-grid { grid-template-columns: minmax(0, 0.5fr) repeat(2, minmax(0, 1fr)); }
+  .builder-dials { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .builder-dock > .cluster { display: flex; width: auto; }
+  .builder-dock { justify-content: space-between; }
+  .analytics-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ≥1024px / 64rem: sidebar cố định, CSS/JS dùng cùng ngưỡng chuyển. */
+@media (min-width: 64rem) {
+  :root { --glass-blur: 12px; --glass-blur-overlay: 16px; }
+  .app { grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
+  .app > .app-main { grid-column: 2; }
+  .app > .sidebar {
+    position: fixed;
+    inset: var(--app-gutter) auto var(--app-gutter) var(--app-gutter);
+    display: flex;
+    width: var(--sidebar-width);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .nav-open, .nav-close { display: none; }
+  .bento-grid--split { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  .workspace-class-search { width: clamp(12rem, 22vw, 18rem); }
+  .builder-page { padding-bottom: 0; }
+  .builder-dock { position: sticky; inset: auto; bottom: max(1rem, env(safe-area-inset-bottom)); margin-top: 1.375rem; padding: 1rem; border-radius: var(--radius-lg); }
+  .builder-page > .toast { bottom: max(var(--app-gutter), env(safe-area-inset-bottom)); }
+  .motion-aurora { display: block; }
+}
+
+/* ≥1280px / 80rem: desktop, nội dung giới hạn 100rem trong layout.css. */
+@media (min-width: 80rem) {
+  :root { --glass-blur: 24px; --glass-blur-overlay: 32px; }
+  #class-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bento-grid--builder { grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); }
+  .analytics-filters { grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.7fr) minmax(12rem, 0.6fr) auto; }
+}
+
+/* Cảm ứng không phụ thuộc trạng thái hover có thể bị giữ lại. */
+@media (hover: none), (pointer: coarse) {
+  .motion-card-light, .motion-aurora, .builder-publish-glow { display: none; }
+  .teacher-page .workspace-class.motion-card { transform: none; }
+  .workspace-class::after { display: none; }
+  .btn:not(:disabled):active, .sidebar-nav-item:active { opacity: 0.8; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .builder-publish-wrap:hover .builder-publish-glow { opacity: 0.8; }
+  .builder-publish-wrap:hover .builder-publish-glow::before { animation: motion-border-drift calc(var(--dur-hero) * 4) var(--ease-linear) 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-aurora { display: none; }
+  .workspace-subject-strip { scroll-snap-type: none; }
+}

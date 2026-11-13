@@ -24,12 +24,12 @@
 .import-upload-icon { color: var(--purple); font-size: 30px; }
 .import-file-summary { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; color: var(--muted); font-size: var(--text-2xs); overflow-wrap: anywhere; }
 .import-debugger { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-inset); }
-.import-debugger-header, .import-debugger-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; color: var(--muted); font-family: var(--mono); font-size: 8px; }
+.import-debugger-header, .import-debugger-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; color: var(--muted); font-family: var(--mono); font-size: 0.875rem; }
 .import-debugger .data-table { table-layout: fixed; }
-.import-debugger .data-table th, .import-debugger .data-table td { padding: 12px 8px; font-size: 9px; overflow-wrap: anywhere; }
+.import-debugger .data-table th, .import-debugger .data-table td { padding: 12px 8px; font-size: 0.875rem; overflow-wrap: anywhere; }
 .import-column-row { width: 15%; }
 .import-column-name { width: 33%; }
-.import-error-detail { margin-top: 8px; color: var(--crimson-text); font: 10px/1.8 var(--sans); }
+.import-error-detail { margin-top: 8px; color: var(--crimson-text); font: 0.875rem/1.8 var(--sans); }
 .import-state { padding: 16px; color: var(--muted); font-size: var(--text-xs); line-height: 1.9; }
 .import-warning { margin-top: 18px; font-size: var(--text-xs); }
 .import-confirm { width: 100%; margin-top: 16px; white-space: normal; }

@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>QuizFlow — Ngân hàng câu hỏi</title>
   <link rel="stylesheet" href="../../assets/css/variables.css">
   <link rel="stylesheet" href="../../assets/css/base.css">
@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../../assets/css/teacher-sidebar.css">
   <link rel="stylesheet" href="../../assets/css/question-bank.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
   <script src="../../assets/js/motion.js" defer></script>
   <script src="../../assets/js/ui.js" defer></script>
   <script src="../../assets/js/teacher-sidebar.js" defer></script>
@@ -215,6 +216,7 @@
             <div class="import-debugger">
               <div id="import-errors">
                 <header class="import-debugger-header"><span>Nhật ký kiểm tra</span><span class="status status--danger"><span aria-hidden="true">×</span>02 lỗi</span></header>
+                <div class="table-scroll" role="region" aria-label="Lỗi nhập Excel" tabindex="0">
                 <table class="data-table">
                   <caption class="visually-hidden">Lỗi trong tệp Excel</caption>
                   <colgroup><col class="import-column-row"><col class="import-column-name"><col></colgroup>
@@ -224,6 +226,7 @@
                     <tr><td class="text-mono">27</td><td class="text-mono">phuong_an_c</td><td><span class="status status--danger"><span aria-hidden="true">×</span>Lỗi</span><p class="import-error-detail">Thiếu nội dung lựa chọn C.</p></td></tr>
                   </tbody>
                 </table>
+                </div>
               </div>
               <p class="import-state" id="import-state" role="status" aria-live="polite" hidden></p>
               <footer class="import-debugger-footer"><span>○ Chưa nhập dữ liệu</span><span>0 câu đã ghi</span></footer>

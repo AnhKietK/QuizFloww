@@ -79,7 +79,7 @@
   display: block;
   margin-top: 12px;
   color: var(--muted);
-  font: 8px/1.8 var(--mono);
+  font: 0.875rem/1.8 var(--mono);
 }
 .builder-easy { color: var(--emerald-text); }
 .builder-medium { color: var(--amber-text); }
@@ -255,11 +255,11 @@
   content: '';
 }
 
-.builder-publish-wrap:is(:hover, :focus-within) .builder-publish-glow {
+.builder-publish-wrap:focus-within .builder-publish-glow {
   opacity: 0.8;
 }
 
-.builder-publish-wrap:is(:hover, :focus-within) .builder-publish-glow::before {
+.builder-publish-wrap:focus-within .builder-publish-glow::before {
   animation: motion-border-drift calc(var(--dur-hero) * 4) var(--ease-linear) 2;
 }
 
