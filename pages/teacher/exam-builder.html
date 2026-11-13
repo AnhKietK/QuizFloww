@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Tạo đề thi</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/teacher-sidebar.css">
+  <link rel="stylesheet" href="../../assets/css/exam-builder.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/teacher-sidebar.js" defer></script>
+  <script src="../../assets/js/exam-builder.js" defer></script>
+</head>
+<body>
+  <div class="app app--exam-builder teacher-page">
+    <aside class="sidebar teacher-sidebar" data-teacher-sidebar data-current-page="exam-builder" aria-label="Điều hướng giáo viên">
+      <section class="sidebar-workspace" data-sidebar-workspace>
+        <p class="eyebrow">KHÔNG GIAN LÀM VIỆC</p>
+        <strong>Trường THPT Lê Quý Đôn</strong>
+        <p>Học kỳ I · 2026–2027</p>
+      </section>
+      <div class="sidebar-user" data-sidebar-user>
+        <span class="avatar" aria-hidden="true">MK</span>
+        <div><strong>Trần Minh Kiệt</strong><small>Giáo viên</small></div>
+      </div>
+    </aside>
+    <main class="app-main" id="workspace" aria-labelledby="page-title">
+      <header class="topbar">
+        <nav class="breadcrumb" aria-label="Đường dẫn trang">
+          <ol><li>Không gian làm việc</li><li aria-hidden="true">/</li><li>Đề thi của tôi</li><li aria-hidden="true">/</li><li aria-current="page">Soạn đề thi</li></ol>
+        </nav>
+        <span class="badge teacher-term">Học kỳ I · 2026–2027</span>
+      </header>
+      <section class="page-heading">
+        <div><p class="eyebrow">SOẠN ĐỀ THI / THIẾT KẾ KỲ THI</p>
+          <h1 id="page-title">Studio đề thi</h1>
+          <p>Từ ngân hàng tri thức đến một kỳ thi được thiết kế chỉn chu.</p>
+        </div>
+        <span class="status status--warning"><span aria-hidden="true">◐</span>Bản nháp — Đang soạn</span>
+      </section>
+      <section class="glass-card builder-title-card" aria-labelledby="exam-title-label">
+        <label class="eyebrow" id="exam-title-label" for="exam-title">TÊN ĐỀ THI</label>
+        <input class="input builder-title-input" id="exam-title" type="text" required maxlength="200" value="Kiểm tra Giữa kỳ Lập trình Web" aria-describedby="exam-error">
+        <div class="card-header">
+          <div class="cluster">
+            <span class="status status--accent"><span aria-hidden="true">◇</span>Môn cố định · Lập trình Web</span>
+            <span class="status status--warning"><span aria-hidden="true">◐</span>Bản nháp</span>
+          </div>
+          <span class="field-hint">Mã đề được sinh sau khi công bố</span>
+        </div>
+      </section>
+      <div class="notice notice--warning builder-warning" id="exam-error" role="alert" hidden><span aria-hidden="true">!</span><span data-error-text></span></div>
+      <div class="bento-grid bento-grid--builder builder-columns">
+        <div class="section-stack">
+          <section class="glass-card" aria-labelledby="schedule-title">
+            <h2 id="schedule-title">Thời gian &amp; lớp được giao</h2>
+            <p class="builder-card-description">Thiết lập khung giờ và không gian tổ chức kỳ thi.</p>
+            <div class="builder-time-grid">
+              <div class="field"><label for="exam-duration">Thời lượng (phút)</label><input class="input" id="exam-duration" type="number" min="1" step="1" value="30" aria-describedby="exam-error"></div>
+              <div class="field"><label for="exam-opens">Giờ mở đề</label><input class="input" id="exam-opens" type="datetime-local" value="2026-11-13T08:00" aria-describedby="exam-error"></div>
+              <div class="field"><label for="exam-closes">Giờ đóng đề</label><input class="input" id="exam-closes" type="datetime-local" value="2026-11-13T09:00" aria-describedby="exam-error"></div>
+            </div>
+            <p class="field-hint">Giờ Việt Nam · GMT+7</p>
+            <fieldset class="builder-class-choices">
+              <legend class="field-hint">Lớp được giao đề · Cùng môn Lập trình Web</legend>
+              <div class="cluster">
+                <label class="chip"><input type="checkbox" data-exam-class value="web-01" checked>Lớp Lập trình Web N01</label>
+                <label class="chip"><input type="checkbox" data-exam-class value="web-02" checked>Lớp Lập trình Web N02</label>
+              </div>
+            </fieldset>
+            <p class="builder-note">◇ Chỉ giao đề cho các lớp thuộc cùng môn học.</p>
+          </section>
+          <section class="glass-card" aria-labelledby="generator-title">
+            <h2 id="generator-title">Máy sinh đề ngẫu nhiên</h2>
+            <p class="builder-card-description">Tạo cấu trúc đề theo số câu của từng độ khó.</p>
+            <div class="builder-dials">
+              <div class="builder-dial">
+                <label class="builder-easy" for="count-easy">◇ Số câu Dễ</label>
+                <div class="builder-dial-controls">
+                  <button class="btn btn--small" type="button" data-count-target="count-easy" data-count-step="-1" aria-label="Giảm số câu Dễ">−</button>
+                  <span class="builder-count-value builder-easy">
+                    <input class="input builder-easy" id="count-easy" type="number" min="0" step="1" value="2" data-generator-count data-label="Dễ" data-available="72" aria-describedby="generator-warning">
+                    <span class="builder-count-roll" aria-hidden="true"><span class="builder-count-before"></span><span class="builder-count-after"></span></span>
+                  </span>
+                  <button class="btn btn--small" type="button" data-count-target="count-easy" data-count-step="1" aria-label="Tăng số câu Dễ">＋</button>
+                </div>
+                <small>NGÂN HÀNG / 72 CÂU</small>
+              </div>
+              <div class="builder-dial">
+                <label class="builder-medium" for="count-medium">◐ Số câu Trung bình</label>
+                <div class="builder-dial-controls">
+                  <button class="btn btn--small" type="button" data-count-target="count-medium" data-count-step="-1" aria-label="Giảm số câu Trung bình">−</button>
+                  <span class="builder-count-value builder-medium">
+                    <input class="input builder-medium" id="count-medium" type="number" min="0" step="1" value="2" data-generator-count data-label="Trung bình" data-available="53" aria-describedby="generator-warning">
+                    <span class="builder-count-roll" aria-hidden="true"><span class="builder-count-before"></span><span class="builder-count-after"></span></span>
+                  </span>
+                  <button class="btn btn--small" type="button" data-count-target="count-medium" data-count-step="1" aria-label="Tăng số câu Trung bình">＋</button>
+                </div>
+                <small>NGÂN HÀNG / 53 CÂU</small>
+              </div>
+              <div class="builder-dial">
+                <label class="builder-hard" for="count-hard">◆ Số câu Khó</label>
+                <div class="builder-dial-controls">
+                  <button class="btn btn--small" type="button" data-count-target="count-hard" data-count-step="-1" aria-label="Giảm số câu Khó">−</button>
+                  <span class="builder-count-value builder-hard">
+                    <input class="input builder-hard" id="count-hard" type="number" min="0" step="1" value="1" data-generator-count data-label="Khó" data-available="3" aria-describedby="generator-warning">
+                    <span class="builder-count-roll" aria-hidden="true"><span class="builder-count-before"></span><span class="builder-count-after"></span></span>
+                  </span>
+                  <button class="btn btn--small" type="button" data-count-target="count-hard" data-count-step="1" aria-label="Tăng số câu Khó">＋</button>
+                </div>
+                <small>NGÂN HÀNG / 3 CÂU</small>
+              </div>
+            </div>
+            <div class="card-footer"><span>Cấu trúc yêu cầu</span><span class="text-mono" id="requested-total" role="status" aria-live="polite">5 câu yêu cầu</span></div>
+            <button class="btn builder-generate" type="button" id="generate-exam">⤨ Sinh bộ câu hỏi ngẫu nhiên</button>
+            <div class="notice notice--warning builder-warning" id="generator-warning" role="status" aria-live="polite" hidden><span aria-hidden="true">!</span><span data-warning-text></span></div>
+          </section>
+        </div>
+        <div class="section-stack">
+          <section class="glass-card" aria-labelledby="shuffle-title">
+            <h2 id="shuffle-title">Cấu hình trộn độc lập</h2>
+            <p class="builder-card-description">Hai tùy chọn. Hai lớp ngẫu nhiên độc lập.</p>
+            <div class="stack builder-class-choices">
+              <div class="toggle-row">
+                <div><span class="toggle-label" id="shuffle-questions-label">Trộn thứ tự câu hỏi</span><p class="field-hint">Thứ tự riêng cho từng lượt thi.</p></div>
+                <button class="toggle" type="button" role="switch" aria-checked="true" data-toggle aria-labelledby="shuffle-questions-label">
+                  <span class="toggle-track" aria-hidden="true"></span>
+                  <span class="toggle-state"><span data-toggle-icon aria-hidden="true">✓</span><span data-toggle-state>Đã bật</span></span>
+                </button>
+              </div>
+              <div class="toggle-row">
+                <div><span class="toggle-label" id="shuffle-options-label">Trộn vị trí lựa chọn A/B/C/D</span><p class="field-hint">Giữ nguyên định danh đáp án gốc.</p></div>
+                <button class="toggle" type="button" role="switch" aria-checked="true" data-toggle aria-labelledby="shuffle-options-label">
+                  <span class="toggle-track" aria-hidden="true"></span>
+                  <span class="toggle-state"><span data-toggle-icon aria-hidden="true">✓</span><span data-toggle-state>Đã bật</span></span>
+                </button>
+              </div>
+            </div>
+            <p class="builder-note">Lưu thứ tự cố định cho từng lượt thi, chấm điểm theo định danh gốc.</p>
+          </section>
+          <section class="glass-card" aria-labelledby="summary-title">
+            <header class="card-header"><h2 id="summary-title">Tổng quan đề thi</h2><span class="status status--success"><span aria-hidden="true">✓</span>05 câu hỏi</span></header>
+            <dl class="builder-summary">
+              <div><dt>Câu hỏi trong bộ hiện tại</dt><dd>05</dd></div>
+              <div><dt>Thang điểm</dt><dd>10,00</dd></div>
+              <div><dt>Thời lượng</dt><dd id="summary-duration">30 phút</dd></div>
+              <div><dt>Lớp được giao</dt><dd id="summary-classes">2 lớp</dd></div>
+            </dl>
+            <div class="cluster">
+              <span class="status status--success"><span aria-hidden="true">◇</span>Dễ / 02</span>
+              <span class="status status--warning"><span aria-hidden="true">◐</span>Trung bình / 02</span>
+              <span class="status status--danger"><span aria-hidden="true">◆</span>Khó / 01</span>
+            </div>
+            <p class="builder-note">◇ Công bố sẽ cố định phiên bản đề thi. Kiểm tra lịch thi, câu hỏi, đáp án và lớp giao trước khi xác nhận.</p>
+          </section>
+        </div>
+      </div>
+      <section class="glass-card" aria-labelledby="current-questions-title">
+        <header class="card-header"><h2 id="current-questions-title">Bộ câu hỏi hiện tại</h2><span class="field-hint">05 câu · Nội dung gốc trước khi trộn</span></header>
+        <ol class="builder-question-list">
+          <li><div class="builder-question-row"><span>Trong HTML, thẻ nào được dùng để tạo một liên kết?</span><span class="status status--success"><span aria-hidden="true">◇</span>Dễ</span></div></li>
+          <li><div class="builder-question-row"><span>Thuộc tính CSS nào dùng để thay đổi màu chữ?</span><span class="status status--success"><span aria-hidden="true">◇</span>Dễ</span></div></li>
+          <li><div class="builder-question-row"><span>Phương thức HTTP nào thường được dùng để tạo mới tài nguyên?</span><span class="status status--warning"><span aria-hidden="true">◇</span>Trung bình</span></div></li>
+          <li><div class="builder-question-row"><span>Mã trạng thái HTTP nào biểu thị tài nguyên không được tìm thấy?</span><span class="status status--warning"><span aria-hidden="true">◇</span>Trung bình</span></div></li>
+          <li><div class="builder-question-row"><span>Dữ liệu nào được tách riêng cho từng yêu cầu trong Servlet?</span><span class="status status--danger"><span aria-hidden="true">◇</span>Khó</span></div></li>
+        </ol>
+        <p class="builder-note">Bộ câu hỏi hiện tại được giữ nguyên khi yêu cầu sinh mới không đủ câu.</p>
+      </section>
+      <footer class="glass-card builder-dock">
+        <span class="status status--warning"><span aria-hidden="true">◐</span>Bản nháp · Chưa công bố</span>
+        <div class="cluster">
+          <button class="btn btn--ghost" id="save-draft" type="button">Lưu nháp</button>
+          <button class="btn" type="button" data-dialog-open="preview-dialog" aria-controls="preview-dialog" aria-haspopup="dialog">◎ Xem trước đề &amp; đáp án</button>
+          <span class="builder-publish-wrap">
+            <span class="builder-publish-glow" aria-hidden="true"></span>
+            <button class="btn btn--primary" type="button" data-publish-exam data-dialog-open="publish-dialog" aria-controls="publish-dialog" aria-haspopup="dialog">↗ Công bố đề thi</button>
+          </span>
+        </div>
+      </footer>
+      <footer class="page-footer"><span>◇ Không gian giáo viên được bảo vệ</span><span>QuizFlow · Tạo đề thi</span></footer>
+    </main>
+  </div>
+  <dialog class="modal" id="publish-dialog" aria-labelledby="publish-title" aria-describedby="publish-description">
+    <header class="dialog-header"><h2 id="publish-title">Công bố đề thi?</h2><button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng xác nhận công bố">×</button></header>
+    <div class="stack">
+      <h3 data-preview-title>Kiểm tra Giữa kỳ Lập trình Web</h3>
+      <p class="dialog-description" id="publish-description">Công bố sẽ cố định nội dung câu hỏi, đáp án, lịch thi, thời lượng, lớp giao và tùy chọn trộn. Mã đề được sinh sau khi công bố.</p>
+      <span class="status status--success"><span aria-hidden="true">✓</span>5 câu hỏi · Thang điểm 10</span>
+      <p class="dialog-description" id="publish-config"></p>
+    </div>
+    <footer class="dialog-actions"><button class="btn btn--ghost" type="button" data-dialog-close autofocus>Quay lại kiểm tra</button><button class="btn btn--primary" type="button" id="confirm-publish">Xác nhận công bố</button></footer>
+  </dialog>
+  <dialog class="modal builder-preview" id="preview-dialog" aria-labelledby="preview-title">
+    <header class="dialog-header"><h2 id="preview-title">Xem trước đề &amp; đáp án</h2><button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng xem trước" autofocus>×</button></header>
+    <h3 data-preview-title>Kiểm tra Giữa kỳ Lập trình Web</h3>
+    <section class="builder-preview-question" aria-labelledby="preview-question-0">
+      <p class="eyebrow">CÂU 1 / DỄ</p>
+      <h3 id="preview-question-0">Trong HTML, thẻ nào được dùng để tạo một liên kết?</h3>
+      <div class="builder-preview-options">
+        <p class="builder-correct">A. Thẻ &lt;a&gt; · ✓ Đáp án đúng</p>
+        <p>B. Thẻ &lt;link&gt;</p>
+        <p>C. Thẻ &lt;href&gt;</p>
+        <p>D. Thẻ &lt;url&gt;</p>
+      </div>
+    </section>
+    <section class="builder-preview-question" aria-labelledby="preview-question-1">
+      <p class="eyebrow">CÂU 2 / DỄ</p>
+      <h3 id="preview-question-1">Thuộc tính CSS nào dùng để thay đổi màu chữ?</h3>
+      <div class="builder-preview-options">
+        <p>A. background-color</p>
+        <p class="builder-correct">B. color · ✓ Đáp án đúng</p>
+        <p>C. font-style</p>
+        <p>D. text-align</p>
+      </div>
+    </section>
+    <section class="builder-preview-question" aria-labelledby="preview-question-2">
+      <p class="eyebrow">CÂU 3 / TRUNG BÌNH</p>
+      <h3 id="preview-question-2">Phương thức HTTP nào thường được dùng để tạo mới tài nguyên?</h3>
+      <div class="builder-preview-options">
+        <p>A. GET</p>
+        <p class="builder-correct">B. POST · ✓ Đáp án đúng</p>
+        <p>C. DELETE</p>
+        <p>D. HEAD</p>
+      </div>
+    </section>
+    <section class="builder-preview-question" aria-labelledby="preview-question-3">
+      <p class="eyebrow">CÂU 4 / TRUNG BÌNH</p>
+      <h3 id="preview-question-3">Mã trạng thái HTTP nào biểu thị tài nguyên không được tìm thấy?</h3>
+      <div class="builder-preview-options">
+        <p>A. 200</p>
+        <p>B. 301</p>
+        <p class="builder-correct">C. 404 · ✓ Đáp án đúng</p>
+        <p>D. 500</p>
+      </div>
+    </section>
+    <section class="builder-preview-question" aria-labelledby="preview-question-4">
+      <p class="eyebrow">CÂU 5 / KHÓ</p>
+      <h3 id="preview-question-4">Dữ liệu nào được tách riêng cho từng yêu cầu trong Servlet?</h3>
+      <div class="builder-preview-options">
+        <p>A. Biến static của Servlet</p>
+        <p>B. Biến instance của Servlet</p>
+        <p class="builder-correct">C. Biến cục bộ trong doGet() · ✓ Đáp án đúng</p>
+        <p>D. Thuộc tính ServletContext</p>
+      </div>
+    </section>
+    <footer class="dialog-actions"><button class="btn btn--ghost" type="button" data-dialog-close>Quay lại Studio</button></footer>
+  </dialog>
+  <div class="toast" id="teacher-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><span class="icon" aria-hidden="true">✓</span><span data-feedback-message></span></div>
+</body>
+</html>
+

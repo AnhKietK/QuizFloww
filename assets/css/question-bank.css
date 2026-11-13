@@ -1,0 +1,96 @@
+/* Bố cục fluid của ngân hàng câu hỏi và nhập Excel. */
+.question-filters { margin-bottom: 24px; }
+.question-filter-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.question-search { position: relative; }
+.question-filter-subject { flex: 1; }
+.question-list { display: flex; flex-direction: column; gap: 18px; }
+.question-card { padding: 21px 20px; }
+.question-card h3 { margin-block: 23px 18px; font-size: 14px; line-height: 1.9; }
+.question-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.question-option { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); color: var(--muted); font-size: var(--text-xs); }
+.question-option--correct { border-color: var(--emerald-line); background: #10b98107; color: var(--text); }
+.question-option small { display: block; margin-top: 3px; color: var(--emerald-text); font-size: var(--text-2xs); }
+.question-option > .badge { flex-shrink: 0; }
+.question-caption { margin-top: 15px; color: var(--muted); font-size: var(--text-2xs); }
+.question-empty { padding: 30px; text-align: center; color: var(--muted); }
+.import-panel { padding: 24px 22px; }
+.import-panel h2 { margin-block: 20px 12px; font-size: 23px; letter-spacing: -0.7px; }
+.import-intro { color: var(--muted); font-size: var(--text-sm); line-height: 1.9; }
+.import-section { padding-top: 24px; margin-top: 24px; border-top: 1px solid var(--line); }
+.import-section h3 { margin-bottom: 18px; font-size: var(--text-base); }
+.import-template { width: 100%; margin-top: 12px; border-style: dashed; }
+.import-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 11.875rem; padding: 22px; border: 1px dashed #8b5cf65c; border-radius: var(--radius-md); background: #8b5cf607; text-align: center; }
+.import-dropzone[data-dragging='true'] { border-color: var(--purple); background: #8b5cf620; }
+.import-upload-icon { color: var(--purple); font-size: 30px; }
+.import-file-summary { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; color: var(--muted); font-size: var(--text-2xs); overflow-wrap: anywhere; }
+.import-debugger { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-inset); }
+.import-debugger-header, .import-debugger-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px; color: var(--muted); font-family: var(--mono); font-size: 8px; }
+.import-debugger .data-table { table-layout: fixed; }
+.import-debugger .data-table th, .import-debugger .data-table td { padding: 12px 8px; font-size: 9px; overflow-wrap: anywhere; }
+.import-column-row { width: 15%; }
+.import-column-name { width: 33%; }
+.import-error-detail { margin-top: 8px; color: var(--crimson-text); font: 10px/1.8 var(--sans); }
+.import-state { padding: 16px; color: var(--muted); font-size: var(--text-xs); line-height: 1.9; }
+.import-warning { margin-top: 18px; font-size: var(--text-xs); }
+.import-confirm { width: 100%; margin-top: 16px; white-space: normal; }
+.import-footnote { margin-top: 12px; color: var(--muted); font-size: var(--text-2xs); line-height: 1.9; text-align: center; }
+.question-editor { --dialog-width: 40.625rem; }
+.question-editor .dialog-actions { margin-top: 8px; }
+.question-editor-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+
+/* Đáp án đúng sáng viền emerald một lượt khi thẻ câu hỏi xuất hiện. */
+.question-option--correct {
+  position: relative;
+}
+
+.question-option--correct::after {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--emerald);
+  border-radius: inherit;
+  box-shadow: 0 0 0.75rem #10b98122;
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+}
+
+.question-card[data-motion-reveal='entered'] .question-option--correct::after {
+  animation: motion-glow-breathe var(--dur-hero) var(--ease-out);
+}
+
+/* Dropzone nhận file nổi nhẹ và dùng viền chạy chung trong một lượt kéo thả. */
+.import-dropzone {
+  position: relative;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.import-dropzone[data-dragging='true'] {
+  transform: scale(1.015);
+}
+
+.import-dropzone[data-dragging='true'] > .anim-border::before {
+  opacity: 1;
+  animation: motion-border-drift calc(var(--dur-hero) * 6) var(--ease-linear);
+}
+
+/* Log xuất hiện theo thứ tự rồi rung nhẹ một lần, chỉ thay transform và opacity. */
+.import-log-pending {
+  opacity: 0;
+}
+
+.import-log-enter {
+  animation: motion-fade-up var(--dur-base) var(--ease-out) backwards,
+    motion-shake-soft var(--dur-fast) var(--ease-in-out);
+  animation-delay: calc(var(--i, 0) * var(--dur-fast)),
+    calc(var(--i, 0) * var(--dur-fast) + var(--dur-base));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .import-dropzone {
+    transform: none !important;
+  }
+
+  .import-log-pending {
+    opacity: 1;
+  }
+}

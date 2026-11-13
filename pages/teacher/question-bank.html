@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuizFlow — Ngân hàng câu hỏi</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/teacher-sidebar.css">
+  <link rel="stylesheet" href="../../assets/css/question-bank.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/teacher-sidebar.js" defer></script>
+  <script src="../../assets/js/question-bank.js" defer></script>
+</head>
+<body>
+  <div class="app app--question-bank teacher-page">
+    <aside class="sidebar teacher-sidebar" data-teacher-sidebar data-current-page="question-bank" aria-label="Điều hướng giáo viên">
+      <section class="sidebar-workspace" data-sidebar-workspace>
+        <p class="eyebrow">KHÔNG GIAN LÀM VIỆC</p>
+        <strong>Trường THPT Lê Quý Đôn</strong>
+        <p>Học kỳ I · 2026–2027</p>
+      </section>
+      <div class="sidebar-user" data-sidebar-user>
+        <span class="avatar" aria-hidden="true">MK</span>
+        <div><strong>Trần Minh Kiệt</strong><small>Giáo viên</small></div>
+      </div>
+    </aside>
+    <main class="app-main" id="workspace" aria-labelledby="page-title">
+      <header class="topbar">
+        <nav class="breadcrumb" aria-label="Đường dẫn trang">
+          <ol><li>Không gian làm việc</li><li aria-hidden="true">/</li><li aria-current="page">Ngân hàng câu hỏi</li></ol>
+        </nav>
+        <span class="badge teacher-term">Học kỳ I · 2026–2027</span>
+      </header>
+      <section class="page-heading">
+        <div><p class="eyebrow">NGÂN HÀNG CÂU HỎI / XÂY DỰNG TRI THỨC</p>
+          <h1 id="page-title">Ngân hàng câu hỏi</h1>
+          <p>Từng câu hỏi chất lượng. Mỗi kỳ thi một bước tiến.</p>
+        </div>
+        <div class="page-actions">
+          <span class="badge">268 CÂU HỎI</span>
+          <button class="btn btn--primary" type="button" data-create-question data-dialog-open="question-editor" aria-controls="question-editor" aria-haspopup="dialog">＋ Tạo câu hỏi</button>
+        </div>
+      </section>
+      <div class="bento-grid bento-grid--split">
+        <section aria-labelledby="questions-title">
+          <section class="glass-card question-filters" id="question-filters" aria-label="Bộ lọc câu hỏi">
+            <label class="visually-hidden" for="question-search">Tìm nội dung câu hỏi</label>
+            <input class="input question-search" id="question-search" type="search" placeholder="Tìm nội dung câu hỏi…" autocomplete="off">
+            <div class="question-filter-row">
+              <div class="field question-filter-subject">
+                <label for="question-subject">Môn học</label>
+                <select class="select" id="question-subject"><option value="web">Lập trình Web</option><option value="database">Cơ sở dữ liệu</option><option value="security">An toàn hệ thống</option></select>
+              </div>
+              <div class="segmented" role="group" aria-label="Trạng thái sử dụng" data-segmented data-usage>
+                <button class="segmented-button" type="button" data-segment data-value="active" aria-pressed="true">Đang sử dụng</button>
+                <button class="segmented-button" type="button" data-segment data-value="inactive" aria-pressed="false">Ngừng sử dụng</button>
+              </div>
+            </div>
+            <div class="question-filter-row">
+              <span class="field-hint" id="difficulty-label">Độ khó</span>
+              <div class="segmented" role="group" aria-labelledby="difficulty-label" data-segmented data-difficulty>
+                <button class="segmented-button" type="button" data-segment data-value="all" aria-pressed="true">Tất cả</button>
+                <button class="segmented-button" type="button" data-segment data-value="easy" aria-pressed="false">◇ Dễ</button>
+                <button class="segmented-button" type="button" data-segment data-value="medium" aria-pressed="false">! Trung bình</button>
+                <button class="segmented-button" type="button" data-segment data-value="hard" aria-pressed="false">◆ Khó</button>
+              </div>
+            </div>
+          </section>
+          <header class="section-header">
+            <h2 id="questions-title">Câu hỏi · <span id="selected-subject">Lập trình Web</span></h2>
+            <span class="field-hint" id="question-count" role="status" aria-live="polite">3 câu hỏi</span>
+          </header>
+          <div class="question-list">
+          <article class="glass-card question-card" data-question data-subject="web" data-usage="active" data-difficulty="easy" data-answer="A">
+            <header class="card-header">
+              <span class="eyebrow">CÂU HỎI 001</span>
+              <div class="cluster">
+                <span class="status status--success"><span aria-hidden="true">◇</span>Dễ</span>
+                <span class="status"><span aria-hidden="true">✓</span>Đang sử dụng</span>
+              </div>
+            </header>
+            <h3 data-question-content>Trong HTML, thẻ nào được dùng để tạo một liên kết đến trang web khác?</h3>
+            <div class="question-options">
+              <div class="question-option question-option--correct">
+                <span class="badge">A</span>
+                <div><span data-option-text>Thẻ &lt;a&gt;</span><small>✓ Đáp án đúng</small></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">B</span>
+                <div><span data-option-text>Thẻ &lt;link&gt;</span></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">C</span>
+                <div><span data-option-text>Thẻ &lt;href&gt;</span></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">D</span>
+                <div><span data-option-text>Thẻ &lt;url&gt;</span></div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <span>Lập trình Web · 1 đáp án đúng</span>
+              <div class="cluster">
+                <button class="btn btn--small" type="button" data-edit-question data-dialog-open="question-editor" aria-controls="question-editor" aria-haspopup="dialog">✎ Chỉnh sửa</button>
+                <button class="btn btn--small btn--ghost" type="button" data-teacher-note="Chưa thể cập nhật trạng thái câu hỏi. Lịch sử bài thi được bảo toàn.">Ngừng sử dụng</button>
+              </div>
+            </footer>
+          </article>
+          <article class="glass-card question-card" data-question data-subject="web" data-usage="active" data-difficulty="medium" data-answer="B">
+            <header class="card-header">
+              <span class="eyebrow">CÂU HỎI 002</span>
+              <div class="cluster">
+                <span class="status status--warning"><span aria-hidden="true">◇</span>Trung bình</span>
+                <span class="status"><span aria-hidden="true">✓</span>Đang sử dụng</span>
+              </div>
+            </header>
+            <h3 data-question-content>Phương thức HTTP nào thường được dùng để gửi dữ liệu tạo mới tài nguyên lên máy chủ?</h3>
+            <div class="question-options">
+              <div class="question-option">
+                <span class="badge">A</span>
+                <div><span data-option-text>GET</span></div>
+              </div>
+              <div class="question-option question-option--correct">
+                <span class="badge">B</span>
+                <div><span data-option-text>POST</span><small>✓ Đáp án đúng</small></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">C</span>
+                <div><span data-option-text>DELETE</span></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">D</span>
+                <div><span data-option-text>HEAD</span></div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <span>Lập trình Web · 1 đáp án đúng</span>
+              <div class="cluster">
+                <button class="btn btn--small" type="button" data-edit-question data-dialog-open="question-editor" aria-controls="question-editor" aria-haspopup="dialog">✎ Chỉnh sửa</button>
+                <button class="btn btn--small btn--ghost" type="button" data-teacher-note="Chưa thể cập nhật trạng thái câu hỏi. Lịch sử bài thi được bảo toàn.">Ngừng sử dụng</button>
+              </div>
+            </footer>
+          </article>
+          <article class="glass-card question-card" data-question data-subject="web" data-usage="active" data-difficulty="hard" data-answer="C">
+            <header class="card-header">
+              <span class="eyebrow">CÂU HỎI 003</span>
+              <div class="cluster">
+                <span class="status status--danger"><span aria-hidden="true">◇</span>Khó</span>
+                <span class="status"><span aria-hidden="true">✓</span>Đang sử dụng</span>
+              </div>
+            </header>
+            <h3 data-question-content>Khi nhiều yêu cầu cùng truy cập một Servlet, dữ liệu nào sau đây được tách riêng cho từng yêu cầu?</h3>
+            <div class="question-options">
+              <div class="question-option">
+                <span class="badge">A</span>
+                <div><span data-option-text>Biến static của lớp Servlet</span></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">B</span>
+                <div><span data-option-text>Biến instance của Servlet</span></div>
+              </div>
+              <div class="question-option question-option--correct">
+                <span class="badge">C</span>
+                <div><span data-option-text>Biến cục bộ trong doGet()</span><small>✓ Đáp án đúng</small></div>
+              </div>
+              <div class="question-option">
+                <span class="badge">D</span>
+                <div><span data-option-text>Thuộc tính ServletContext</span></div>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <span>Lập trình Web · 1 đáp án đúng</span>
+              <div class="cluster">
+                <button class="btn btn--small" type="button" data-edit-question data-dialog-open="question-editor" aria-controls="question-editor" aria-haspopup="dialog">✎ Chỉnh sửa</button>
+                <button class="btn btn--small btn--ghost" type="button" data-teacher-note="Chưa thể cập nhật trạng thái câu hỏi. Lịch sử bài thi được bảo toàn.">Ngừng sử dụng</button>
+              </div>
+            </footer>
+          </article>
+            <p class="question-empty" id="question-empty" hidden>○ Không có câu hỏi phù hợp với bộ lọc.</p>
+          </div>
+          <p class="question-caption">◇ Ngừng sử dụng giữ nguyên câu hỏi và lịch sử bài thi đã tạo.</p>
+        </section>
+        <section class="glass-card import-panel" aria-labelledby="import-title">
+          <span class="badge">NHẬP EXCEL</span>
+          <h2 id="import-title">Nhập câu hỏi từ Excel</h2>
+          <p class="import-intro">Từ bảng tính đến ngân hàng câu hỏi.<br>Kiểm tra toàn bộ dữ liệu trước khi lưu.</p>
+          <section class="import-section" aria-labelledby="import-subject-title">
+            <h3 id="import-subject-title">Chọn môn đích</h3>
+            <div class="field">
+              <label for="import-subject">Môn nhận câu hỏi</label>
+              <select class="select" id="import-subject"><option value="web">Lập trình Web</option><option value="database">Cơ sở dữ liệu</option><option value="security">An toàn hệ thống</option></select>
+            </div>
+            <a class="btn btn--ghost import-template" href="../../assets/templates/question-import-template.xlsx" download>Tải mẫu chuẩn (.xlsx · Sheet CauHoi)</a>
+          </section>
+          <section class="import-section" aria-labelledby="import-file-title">
+            <h3 id="import-file-title">Tải lên tệp câu hỏi</h3>
+            <div class="import-dropzone" id="import-dropzone">
+              <span class="import-upload-icon" aria-hidden="true">↥</span>
+              <strong>Kéo thả tệp .xlsx vào đây</strong>
+              <p class="field-hint">Tối đa 5 MiB · 1.000 dòng dữ liệu</p>
+              <button class="btn btn--small btn--ghost" type="button" id="choose-import-file">Chọn tệp từ máy tính ↗</button>
+              <label class="visually-hidden" for="import-file">Chọn tệp câu hỏi Excel</label>
+              <input id="import-file" type="file" accept=".xlsx" hidden>
+              <span class="anim-border" aria-hidden="true"></span>
+            </div>
+            <p class="import-file-summary"><span id="import-filename">cau_hoi_web.xlsx</span><span id="import-filesize">24,8 KiB</span></p>
+          </section>
+          <section class="import-section" aria-labelledby="import-validation-title">
+            <h3 id="import-validation-title">Kiểm tra dữ liệu</h3>
+            <div class="import-debugger">
+              <div id="import-errors">
+                <header class="import-debugger-header"><span>Nhật ký kiểm tra</span><span class="status status--danger"><span aria-hidden="true">×</span>02 lỗi</span></header>
+                <table class="data-table">
+                  <caption class="visually-hidden">Lỗi trong tệp Excel</caption>
+                  <colgroup><col class="import-column-row"><col class="import-column-name"><col></colgroup>
+                  <thead><tr><th scope="col">DÒNG</th><th scope="col">CỘT</th><th scope="col">KẾT QUẢ</th></tr></thead>
+                  <tbody>
+                    <tr><td class="text-mono">14</td><td class="text-mono">dap_an_dung</td><td><span class="status status--danger"><span aria-hidden="true">×</span>Lỗi</span><p class="import-error-detail">Giá trị phải là A, B, C hoặc D.</p></td></tr>
+                    <tr><td class="text-mono">27</td><td class="text-mono">phuong_an_c</td><td><span class="status status--danger"><span aria-hidden="true">×</span>Lỗi</span><p class="import-error-detail">Thiếu nội dung lựa chọn C.</p></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="import-state" id="import-state" role="status" aria-live="polite" hidden></p>
+              <footer class="import-debugger-footer"><span>○ Chưa nhập dữ liệu</span><span>0 câu đã ghi</span></footer>
+            </div>
+            <div class="notice notice--warning import-warning"><span class="icon" aria-hidden="true">!</span><p>Chỉ nhập khi toàn bộ dòng hợp lệ. Mỗi lần nhập mới sẽ thêm câu hỏi mới, không tự dò trùng.</p></div>
+            <button class="btn btn--primary import-confirm" id="import-confirm" type="button" disabled aria-describedby="import-help">Xác nhận nhập toàn bộ câu hợp lệ</button>
+            <p class="import-footnote" id="import-help">Cần kiểm tra toàn bộ nội dung trước khi xác nhận.<br>◇ Không lưu một phần dữ liệu.</p>
+          </section>
+        </section>
+      </div>
+      <footer class="page-footer"><span class="teacher-system-status">✓ Hệ thống hoạt động ổn định</span><span>QuizFlow · Ngân hàng tri thức của bạn</span></footer>
+    </main>
+  </div>
+  <dialog class="modal question-editor" id="question-editor" aria-labelledby="editor-title">
+    <header class="dialog-header">
+      <h2 id="editor-title">Tạo câu hỏi mới</h2>
+      <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng câu hỏi">×</button>
+    </header>
+    <form class="stack" id="question-form" novalidate>
+      <p class="dialog-description">Văn bản thuần · 4 lựa chọn · 1 đáp án đúng</p>
+      <div class="form-grid">
+        <div class="field"><label for="editor-subject">Môn học cố định</label><select class="select" id="editor-subject"><option value="web">Lập trình Web</option><option value="database">Cơ sở dữ liệu</option><option value="security">An toàn hệ thống</option></select></div>
+        <div class="field"><label for="editor-difficulty">Độ khó</label><select class="select" id="editor-difficulty"><option value="easy">Dễ</option><option value="medium">Trung bình</option><option value="hard">Khó</option></select></div>
+      </div>
+      <div class="field"><label for="editor-content">Nội dung câu hỏi</label><textarea class="textarea" id="editor-content" maxlength="5000" required autofocus></textarea></div>
+      <div class="question-editor-options">
+        <div class="field"><label for="option-0">Phương án A</label><input class="input" id="option-0" name="option-0" maxlength="1000" required></div>
+        <div class="field"><label for="option-1">Phương án B</label><input class="input" id="option-1" name="option-1" maxlength="1000" required></div>
+        <div class="field"><label for="option-2">Phương án C</label><input class="input" id="option-2" name="option-2" maxlength="1000" required></div>
+        <div class="field"><label for="option-3">Phương án D</label><input class="input" id="option-3" name="option-3" maxlength="1000" required></div>
+      </div>
+      <div class="field"><label for="editor-answer">Đáp án đúng duy nhất</label><select class="select" id="editor-answer"><option>A</option><option>B</option><option>C</option><option>D</option></select></div>
+      <p class="field-error" id="editor-error" role="alert" hidden>! Vui lòng nhập đủ nội dung và 4 lựa chọn, đúng giới hạn ký tự.</p>
+      <footer class="dialog-actions"><button class="btn btn--ghost" type="button" data-dialog-close>Hủy thao tác</button><button class="btn btn--primary" type="submit">Lưu câu hỏi →</button></footer>
+    </form>
+  </dialog>
+  <div class="toast" id="teacher-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><span class="icon" aria-hidden="true">✓</span><span data-feedback-message></span></div>
+</body>
+</html>
+

@@ -1,0 +1,704 @@
+:root {
+  /* Thời lượng và đường cong dùng chung cho toàn bộ chuyển động. */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 400ms;
+  --dur-hero: 700ms;
+  --dur-count: 900ms;
+  --dur-aurora: 25s;
+  --dur-toast: 4500ms;
+  --dur-copy: 2100ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-linear: linear;
+  --motion-stagger-step: 50ms;
+  --motion-delay: 0ms;
+  --motion-accent: #8b5cf633;
+}
+
+/* Hiệu ứng vào: kết thúc sẽ trả transform về CSS gốc để thao tác tiếp tục tự nhiên. */
+.anim-fade-up,
+.anim-fade-in,
+.anim-scale-in,
+.anim-slide-in-right,
+.anim-pulse-soft {
+  animation-duration: var(--dur-base);
+  animation-timing-function: var(--ease-out);
+  animation-delay: var(--motion-delay);
+  animation-fill-mode: backwards;
+  animation-iteration-count: 1;
+}
+
+.anim-fade-up {
+  animation-name: motion-fade-up;
+}
+
+.anim-fade-in {
+  animation-name: motion-fade-in;
+}
+
+.anim-scale-in {
+  animation-name: motion-scale-in;
+}
+
+.anim-slide-in-right {
+  animation-name: motion-slide-in-right;
+  animation-duration: var(--dur-slow);
+}
+
+/* Stagger dùng --i trên từng phần tử, bắt đầu từ 0. */
+.anim-stagger,
+.anim-stagger > * {
+  --motion-delay: calc(var(--i, 0) * var(--motion-stagger-step));
+}
+
+/* Sidebar vào từ trái; thẻ chờ viewport vẫn giữ nguyên chỗ trong layout. */
+.app > .sidebar.anim-slide-in-right {
+  --motion-slide-distance: -1rem;
+}
+
+[data-motion-reveal='pending'] {
+  opacity: 0;
+  transform: translateY(0.75rem);
+}
+
+/* Hai lớp aurora được cắt trong khung cố định, nằm sau nội dung và bỏ qua con trỏ. */
+.motion-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.motion-aurora::before,
+.motion-aurora::after {
+  position: absolute;
+  inset: -12%;
+  content: '';
+  animation: motion-aurora-drift var(--dur-aurora) var(--ease-in-out) infinite;
+}
+
+.motion-aurora::before {
+  background: radial-gradient(ellipse 38% 50% at 18% 16%, #8b5cf617, transparent 75%);
+}
+
+.motion-aurora::after {
+  background: radial-gradient(ellipse 35% 45% at 85% 90%, #d946ef12, transparent 75%);
+  animation-duration: calc(var(--dur-aurora) * 1.12);
+  animation-direction: reverse;
+}
+
+/* Phản hồi nhẹ chạy một lượt, chỉ áp dụng tại phần tử có ý nghĩa trạng thái. */
+.anim-pulse-soft {
+  animation-name: motion-pulse-soft;
+  animation-duration: var(--dur-hero);
+  animation-timing-function: var(--ease-in-out);
+}
+
+/* Ánh quét và quầng sáng dùng lớp phủ riêng, không chặn chuột hay bàn phím. */
+.anim-shimmer,
+.anim-glow-breathe {
+  position: relative;
+}
+
+.anim-shimmer {
+  overflow: hidden;
+}
+
+.anim-shimmer::after,
+.anim-glow-breathe::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+  animation-duration: var(--dur-hero);
+  animation-timing-function: var(--ease-in-out);
+  animation-delay: var(--motion-delay);
+  animation-iteration-count: 1;
+}
+
+.anim-shimmer::after {
+  background: linear-gradient(100deg, transparent 20%, #ffffff14 50%, transparent 80%);
+  animation-name: motion-shimmer;
+}
+
+.anim-glow-breathe::after {
+  box-shadow: inset 0 0 0 1px var(--motion-accent), 0 0 1rem var(--motion-accent);
+  animation-name: motion-glow-breathe;
+}
+
+/* Nút phản hồi nâng/nhấn; lớp ánh quét của nút gradient chỉ chạy khi tương tác. */
+.btn,
+.segmented-button {
+  transition: transform var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--primary::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(100deg, transparent 20%, #ffffff26 50%, transparent 80%);
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+}
+
+.btn--primary:not(:disabled, [aria-disabled='true']):is(:hover, :focus-visible)::after {
+  animation: motion-shimmer var(--dur-hero) var(--ease-out);
+}
+
+.btn:not(:disabled, [aria-disabled='true']):active,
+.segmented-button:not(:disabled, [aria-disabled='true']):active,
+button.motion-card:not(:disabled, [aria-disabled='true']):active {
+  transform: scale(0.97);
+}
+
+/* Spotlight di chuyển bằng transform trong khung cắt riêng, không phủ vùng focus. */
+.motion-card {
+  position: relative;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.motion-card-light {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 #ffffff42, inset 0 0 0 1px #c4b5fd20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.motion-card-light::after {
+  position: absolute;
+  top: calc(50% - 11rem);
+  left: calc(50% - 11rem);
+  width: 22rem;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, #c4b5fd12, transparent 70%);
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+  pointer-events: none;
+  content: '';
+}
+
+/* Focus bỏ qua chuyển dịch của thẻ để nút và trường nhập ổn định ngay khi chọn. */
+.motion-card:focus-within {
+  transition: none;
+}
+
+.motion-card:focus-within > .motion-card-light {
+  opacity: 1;
+}
+
+/* Input dùng quầng sáng nhẹ; nhãn phía trên dịch lên khi trường nhận focus. */
+.input,
+.select,
+.textarea {
+  transition: box-shadow var(--dur-base) var(--ease-out);
+}
+
+:is(.input, .select, .textarea):focus {
+  box-shadow: 0 0 0 0.1875rem #8b5cf61f;
+}
+
+.field > label {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.field:focus-within > label {
+  transform: translateY(-0.125rem);
+}
+
+/* Toggle dùng spring cho núm; lớp gradient và glow đổi bằng opacity. */
+.toggle-track::before {
+  z-index: 1;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.toggle-track::after {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--purple);
+  border-radius: inherit;
+  background: var(--gradient);
+  box-shadow: var(--shadow-neon);
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.toggle[aria-checked='true'] .toggle-track::after {
+  opacity: 1;
+}
+
+/* Chỉ biểu tượng trạng thái đang hoạt động nhịp nhẹ; nhãn chữ luôn hiện đủ. */
+.status[data-state='open'] > [aria-hidden='true']:first-child,
+[data-state='progress'] .status > [data-state-icon] {
+  display: inline-flex;
+  animation: motion-pulse-soft calc(var(--dur-hero) * 3) var(--ease-in-out) infinite;
+}
+
+.segmented-button[aria-pressed='true'],
+.chip:has(input:checked):not(:has(input:disabled)) {
+  animation: motion-chip-pop var(--dur-base) var(--ease-spring);
+}
+
+/* Hàng bảng sáng bằng lớp phủ; nút vẫn đọc và thao tác được trước khi hover. */
+.data-table tbody td {
+  position: relative;
+}
+
+.data-table tbody td::before {
+  position: absolute;
+  inset: 0;
+  background: #ffffff05;
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.data-table tbody tr:focus-within > td::before {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:not(:disabled, [aria-disabled='true']):hover {
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-inset), 0 0 0.75rem #8b5cf626;
+  }
+
+  .btn:not(:disabled, [aria-disabled='true']):hover:active {
+    transform: scale(0.97);
+  }
+
+  .motion-card:not([data-motion-reveal='pending'], .anim-fade-up, :disabled, [aria-disabled='true']):hover {
+    transform: translateY(-0.125rem);
+  }
+
+  button.motion-card:not(:disabled, [aria-disabled='true']):hover:active {
+    transform: scale(0.97);
+  }
+
+  .motion-card:not(:disabled, [aria-disabled='true']):hover > .motion-card-light,
+  .data-table tbody tr:hover > td::before {
+    opacity: 1;
+  }
+
+  .data-table tbody .btn:not(:disabled, [aria-disabled='true']) {
+    opacity: 0.82;
+  }
+
+  .data-table tbody tr:is(:hover, :focus-within) .btn:not(:disabled, [aria-disabled='true']) {
+    opacity: 1;
+  }
+}
+
+/* Overlay giữ top layer đến hết lượt đóng; backdrop hòa dần với lớp blur tĩnh. */
+.modal[open],
+.drawer[open] {
+  --overlay-x: 0%;
+  --overlay-scale: 0.96;
+  --overlay-duration: var(--dur-base);
+  animation: motion-overlay-in var(--overlay-duration) var(--ease-out) backwards;
+}
+
+.drawer[open] {
+  --overlay-x: 100%;
+  --overlay-scale: 1;
+  --overlay-duration: var(--dur-slow);
+}
+
+.modal[open].is-closing,
+.drawer[open].is-closing {
+  animation: motion-overlay-out var(--dur-base) var(--ease-out) forwards;
+}
+
+:is(.modal, .drawer)[open]::backdrop {
+  animation: motion-backdrop-in var(--dur-base) var(--ease-out) backwards;
+}
+
+:is(.modal, .drawer)[open].is-closing::backdrop {
+  animation: motion-backdrop-out var(--dur-base) var(--ease-out) forwards;
+}
+
+/* Toast ở góc có thanh thời gian dùng scaleX, cùng thời lượng với timer JavaScript. */
+.toast--show {
+  animation: motion-toast-in var(--dur-base) var(--ease-out) backwards;
+}
+
+.toast--show::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 0.125rem;
+  border-radius: inherit;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+  content: '';
+  animation: motion-toast-countdown var(--dur-toast) var(--ease-linear) forwards;
+}
+
+.toast--leaving {
+  animation: motion-toast-out var(--dur-fast) var(--ease-out) forwards;
+}
+
+/* Nhãn sao chép thay trên cùng diện tích; nút biểu tượng có thêm chú thích sát bên. */
+[data-copy] {
+  position: relative;
+}
+
+.copy-content {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+}
+
+.copy-feedback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.is-copied .copy-content {
+  opacity: 0;
+}
+
+.is-copied .copy-feedback {
+  opacity: 1;
+  animation: motion-copy-pop var(--dur-base) var(--ease-spring);
+}
+
+.btn--icon .copy-feedback {
+  --copy-offset: -50%;
+  inset: 50% calc(100% + 0.5rem) auto auto;
+  z-index: 1;
+  width: max-content;
+  padding: 0.375rem 0.625rem;
+  transform: translateY(-50%);
+  border: 1px solid var(--selection-line);
+  background: var(--surface);
+  color: var(--text-accent);
+}
+
+.btn--icon.is-copied::before {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  content: '✓';
+}
+
+/* Viền chạy dùng khung mask tĩnh và lớp nét sáng xoay bằng transform. */
+.anim-border {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.anim-border::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  aspect-ratio: 1;
+  background: repeating-conic-gradient(#a78bfa99 0deg 7deg, transparent 7deg 16deg);
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+  pointer-events: none;
+  content: '';
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+/* Keyframes dùng chung chỉ thay đổi transform và opacity. */
+@keyframes motion-shake-soft {
+  from,
+  to {
+    transform: translateX(0);
+  }
+
+  33% {
+    transform: translateX(-0.125rem);
+  }
+
+  66% {
+    transform: translateX(0.125rem);
+  }
+}
+
+@keyframes motion-border-drift {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes motion-overlay-in {
+  from {
+    opacity: var(--overlay-enter-opacity, 0);
+    transform: var(--overlay-enter-transform, translateX(var(--overlay-x)) scale(var(--overlay-scale)));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes motion-overlay-out {
+  from {
+    opacity: var(--overlay-from-opacity, 1);
+    transform: var(--overlay-from-transform, none);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(var(--overlay-x)) scale(var(--overlay-scale));
+  }
+}
+
+@keyframes motion-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes motion-backdrop-out {
+  from {
+    opacity: var(--overlay-backdrop-opacity, 1);
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes motion-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-toast-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+@keyframes motion-toast-countdown {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes motion-copy-pop {
+  from {
+    opacity: 0;
+    transform: translateY(var(--copy-offset, 0%)) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(var(--copy-offset, 0%)) scale(1);
+  }
+}
+
+@keyframes motion-chip-pop {
+  from {
+    transform: scale(0.96);
+  }
+
+  60% {
+    transform: scale(1.03);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes motion-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes motion-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes motion-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(var(--motion-slide-distance, 1.5rem));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes motion-shimmer {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes motion-pulse-soft {
+  from,
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes motion-glow-breathe {
+  from,
+  to {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Vòng nền 25–28 giây nối liền hai đầu, chỉ dịch lớp sáng và đổi độ trong. */
+@keyframes motion-aurora-drift {
+  from,
+  to {
+    opacity: 0.65;
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(2%, 2%, 0) scale(1.04);
+  }
+}
+
+/* Giảm chuyển động trên toàn giao diện, gồm cả lớp phủ và component hiện có. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after,
+  *::backdrop {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-motion-reveal='pending'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .motion-aurora {
+    display: none;
+  }
+
+  .btn,
+  .segmented-button,
+  .motion-card,
+  .field > label {
+    transform: none !important;
+  }
+
+  .motion-card-light {
+    display: none;
+  }
+
+  .is-copied .copy-feedback {
+    opacity: 1;
+  }
+}

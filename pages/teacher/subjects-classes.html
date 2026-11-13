@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>QuizFlow — Môn học &amp; lớp học</title>
+    <link rel="stylesheet" href="../../assets/css/variables.css">
+    <link rel="stylesheet" href="../../assets/css/base.css">
+    <link rel="stylesheet" href="../../assets/css/layout.css">
+    <link rel="stylesheet" href="../../assets/css/components.css">
+    <link rel="stylesheet" href="../../assets/css/teacher-sidebar.css">
+    <link rel="stylesheet" href="../../assets/css/subjects-classes.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <script src="../../assets/js/motion.js" defer></script>
+    <script src="../../assets/js/ui.js" defer>
+    </script>
+    <script src="../../assets/js/teacher-sidebar.js" defer>
+    </script>
+    <script src="../../assets/js/subjects-classes.js" defer>
+    </script>
+  </head>
+  <body>
+    <div class="app teacher-page">
+      <aside class="sidebar teacher-sidebar" aria-label="Điều hướng giáo viên" data-teacher-sidebar data-current-page="subjects-classes">
+        <section class="sidebar-workspace" data-sidebar-workspace aria-labelledby="workspace-school-title">
+          <p class="eyebrow">KHÔNG GIAN LÀM VIỆC</p>
+          <strong id="workspace-school-title">Trường THPT Lê Quý Đôn</strong>
+          <p>Học kỳ I · 2026–2027</p>
+        </section>
+        <div class="sidebar-user" data-sidebar-user>
+          <span class="avatar" aria-hidden="true">MK</span>
+          <div>
+            <strong>Trần Minh Kiệt</strong>
+            <small>Giáo viên</small>
+          </div>
+        </div>
+      </aside>
+      <main class="app-main" id="workspace" aria-labelledby="page-title">
+        <header class="topbar">
+          <nav class="breadcrumb" aria-label="Đường dẫn trang">
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <use href="#teacher-icon-grid"/>
+            </svg>
+            <ol>
+              <li>Không gian làm việc</li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <span aria-current="page">Môn học &amp; lớp học</span>
+              </li>
+            </ol>
+          </nav>
+          <div class="topbar-actions">
+            <span class="badge teacher-term">Học kỳ I · 2026–2027</span>
+            <button class="btn btn--icon btn--ghost" type="button" aria-label="Thông báo" data-teacher-note="Bạn chưa có thông báo mới.">
+              <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <use href="#teacher-icon-bell"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">KHÔNG GIAN GIÁO VIÊN / KẾT NỐI TRI THỨC</p>
+            <h1 id="page-title">Môn học &amp; lớp học</h1>
+            <p>Tổ chức tri thức. Kết nối sinh viên. Tạo nên những lớp học của bạn.</p>
+          </div>
+          <button class="btn btn--primary" type="button" data-create-class data-dialog-open="create-class-dialog" aria-controls="create-class-dialog" aria-haspopup="dialog">
+            <span class="icon" aria-hidden="true">＋</span>Tạo lớp học mới
+          </button>
+        </section>
+        <section aria-labelledby="subjects-title">
+          <header class="section-header">
+            <h2 id="subjects-title">
+              <span class="workspace-section-number" aria-hidden="true">01 /</span>Môn học của bạn</h2>
+            <span class="workspace-section-meta">03 môn học</span>
+          </header>
+          <div class="workspace-subject-strip" role="group" aria-label="Chọn môn học">
+            <article class="glass-card workspace-subject" data-subject-card data-subject-id="web" data-active="true" data-subject-description="Xây dựng ứng dụng web với HTML, CSS, JavaScript và Java Servlet.">
+              <div class="workspace-subject-top">
+                <span class="workspace-subject-symbol">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-code"/>
+                  </svg>
+                </span>
+                <span class="status status--accent" data-subject-selected>
+                  <span aria-hidden="true">✓</span>Đang chọn</span>
+                <button class="btn btn--icon btn--ghost" type="button" data-edit-subject="web" data-dialog-open="subject-dialog" aria-controls="subject-dialog" aria-haspopup="dialog" aria-label="Chỉnh sửa môn Lập trình Web">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-edit"/>
+                  </svg>
+                </button>
+              </div>
+              <h3 data-subject-name>Lập trình Web</h3>
+              <p class="workspace-subject-meta">
+                <span>03 lớp học</span>
+                <span aria-hidden="true">·</span>
+                <span>128 câu hỏi</span>
+              </p>
+              <button class="workspace-subject-select" type="button" data-select-subject="web" aria-pressed="true" aria-label="Chọn môn Lập trình Web" aria-controls="class-grid">
+              </button>
+            </article>
+            <article class="glass-card workspace-subject" data-subject-card data-subject-id="database" data-active="false" data-subject-description="Mô hình dữ liệu quan hệ, thiết kế cơ sở dữ liệu và truy vấn SQL.">
+              <div class="workspace-subject-top">
+                <span class="workspace-subject-symbol workspace-subject-symbol--emerald">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-database"/>
+                  </svg>
+                </span>
+                <span class="status status--accent" data-subject-selected hidden>
+                  <span aria-hidden="true">✓</span>Đang chọn</span>
+                <button class="btn btn--icon btn--ghost" type="button" data-edit-subject="database" data-dialog-open="subject-dialog" aria-controls="subject-dialog" aria-haspopup="dialog" aria-label="Chỉnh sửa môn Cơ sở dữ liệu">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-edit"/>
+                  </svg>
+                </button>
+              </div>
+              <h3 data-subject-name>Cơ sở dữ liệu</h3>
+              <p class="workspace-subject-meta">
+                <span>02 lớp học</span>
+                <span aria-hidden="true">·</span>
+                <span>86 câu hỏi</span>
+              </p>
+              <button class="workspace-subject-select" type="button" data-select-subject="database" aria-pressed="false" aria-label="Chọn môn Cơ sở dữ liệu" aria-controls="class-grid">
+              </button>
+            </article>
+            <article class="glass-card workspace-subject" data-subject-card data-subject-id="security" data-active="false" data-subject-description="Nguyên tắc bảo vệ dữ liệu, tài khoản và an toàn ứng dụng.">
+              <div class="workspace-subject-top">
+                <span class="workspace-subject-symbol workspace-subject-symbol--rose">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-shield"/>
+                  </svg>
+                </span>
+                <span class="status status--accent" data-subject-selected hidden>
+                  <span aria-hidden="true">✓</span>Đang chọn</span>
+                <button class="btn btn--icon btn--ghost" type="button" data-edit-subject="security" data-dialog-open="subject-dialog" aria-controls="subject-dialog" aria-haspopup="dialog" aria-label="Chỉnh sửa môn An toàn hệ thống">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-edit"/>
+                  </svg>
+                </button>
+              </div>
+              <h3 data-subject-name>An toàn hệ thống</h3>
+              <p class="workspace-subject-meta">
+                <span>01 lớp học</span>
+                <span aria-hidden="true">·</span>
+                <span>54 câu hỏi</span>
+              </p>
+              <button class="workspace-subject-select" type="button" data-select-subject="security" aria-pressed="false" aria-label="Chọn môn An toàn hệ thống" aria-controls="class-grid">
+              </button>
+            </article>
+            <button class="glass-card workspace-subject workspace-add-subject" type="button" data-create-subject data-dialog-open="subject-dialog" aria-controls="subject-dialog" aria-haspopup="dialog">
+              <span aria-hidden="true">＋</span>
+              <strong>Tạo môn mới</strong>
+              <small>Mở thêm không gian tri thức</small>
+              <span class="anim-border" aria-hidden="true"></span>
+            </button>
+          </div>
+        </section>
+        <section class="glass-card workspace-overview" aria-label="Tổng quan không gian giáo viên">
+          <dl>
+            <div>
+              <dt>Lớp đang quản lý</dt>
+              <dd>06</dd>
+            </div>
+            <div>
+              <dt>Lượt tham gia lớp</dt>
+              <dd>241</dd>
+            </div>
+            <div>
+              <dt>Câu hỏi đã tạo</dt>
+              <dd>268</dd>
+            </div>
+          </dl>
+          <p class="cluster workspace-owner-note">
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <use href="#teacher-icon-check"/>
+            </svg>Không gian riêng của Trần Minh Kiệt</p>
+        </section>
+        <section aria-labelledby="classes-title">
+          <header class="section-header">
+            <div>
+              <h2 id="classes-title">
+                <span class="workspace-section-number" aria-hidden="true">02 /</span>Lớp học · <span id="selected-subject">Lập trình Web</span>
+              </h2>
+              <p>Chia sẻ mã lớp để sinh viên tham gia không gian học tập.</p>
+            </div>
+            <div class="section-actions">
+              <span class="workspace-section-meta" id="class-count" role="status" aria-live="polite" aria-atomic="true">03 lớp học</span>
+              <div class="workspace-search workspace-class-search">
+                <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <use href="#teacher-icon-search"/>
+                </svg>
+                <label class="visually-hidden" for="class-search">Tìm lớp theo tên hoặc mã lớp</label>
+                <input class="input" id="class-search" type="search" placeholder="Tìm tên hoặc mã lớp…" autocomplete="off">
+              </div>
+            </div>
+          </header>
+          <div class="bento-grid bento-grid--three" id="class-grid">
+            <article class="glass-card workspace-class" data-motion-tilt data-class-card data-class-id="web-01" data-subject-id="web" data-class-code="QF-892A" data-class-title="Lập trình Web — Nhóm 01" data-member-count="42" aria-labelledby="class-web-01-title">
+              <div class="workspace-class-top">
+                <span class="status status--accent">
+                  <span aria-hidden="true">◇</span>Môn cố định · Lập trình Web</span>
+                <span class="eyebrow" aria-hidden="true">01</span>
+              </div>
+              <p class="eyebrow workspace-class-label">LỚP HỌC / LẬP TRÌNH WEB</p>
+              <h3 id="class-web-01-title">Lớp Lập trình Web<br>Nhóm 01</h3>
+              <p class="workspace-semester">Học kỳ I · Năm học 2026–2027</p>
+              <div class="cluster workspace-class-tags">
+                <span class="status">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-user"/>
+                  </svg>42 sinh viên</span>
+                <span class="status status--success">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-check"/>
+                  </svg>Hoạt động</span>
+              </div>
+              <div class="workspace-join-code">
+                <div>
+                  <span class="eyebrow">MÃ LỚP</span>
+                  <code>QF-892A</code>
+                </div>
+                <button class="btn btn--icon btn--ghost" type="button" data-copy="QF-892A" aria-label="Sao chép mã lớp QF-892A">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-copy"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="workspace-ticket-divider" aria-hidden="true">
+              </div>
+              <footer class="workspace-class-footer">
+                <small>GV. Trần Minh Kiệt</small>
+                <button class="btn btn--small" type="button" data-open-members data-dialog-open="members-drawer" aria-controls="members-drawer" aria-haspopup="dialog" aria-label="Xem thành viên Lập trình Web — Nhóm 01">Thành viên lớp →</button>
+              </footer>
+            </article>
+            <article class="glass-card workspace-class" data-motion-tilt data-class-card data-class-id="web-02" data-subject-id="web" data-class-code="QF-7B3C" data-class-title="Lập trình Web — Nhóm 02" data-member-count="38" aria-labelledby="class-web-02-title">
+              <div class="workspace-class-top">
+                <span class="status status--accent">
+                  <span aria-hidden="true">◇</span>Môn cố định · Lập trình Web</span>
+                <span class="eyebrow" aria-hidden="true">02</span>
+              </div>
+              <p class="eyebrow workspace-class-label">LỚP HỌC / LẬP TRÌNH WEB</p>
+              <h3 id="class-web-02-title">Lớp Lập trình Web<br>Nhóm 02</h3>
+              <p class="workspace-semester">Học kỳ I · Năm học 2026–2027</p>
+              <div class="cluster workspace-class-tags">
+                <span class="status">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-user"/>
+                  </svg>38 sinh viên</span>
+                <span class="status status--success">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-check"/>
+                  </svg>Hoạt động</span>
+              </div>
+              <div class="workspace-join-code">
+                <div>
+                  <span class="eyebrow">MÃ LỚP</span>
+                  <code>QF-7B3C</code>
+                </div>
+                <button class="btn btn--icon btn--ghost" type="button" data-copy="QF-7B3C" aria-label="Sao chép mã lớp QF-7B3C">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-copy"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="workspace-ticket-divider" aria-hidden="true">
+              </div>
+              <footer class="workspace-class-footer">
+                <small>GV. Trần Minh Kiệt</small>
+                <button class="btn btn--small" type="button" data-open-members data-dialog-open="members-drawer" aria-controls="members-drawer" aria-haspopup="dialog" aria-label="Xem thành viên Lập trình Web — Nhóm 02">Thành viên lớp →</button>
+              </footer>
+            </article>
+            <article class="glass-card workspace-class" data-motion-tilt data-class-card data-class-id="web-03" data-subject-id="web" data-class-code="QF-4D9E" data-class-title="Lập trình Web — Nhóm 03" data-member-count="45" aria-labelledby="class-web-03-title">
+              <div class="workspace-class-top">
+                <span class="status status--accent">
+                  <span aria-hidden="true">◇</span>Môn cố định · Lập trình Web</span>
+                <span class="eyebrow" aria-hidden="true">03</span>
+              </div>
+              <p class="eyebrow workspace-class-label">LỚP HỌC / LẬP TRÌNH WEB</p>
+              <h3 id="class-web-03-title">Lớp Lập trình Web<br>Nhóm 03</h3>
+              <p class="workspace-semester">Học kỳ I · Năm học 2026–2027</p>
+              <div class="cluster workspace-class-tags">
+                <span class="status">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-user"/>
+                  </svg>45 sinh viên</span>
+                <span class="status status--success">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-check"/>
+                  </svg>Hoạt động</span>
+              </div>
+              <div class="workspace-join-code">
+                <div>
+                  <span class="eyebrow">MÃ LỚP</span>
+                  <code>QF-4D9E</code>
+                </div>
+                <button class="btn btn--icon btn--ghost" type="button" data-copy="QF-4D9E" aria-label="Sao chép mã lớp QF-4D9E">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-copy"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="workspace-ticket-divider" aria-hidden="true">
+              </div>
+              <footer class="workspace-class-footer">
+                <small>GV. Trần Minh Kiệt</small>
+                <button class="btn btn--small" type="button" data-open-members data-dialog-open="members-drawer" aria-controls="members-drawer" aria-haspopup="dialog" aria-label="Xem thành viên Lập trình Web — Nhóm 03">Thành viên lớp →</button>
+              </footer>
+            </article>
+            <article class="glass-card workspace-class" data-motion-tilt data-class-card data-class-id="database-01" data-subject-id="database" data-class-code="QF-5A8B" data-class-title="Cơ sở dữ liệu — Nhóm 01" data-member-count="36" aria-labelledby="class-database-01-title" hidden>
+              <div class="workspace-class-top">
+                <span class="status status--accent">
+                  <span aria-hidden="true">◇</span>Môn cố định · Cơ sở dữ liệu</span>
+                <span class="eyebrow" aria-hidden="true">01</span>
+              </div>
+              <p class="eyebrow workspace-class-label">LỚP HỌC / CƠ SỞ DỮ LIỆU</p>
+              <h3 id="class-database-01-title">Lớp Cơ sở dữ liệu<br>Nhóm 01</h3>
+              <p class="workspace-semester">Học kỳ I · Năm học 2026–2027</p>
+              <div class="cluster workspace-class-tags">
+                <span class="status">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-user"/>
+                  </svg>36 sinh viên</span>
+                <span class="status status--success">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-check"/>
+                  </svg>Hoạt động</span>
+              </div>
+              <div class="workspace-join-code">
+                <div>
+                  <span class="eyebrow">MÃ LỚP</span>
+                  <code>QF-5A8B</code>
+                </div>
+                <button class="btn btn--icon btn--ghost" type="button" data-copy="QF-5A8B" aria-label="Sao chép mã lớp QF-5A8B">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-copy"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="workspace-ticket-divider" aria-hidden="true">
+              </div>
+              <footer class="workspace-class-footer">
+                <small>GV. Trần Minh Kiệt</small>
+                <button class="btn btn--small" type="button" data-open-members data-dialog-open="members-drawer" aria-controls="members-drawer" aria-haspopup="dialog" aria-label="Xem thành viên Cơ sở dữ liệu — Nhóm 01">Thành viên lớp →</button>
+              </footer>
+            </article>
+            <article class="glass-card workspace-class" data-motion-tilt data-class-card data-class-id="database-02" data-subject-id="database" data-class-code="QF-6C2D" data-class-title="Cơ sở dữ liệu — Nhóm 02" data-member-count="40" aria-labelledby="class-database-02-title" hidden>
+              <div class="workspace-class-top">
+                <span class="status status--accent">
+                  <span aria-hidden="true">◇</span>Môn cố định · Cơ sở dữ liệu</span>
+                <span class="eyebrow" aria-hidden="true">02</span>
+              </div>
+              <p class="eyebrow workspace-class-label">LỚP HỌC / CƠ SỞ DỮ LIỆU</p>
+              <h3 id="class-database-02-title">Lớp Cơ sở dữ liệu<br>Nhóm 02</h3>
+              <p class="workspace-semester">Học kỳ I · Năm học 2026–2027</p>
+              <div class="cluster workspace-class-tags">
+                <span class="status">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-user"/>
+                  </svg>40 sinh viên</span>
+                <span class="status status--success">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-check"/>
+                  </svg>Hoạt động</span>
+              </div>
+              <div class="workspace-join-code">
+                <div>
+                  <span class="eyebrow">MÃ LỚP</span>
+                  <code>QF-6C2D</code>
+                </div>
+                <button class="btn btn--icon btn--ghost" type="button" data-copy="QF-6C2D" aria-label="Sao chép mã lớp QF-6C2D">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-copy"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="workspace-ticket-divider" aria-hidden="true">
+              </div>
+              <footer class="workspace-class-footer">
+                <small>GV. Trần Minh Kiệt</small>
+                <button class="btn btn--small" type="button" data-open-members data-dialog-open="members-drawer" aria-controls="members-drawer" aria-haspopup="dialog" aria-label="Xem thành viên Cơ sở dữ liệu — Nhóm 02">Thành viên lớp →</button>
+              </footer>
+            </article>
+            <article class="glass-card workspace-class" data-motion-tilt data-class-card data-class-id="security-01" data-subject-id="security" data-class-code="QF-3E7F" data-class-title="An toàn hệ thống — Nhóm 01" data-member-count="40" aria-labelledby="class-security-01-title" hidden>
+              <div class="workspace-class-top">
+                <span class="status status--accent">
+                  <span aria-hidden="true">◇</span>Môn cố định · An toàn hệ thống</span>
+                <span class="eyebrow" aria-hidden="true">01</span>
+              </div>
+              <p class="eyebrow workspace-class-label">LỚP HỌC / AN TOÀN HỆ THỐNG</p>
+              <h3 id="class-security-01-title">Lớp An toàn hệ thống<br>Nhóm 01</h3>
+              <p class="workspace-semester">Học kỳ I · Năm học 2026–2027</p>
+              <div class="cluster workspace-class-tags">
+                <span class="status">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-user"/>
+                  </svg>40 sinh viên</span>
+                <span class="status status--success">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-check"/>
+                  </svg>Hoạt động</span>
+              </div>
+              <div class="workspace-join-code">
+                <div>
+                  <span class="eyebrow">MÃ LỚP</span>
+                  <code>QF-3E7F</code>
+                </div>
+                <button class="btn btn--icon btn--ghost" type="button" data-copy="QF-3E7F" aria-label="Sao chép mã lớp QF-3E7F">
+                  <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <use href="#teacher-icon-copy"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="workspace-ticket-divider" aria-hidden="true">
+              </div>
+              <footer class="workspace-class-footer">
+                <small>GV. Trần Minh Kiệt</small>
+                <button class="btn btn--small" type="button" data-open-members data-dialog-open="members-drawer" aria-controls="members-drawer" aria-haspopup="dialog" aria-label="Xem thành viên An toàn hệ thống — Nhóm 01">Thành viên lớp →</button>
+              </footer>
+            </article>
+            <div class="workspace-empty bento-span-full" id="class-empty" hidden>
+              <p>Không tìm thấy lớp học phù hợp.</p>
+              <button class="btn btn--small btn--ghost" type="button" id="clear-class-search">Xóa tìm kiếm</button>
+            </div>
+            <div class="glass-card workspace-add-class bento-span-full">
+              <span class="workspace-subject-symbol" aria-hidden="true">＋</span>
+              <h3>Một lớp học mới, nhiều kết nối mới.</h3>
+              <p>Tạo lớp, chia sẻ mã và đón sinh viên vào không gian học tập.</p>
+              <button class="btn" type="button" data-create-class data-dialog-open="create-class-dialog" aria-controls="create-class-dialog" aria-haspopup="dialog">＋ Tạo lớp học mới</button>
+            </div>
+          </div>
+        </section>
+        <section class="notice workspace-policy" aria-label="Quy tắc môn học và lớp học">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-lock"/>
+          </svg>
+          <p>Môn học và giáo viên sở hữu được cố định sau khi tạo. Mỗi lớp chỉ thuộc một môn học và một giáo viên.</p>
+        </section>
+        <footer class="page-footer">
+          <span class="teacher-system-status">
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <use href="#teacher-icon-check"/>
+            </svg>Hệ thống hoạt động ổn định</span>
+          <span>QuizFlow · Môn học &amp; lớp học</span>
+        </footer>
+      </main>
+    </div>
+    <dialog class="modal" id="create-class-dialog" aria-labelledby="create-class-title" aria-describedby="create-class-description">
+      <header class="dialog-header">
+        <h2 id="create-class-title">Tạo lớp học mới</h2>
+        <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng tạo lớp">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-close"/>
+          </svg>
+        </button>
+      </header>
+      <form class="stack" id="class-form" novalidate>
+        <p class="dialog-description" id="create-class-description">Một không gian riêng cho môn học và sinh viên của bạn.</p>
+        <div class="field">
+          <label for="class-name">Tên lớp học</label>
+          <input class="input" id="class-name" name="class-name" data-name-field type="text" required maxlength="200" aria-describedby="class-name-error" placeholder="Ví dụ Lập trình Web — Nhóm 04" autofocus>
+          <p class="field-error" id="class-name-error" role="alert" hidden>
+            <span aria-hidden="true">!</span>
+            <span data-error-message>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <label for="class-subject">Môn học cố định</label>
+          <select class="select" id="class-subject" name="class-subject" required aria-describedby="class-subject-error">
+            <option value="web">Lập trình Web</option>
+            <option value="database">Cơ sở dữ liệu</option>
+            <option value="security">An toàn hệ thống</option>
+          </select>
+          <p class="field-error" id="class-subject-error" role="alert" hidden>
+            <span aria-hidden="true">!</span>Vui lòng chọn môn học hợp lệ.</p>
+        </div>
+        <div class="field">
+          <label for="class-description">Mô tả lớp học</label>
+          <textarea class="textarea" id="class-description" name="class-description" maxlength="1000" aria-describedby="class-description-error" placeholder="Nhập mô tả lớp học (tùy chọn)"></textarea>
+          <p class="field-error" id="class-description-error" role="alert" hidden>
+            <span aria-hidden="true">!</span>
+            <span data-error-message>
+            </span>
+          </p>
+        </div>
+        <div class="workspace-form-owner">
+          <span>Giáo viên sở hữu</span>
+          <strong>◇ Trần Minh Kiệt</strong>
+        </div>
+        <div class="notice">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-lock"/>
+          </svg>
+          <p>Môn học và giáo viên sở hữu được cố định sau khi tạo.</p>
+        </div>
+        <footer class="dialog-actions">
+          <button class="btn btn--ghost" type="button" data-dialog-close>Hủy thao tác</button>
+          <button class="btn btn--primary" type="submit">Tạo lớp học →</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog class="modal" id="subject-dialog" aria-labelledby="subject-dialog-title" aria-describedby="subject-dialog-description">
+      <header class="dialog-header">
+        <h2 id="subject-dialog-title">Tạo môn học mới</h2>
+        <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng thông tin môn học">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-close"/>
+          </svg>
+        </button>
+      </header>
+      <form class="stack" id="subject-form" novalidate>
+        <p class="dialog-description" id="subject-dialog-description">Tập hợp lớp học và ngân hàng câu hỏi theo môn học.</p>
+        <div class="field">
+          <label for="subject-name">Tên môn học</label>
+          <input class="input" id="subject-name" name="subject-name" data-name-field type="text" required maxlength="200" aria-describedby="subject-name-error" placeholder="Nhập tên môn học" autofocus>
+          <p class="field-error" id="subject-name-error" role="alert" hidden>
+            <span aria-hidden="true">!</span>
+            <span data-error-message>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <label for="subject-description">Mô tả môn học</label>
+          <textarea class="textarea" id="subject-description" name="subject-description" maxlength="1000" aria-describedby="subject-description-error" placeholder="Nhập mô tả môn học (tùy chọn)"></textarea>
+          <p class="field-error" id="subject-description-error" role="alert" hidden>
+            <span aria-hidden="true">!</span>
+            <span data-error-message>
+            </span>
+          </p>
+        </div>
+        <div class="workspace-form-owner">
+          <span>Giáo viên sở hữu</span>
+          <strong>◇ Trần Minh Kiệt</strong>
+        </div>
+        <footer class="dialog-actions">
+          <button class="btn btn--ghost" type="button" data-dialog-close>Hủy thao tác</button>
+          <button class="btn btn--primary" type="submit" id="subject-submit">Tạo môn học</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog class="drawer" id="members-drawer" aria-labelledby="members-title" aria-describedby="drawer-class-name">
+      <header class="dialog-header">
+        <div>
+          <p class="eyebrow" id="drawer-class-code">QF-892A</p>
+          <h2 id="members-title">Thành viên lớp học</h2>
+        </div>
+        <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng danh sách thành viên" autofocus>
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-close"/>
+          </svg>
+        </button>
+      </header>
+      <p class="dialog-description" id="drawer-class-name">Lập trình Web — Nhóm 01</p>
+      <div class="cluster workspace-members-summary">
+        <span class="status status--accent">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-user"/>
+          </svg>
+          <span id="drawer-member-count">42 sinh viên</span>
+        </span>
+        <span class="status status--success">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-check"/>
+          </svg>Hoạt động</span>
+        <button class="btn btn--small" id="drawer-copy-code" type="button" data-copy="QF-892A" aria-label="Sao chép mã lớp QF-892A">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#teacher-icon-copy"/>
+          </svg>Sao chép mã lớp</button>
+      </div>
+      <div class="notice">
+        <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <use href="#teacher-icon-shield"/>
+        </svg>
+        <p>Xóa thành viên chỉ kết thúc tư cách hiện hành trong lớp. Tài khoản, lịch sử thi và lượt đang làm bài được bảo toàn.</p>
+      </div>
+      <div class="workspace-search workspace-member-search">
+        <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <use href="#teacher-icon-search"/>
+        </svg>
+        <label class="visually-hidden" for="member-search">Tìm thành viên theo họ tên hoặc mã sinh viên</label>
+        <input class="input" id="member-search" type="search" placeholder="Tìm theo tên hoặc mã sinh viên…" autocomplete="off">
+      </div>
+      <div class="workspace-member-heading" aria-hidden="true">
+        <span>THÀNH VIÊN / MÃ SINH VIÊN</span>
+        <span>TRẠNG THÁI &amp; THAO TÁC</span>
+      </div>
+      <section aria-label="Danh sách thành viên">
+        <article class="workspace-member" data-member data-member-classes="web-01 web-02 database-01 security-01">
+          <div class="identity">
+            <span class="avatar" aria-hidden="true">HS</span>
+            <div>
+              <strong data-member-name>Nguyễn Hoàng Sơn</strong>
+              <small class="text-mono" data-member-id>SV2026001</small>
+            </div>
+          </div>
+          <div class="workspace-member-actions">
+            <span class="status status--success">
+              <span aria-hidden="true">✓</span>Đang tham gia</span>
+            <button class="btn btn--small btn--danger" type="button" data-remove-member aria-label="Xóa Nguyễn Hoàng Sơn khỏi lớp">Xóa khỏi lớp</button>
+          </div>
+        </article>
+        <article class="workspace-member" data-member data-member-classes="web-01 web-03 database-02">
+          <div class="identity">
+            <span class="avatar" aria-hidden="true">TA</span>
+            <div>
+              <strong data-member-name>Trần Tuấn Anh</strong>
+              <small class="text-mono" data-member-id>SV2026014</small>
+            </div>
+          </div>
+          <div class="workspace-member-actions">
+            <span class="status status--success">
+              <span aria-hidden="true">✓</span>Đang tham gia</span>
+            <button class="btn btn--small btn--danger" type="button" data-remove-member aria-label="Xóa Trần Tuấn Anh khỏi lớp">Xóa khỏi lớp</button>
+          </div>
+        </article>
+        <article class="workspace-member" data-member data-member-classes="web-01 web-02 database-01 security-01">
+          <div class="identity">
+            <span class="avatar" aria-hidden="true">NH</span>
+            <div>
+              <strong data-member-name>Nguyễn Minh Huy</strong>
+              <small class="text-mono" data-member-id>SV2026028</small>
+            </div>
+          </div>
+          <div class="workspace-member-actions">
+            <span class="status status--success">
+              <span aria-hidden="true">✓</span>Đang tham gia</span>
+            <button class="btn btn--small btn--danger" type="button" data-remove-member aria-label="Xóa Nguyễn Minh Huy khỏi lớp">Xóa khỏi lớp</button>
+          </div>
+        </article>
+        <article class="workspace-member" data-member data-member-classes="web-01 web-03 database-02">
+          <div class="identity">
+            <span class="avatar" aria-hidden="true">NM</span>
+            <div>
+              <strong data-member-name>Lê Ngọc Mai</strong>
+              <small class="text-mono" data-member-id>SV2026035</small>
+            </div>
+          </div>
+          <div class="workspace-member-actions">
+            <span class="status status--success">
+              <span aria-hidden="true">✓</span>Đang tham gia</span>
+            <button class="btn btn--small btn--danger" type="button" data-remove-member aria-label="Xóa Lê Ngọc Mai khỏi lớp">Xóa khỏi lớp</button>
+          </div>
+        </article>
+        <article class="workspace-member" data-member data-member-classes="web-01 web-02 web-03 database-01 database-02 security-01">
+          <div class="identity">
+            <span class="avatar" aria-hidden="true">TV</span>
+            <div>
+              <strong data-member-name>Phạm Thảo Vy</strong>
+              <small class="text-mono" data-member-id>SV2026042</small>
+            </div>
+          </div>
+          <div class="workspace-member-actions">
+            <span class="status status--success">
+              <span aria-hidden="true">✓</span>Đang tham gia</span>
+            <button class="btn btn--small btn--danger" type="button" data-remove-member aria-label="Xóa Phạm Thảo Vy khỏi lớp">Xóa khỏi lớp</button>
+          </div>
+        </article>
+      </section>
+      <p class="workspace-empty" id="member-empty" hidden>Không tìm thấy thành viên phù hợp.</p>
+      <section class="notice notice--warning workspace-remove-confirm" id="remove-member-confirm" aria-labelledby="remove-member-title" hidden>
+        <div class="stack">
+          <h3 id="remove-member-title">Xác nhận xóa khỏi lớp</h3>
+          <p id="remove-member-target">
+          </p>
+          <p id="remove-member-warning">Tư cách thành viên hiện hành sẽ kết thúc. Sinh viên có thể tham gia lại bằng mã lớp còn hợp lệ.</p>
+          <div class="cluster">
+            <button class="btn btn--small btn--ghost" type="button" id="cancel-member-removal">Hủy</button>
+            <button class="btn btn--small btn--danger" type="button" id="confirm-member-removal" aria-describedby="remove-member-target remove-member-warning">Xác nhận xóa</button>
+          </div>
+        </div>
+      </section>
+      <p class="workspace-drawer-foot" id="member-summary" role="status" aria-live="polite" aria-atomic="true">Hiển thị 5 thành viên / 42 sinh viên.</p>
+      <footer class="dialog-actions">
+        <button class="btn btn--ghost" type="button" data-dialog-close>Đóng danh sách</button>
+      </footer>
+    </dialog>
+    <div class="toast" id="teacher-feedback" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <span class="icon" aria-hidden="true">✓</span>
+      <span data-feedback-message>
+      </span>
+    </div>
+  </body>
+</html>

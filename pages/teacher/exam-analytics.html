@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Kết quả &amp; thống kê</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/teacher-sidebar.css">
+  <link rel="stylesheet" href="../../assets/css/exam-analytics.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/teacher-sidebar.js" defer></script>
+  <script src="../../assets/js/exam-analytics.js" defer></script>
+</head>
+<body>
+  <div class="app app--exam-analytics teacher-page">
+    <aside class="sidebar teacher-sidebar" data-teacher-sidebar data-current-page="exam-analytics" aria-label="Điều hướng giáo viên">
+      <section class="sidebar-workspace" data-sidebar-workspace>
+        <p class="eyebrow">KHÔNG GIAN LÀM VIỆC</p>
+        <strong>Trường THPT Lê Quý Đôn</strong>
+        <p>Học kỳ I · 2026–2027</p>
+      </section>
+      <div class="sidebar-user" data-sidebar-user>
+        <span class="avatar" aria-hidden="true">MK</span>
+        <div><strong>Trần Minh Kiệt</strong><small>Giáo viên</small></div>
+      </div>
+    </aside>
+    <main class="app-main" id="workspace" aria-labelledby="page-title">
+      <header class="topbar">
+        <nav class="breadcrumb" aria-label="Đường dẫn trang">
+          <ol><li>Không gian làm việc</li><li aria-hidden="true">/</li><li aria-current="page">Kết quả &amp; thống kê</li></ol>
+        </nav>
+        <span class="badge teacher-term">Học kỳ I · 2026–2027</span>
+      </header>
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">KẾT QUẢ THI / THEO DÕI TIẾN ĐỘ</p>
+          <h1 id="page-title">Kiểm tra Giữa kỳ Lập trình Web</h1>
+          <div class="cluster analytics-metadata">
+            <span class="badge">EX-2026-01</span>
+            <span class="status status--success" id="exam-state-badge" data-state="open"><span aria-hidden="true">◐</span><span id="exam-state-label">Đang mở (08:40)</span></span>
+            <span class="field-hint">10/11/2026 · GMT+7</span>
+          </div>
+        </div>
+        <button class="btn btn--primary" id="export-results" type="button">↧ Xuất bảng điểm CSV (UTF-8)</button>
+      </section>
+      <section class="glass-card analytics-publish" aria-labelledby="publish-label">
+        <div>
+          <h2 id="publish-label">Công bố đáp án &amp; chi tiết đúng/sai cho sinh viên</h2>
+          <p class="field-hint" id="publish-help">Đề đang mở · Chỉ bật công bố đáp án sau giờ đóng.</p>
+        </div>
+        <div class="cluster">
+          <div class="field">
+            <label for="exam-scenario">Trạng thái đề</label>
+            <select class="select" id="exam-scenario">
+              <option value="open">Đang mở · 08:40</option>
+              <option value="closed">Đã đóng · 09:00</option>
+            </select>
+          </div>
+          <button class="toggle" id="publish-answers" type="button" role="switch" aria-checked="false" aria-labelledby="publish-label" aria-describedby="publish-help" data-toggle disabled>
+            <span class="toggle-track" aria-hidden="true"></span>
+            <span class="toggle-state"><span data-toggle-icon aria-hidden="true">○</span><span data-toggle-state>Đã tắt</span></span>
+          </button>
+        </div>
+      </section>
+      <section class="bento-grid bento-grid--three analytics-kpis" aria-label="Thống kê theo bộ lọc">
+        <article class="glass-card">
+          <h2 class="analytics-kpi-title">Tổng sinh viên trong diện thi</h2>
+          <p class="analytics-kpi-value"><span class="analytics-count"><span class="analytics-count-source" id="kpi-total">6</span><span class="analytics-count-visual" aria-hidden="true"></span></span></p>
+          <p class="field-hint">Gộp không trùng các lớp giao và lịch sử.</p>
+        </article>
+        <article class="glass-card">
+          <h2 class="analytics-kpi-title">Số lượt đã hoàn tất</h2>
+          <p class="analytics-kpi-value"><span class="analytics-count"><span class="analytics-count-source" id="kpi-complete">4</span><span class="analytics-count-visual" aria-hidden="true"></span></span> <small id="kpi-denominator">/ 6</small></p>
+          <p class="field-hint">Gồm nộp sớm và kết thúc do hết giờ.</p>
+        </article>
+        <article class="glass-card analytics-kpi--score">
+          <h2 class="analytics-kpi-title">Điểm trung bình</h2>
+          <p class="analytics-kpi-value"><span class="analytics-count"><span class="analytics-count-source" id="kpi-average">8,25</span><span class="analytics-count-visual" aria-hidden="true"></span></span> <small>/ 10,00</small></p>
+          <p class="field-hint">Chỉ tính trên các lượt đã hoàn tất.</p>
+        </article>
+      </section>
+      <section class="glass-card analytics-filters" aria-label="Lọc bảng điểm">
+        <div class="field">
+          <label for="result-search">Họ tên hoặc mã sinh viên</label>
+          <input class="input" id="result-search" type="search" placeholder="Tìm theo họ tên hoặc mã sinh viên…" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="result-class">Lớp</label>
+          <select class="select" id="result-class"><option value="all">Tất cả lớp được giao</option><option>L_A1</option><option>L_A2</option></select>
+        </div>
+        <div class="field">
+          <label for="result-state">Trạng thái</label>
+          <select class="select" id="result-state"><option value="all">Tất cả trạng thái</option><option value="unstarted">Chưa thi</option><option value="progress">Đang làm</option><option value="complete">Hoàn tất</option></select>
+        </div>
+        <button class="btn btn--ghost" id="reset-results" type="button">Đặt lại</button>
+      </section>
+      <section class="glass-card table-card" aria-labelledby="results-title">
+        <header class="card-header">
+          <div><div class="cluster"><h2 id="results-title">Bảng điểm sinh viên</h2><span class="badge" id="result-count">06</span></div>
+            <p>Mỗi sinh viên một dòng duy nhất · Lớp ghi nhận theo lượt thi</p>
+          </div>
+          <span class="field-hint">◇ Điểm được chốt khi hoàn tất</span>
+        </header>
+        <div class="table-scroll" role="region" aria-label="Bảng điểm theo bộ lọc" tabindex="0">
+          <table class="data-table analytics-table">
+            <caption class="visually-hidden">Kết quả thi của sinh viên, lớp ghi nhận và thời điểm kết thúc</caption>
+            <colgroup>
+              <col class="analytics-col-id">
+              <col class="analytics-col-name">
+              <col class="analytics-col-class">
+              <col class="analytics-col-state">
+              <col class="analytics-col-correct">
+              <col class="analytics-col-score">
+              <col class="analytics-col-time">
+              <col class="analytics-col-reason">
+              <col class="analytics-col-detail">
+            </colgroup>
+            <thead>
+              <tr><th scope="col">MÃ SV</th><th scope="col">HỌ VÀ TÊN</th><th scope="col">LỚP GHI NHẬN</th><th scope="col">TRẠNG THÁI</th><th scope="col">CÂU ĐÚNG</th><th scope="col">ĐIỂM</th><th scope="col">BẮT ĐẦU / NỘP BÀI</th><th scope="col">KẾT THÚC</th><th scope="col">BÀI LÀM</th></tr>
+            </thead>
+            <tbody>
+              <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A1" data-correct="16" data-total="20" data-reason="MANUAL">
+                <td class="text-mono" data-field="id">SV2026001</td>
+                <td><div class="identity"><span class="avatar" aria-hidden="true">HS</span><div><strong data-field="name">Nguyễn Hoàng Sơn</strong><small>Sinh viên</small></div></div></td>
+                <td><div class="cluster"><span class="badge">L_A1</span></div></td>
+                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td class="text-mono" data-field="correct">16/20</td>
+                <td class="analytics-score" data-field="score">8,00</td>
+                <td>
+                  <time data-field="start" datetime="2026-11-10T08:02:00+07:00">08:02:00</time>
+                  <time data-field="end" datetime="2026-11-10T08:25:14+07:00">08:25:14</time>
+                </td>
+                <td><span class="badge" data-field="reason">Nộp sớm</span></td>
+                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Nguyễn Hoàng Sơn">Chi tiết ↗</button></td>
+              </tr>
+              <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A1 L_A2" data-correct="18" data-total="20" data-reason="TIMEOUT">
+                <td class="text-mono" data-field="id">SV2026002</td>
+                <td><div class="identity"><span class="avatar" aria-hidden="true">TA</span><div><strong data-field="name">Trần Tuấn Anh</strong><small>Sinh viên</small></div></div></td>
+                <td><div class="cluster"><span class="badge">L_A1</span><span class="badge">L_A2</span></div></td>
+                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td class="text-mono" data-field="correct">18/20</td>
+                <td class="analytics-score" data-field="score">9,00</td>
+                <td>
+                  <time data-field="start" datetime="2026-11-10T08:01:00+07:00">08:01:00</time>
+                  <time data-field="end" datetime="2026-11-10T08:31:00+07:00">08:31:00</time>
+                </td>
+                <td><span class="badge" data-field="reason">Hết giờ</span></td>
+                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Trần Tuấn Anh">Chi tiết ↗</button></td>
+              </tr>
+              <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A2" data-correct="15" data-total="20" data-reason="MANUAL">
+                <td class="text-mono" data-field="id">SV2026003</td>
+                <td><div class="identity"><span class="avatar" aria-hidden="true">NM</span><div><strong data-field="name">Lê Ngọc Mai</strong><small>Sinh viên</small></div></div></td>
+                <td><div class="cluster"><span class="badge">L_A2</span></div></td>
+                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td class="text-mono" data-field="correct">15/20</td>
+                <td class="analytics-score" data-field="score">7,50</td>
+                <td>
+                  <time data-field="start" datetime="2026-11-10T08:03:00+07:00">08:03:00</time>
+                  <time data-field="end" datetime="2026-11-10T08:28:21+07:00">08:28:21</time>
+                </td>
+                <td><span class="badge" data-field="reason">Nộp sớm</span></td>
+                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Lê Ngọc Mai">Chi tiết ↗</button></td>
+              </tr>
+              <tr data-result-row data-base-state="progress" data-state="progress" data-classes="L_A2" data-correct="" data-total="20" data-reason="" data-timeout-correct="14" data-timeout-at="2026-11-10T09:00:00+07:00">
+                <td class="text-mono" data-field="id">SV2026004</td>
+                <td><div class="identity"><span class="avatar" aria-hidden="true">TV</span><div><strong data-field="name">Phạm Thảo Vy</strong><small>Sinh viên</small></div></div></td>
+                <td><div class="cluster"><span class="badge">L_A2</span></div></td>
+                <td><span class="status status--warning" data-field="state"><span data-state-icon aria-hidden="true">◐</span><span data-state-label>Đang làm</span></span></td>
+                <td class="text-mono" data-field="correct"></td>
+                <td class="analytics-score" data-field="score"></td>
+                <td>
+                  <time data-field="start" datetime="2026-11-10T08:35:00+07:00">08:35:00</time>
+                  <time data-field="end" datetime=""></time>
+                </td>
+                <td><span class="badge" data-field="reason"></span></td>
+                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Phạm Thảo Vy" disabled>Chi tiết ↗</button></td>
+              </tr>
+              <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A1" data-correct="17" data-total="20" data-reason="MANUAL">
+                <td class="text-mono" data-field="id">SV2026005</td>
+                <td><div class="identity"><span class="avatar" aria-hidden="true">MH</span><div><strong data-field="name">Nguyễn Minh Huy</strong><small>Sinh viên</small></div></div></td>
+                <td><div class="cluster"><span class="badge">L_A1</span></div></td>
+                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td class="text-mono" data-field="correct">17/20</td>
+                <td class="analytics-score" data-field="score">8,50</td>
+                <td>
+                  <time data-field="start" datetime="2026-11-10T08:07:00+07:00">08:07:00</time>
+                  <time data-field="end" datetime="2026-11-10T08:29:40+07:00">08:29:40</time>
+                </td>
+                <td><span class="badge" data-field="reason">Nộp sớm</span></td>
+                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Nguyễn Minh Huy">Chi tiết ↗</button></td>
+              </tr>
+              <tr data-result-row data-base-state="unstarted" data-state="unstarted" data-classes="L_A1 L_A2" data-correct="" data-total="20" data-reason="">
+                <td class="text-mono" data-field="id">SV2026006</td>
+                <td><div class="identity"><span class="avatar" aria-hidden="true">HĐ</span><div><strong data-field="name">Đỗ Hải Đăng</strong><small>Sinh viên</small></div></div></td>
+                <td><div class="cluster"><span class="badge">L_A1</span><span class="badge">L_A2</span></div></td>
+                <td><span class="status status--accent" data-field="state"><span data-state-icon aria-hidden="true">○</span><span data-state-label>Chưa thi</span></span></td>
+                <td class="text-mono" data-field="correct"></td>
+                <td class="analytics-score" data-field="score"></td>
+                <td>
+                  <time data-field="start" datetime=""></time>
+                  <time data-field="end" datetime=""></time>
+                </td>
+                <td><span class="badge" data-field="reason"></span></td>
+                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Đỗ Hải Đăng" disabled>Chi tiết ↗</button></td>
+              </tr>
+              <tr id="result-empty" hidden><td colspan="9" class="table-empty">○ Không có sinh viên phù hợp với bộ lọc.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <footer class="card-footer">
+          <span id="result-summary" role="status" aria-live="polite" aria-atomic="true">Hiển thị 6 sinh viên</span>
+          <span class="badge">TRANG 1</span>
+        </footer>
+      </section>
+      <p class="analytics-table-note">CSV gồm các kết quả khớp bộ lọc hiện tại.</p>
+      <div class="bento-grid bento-grid--two">
+        <figure class="glass-card">
+          <figcaption><h2>Phân bố điểm số</h2></figcaption>
+          <div class="analytics-chart" role="group" aria-label="Phân bố điểm theo bộ lọc">
+            <div class="analytics-chart-column" role="img" aria-label="0–2 điểm"><div class="analytics-bar analytics-bar--0" data-score-bin aria-hidden="true"></div><span class="analytics-chart-label" aria-hidden="true">0–2</span></div>
+            <div class="analytics-chart-column" role="img" aria-label="2–4 điểm"><div class="analytics-bar analytics-bar--0" data-score-bin aria-hidden="true"></div><span class="analytics-chart-label" aria-hidden="true">2–4</span></div>
+            <div class="analytics-chart-column" role="img" aria-label="4–6 điểm"><div class="analytics-bar analytics-bar--0" data-score-bin aria-hidden="true"></div><span class="analytics-chart-label" aria-hidden="true">4–6</span></div>
+            <div class="analytics-chart-column" role="img" aria-label="6–8 điểm"><div class="analytics-bar analytics-bar--0" data-score-bin aria-hidden="true"></div><span class="analytics-chart-label" aria-hidden="true">6–8</span></div>
+            <div class="analytics-chart-column" role="img" aria-label="8–10 điểm"><div class="analytics-bar analytics-bar--0" data-score-bin aria-hidden="true"></div><span class="analytics-chart-label" aria-hidden="true">8–10</span></div>
+          </div>
+        </figure>
+        <section class="glass-card" aria-labelledby="completion-title">
+          <h2 id="completion-title">Tỷ lệ hoàn tất</h2>
+          <p class="analytics-kpi-value" id="completion-rate">66,7%</p>
+          <progress class="analytics-progress" id="completion-progress" value="4" max="6" aria-labelledby="completion-title"></progress>
+          <p class="field-hint">Đã gộp không trùng sinh viên thuộc nhiều lớp.</p>
+        </section>
+      </div>
+      <footer class="page-footer"><span>◇ Dữ liệu báo cáo được bảo vệ</span><span>QuizFlow · Kết quả &amp; thống kê</span></footer>
+    </main>
+  </div>
+  <dialog class="modal" id="result-detail" aria-labelledby="detail-title">
+    <header class="dialog-header">
+      <h2 id="detail-title">Chi tiết kết quả</h2>
+      <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng chi tiết kết quả" autofocus>×</button>
+    </header>
+    <p class="dialog-description" id="detail-name"></p>
+    <dl class="analytics-detail-summary">
+      <div><dt>Lớp ghi nhận</dt><dd id="detail-classes"></dd></div>
+      <div><dt>Điểm</dt><dd id="detail-score"></dd></div>
+      <div><dt>Số câu đúng</dt><dd id="detail-correct"></dd></div>
+      <div><dt>Cách kết thúc</dt><dd id="detail-reason"></dd></div>
+    </dl>
+    <footer class="dialog-actions"><button class="btn btn--ghost" type="button" data-dialog-close>Quay lại bảng điểm</button></footer>
+  </dialog>
+  <div class="toast" id="teacher-feedback" role="status" aria-live="polite" aria-atomic="true" hidden><span class="icon" aria-hidden="true">✓</span><span data-feedback-message></span></div>
+</body>
+</html>
+
