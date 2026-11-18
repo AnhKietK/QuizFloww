@@ -12,12 +12,14 @@
   <link rel="stylesheet" href="../../assets/css/question-bank.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <link rel="stylesheet" href="../../assets/css/workspace.css">
   <script src="../../assets/js/motion.js" defer></script>
   <script src="../../assets/js/ui.js" defer></script>
   <script src="../../assets/js/teacher-sidebar.js" defer></script>
   <script src="../../assets/js/question-bank.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#workspace">Đến nội dung chính</a>
   <div class="app app--question-bank teacher-page">
     <aside class="sidebar teacher-sidebar" data-teacher-sidebar data-current-page="question-bank" aria-label="Điều hướng giáo viên">
       <section class="sidebar-workspace" data-sidebar-workspace>
@@ -30,20 +32,20 @@
         <div><strong>Trần Minh Kiệt</strong><small>Giáo viên</small></div>
       </div>
     </aside>
-    <main class="app-main" id="workspace" aria-labelledby="page-title">
+    <main class="app-main" id="workspace" tabindex="-1" aria-labelledby="page-title">
       <header class="topbar">
         <nav class="breadcrumb" aria-label="Đường dẫn trang">
-          <ol><li>Không gian làm việc</li><li aria-hidden="true">/</li><li aria-current="page">Ngân hàng câu hỏi</li></ol>
+          <ol><li><a href="../../index.html">Không gian làm việc</a></li><li aria-hidden="true">/</li><li aria-current="page">Ngân hàng câu hỏi</li></ol>
         </nav>
         <span class="badge teacher-term">Học kỳ I · 2026–2027</span>
       </header>
       <section class="page-heading">
-        <div><p class="eyebrow">NGÂN HÀNG CÂU HỎI / XÂY DỰNG TRI THỨC</p>
+        <div><p class="eyebrow">Giảng dạy · 268 câu hỏi</p>
           <h1 id="page-title">Ngân hàng câu hỏi</h1>
-          <p>Từng câu hỏi chất lượng. Mỗi kỳ thi một bước tiến.</p>
+          <p>Tìm theo môn và độ khó, chỉnh sửa câu hỏi hoặc nhập từ Excel.</p>
         </div>
         <div class="page-actions">
-          <span class="badge">268 CÂU HỎI</span>
+          <a class="btn" href="#import-title">Nhập từ Excel ↓</a>
           <button class="btn btn--primary" type="button" data-create-question data-dialog-open="question-editor" aria-controls="question-editor" aria-haspopup="dialog">＋ Tạo câu hỏi</button>
         </div>
       </section>
@@ -188,7 +190,7 @@
         </section>
         <section class="glass-card import-panel" aria-labelledby="import-title">
           <span class="badge">NHẬP EXCEL</span>
-          <h2 id="import-title">Nhập câu hỏi từ Excel</h2>
+          <h2 id="import-title" tabindex="-1">Nhập câu hỏi từ Excel</h2>
           <p class="import-intro">Từ bảng tính đến ngân hàng câu hỏi.<br>Kiểm tra toàn bộ dữ liệu trước khi lưu.</p>
           <section class="import-section" aria-labelledby="import-subject-title">
             <h3 id="import-subject-title">Chọn môn đích</h3>

@@ -6,7 +6,7 @@ Thư mục chứa giao diện quản trị viên và giáo viên của QuizFlow,
 
 Mở [index.html](index.html) bằng trình duyệt. Chọn chức năng từ trang Tổng quan. Bấm logo QuizFlow hoặc mục Tổng quan trên sidebar giáo viên để quay về trang này. Sidebar giáo viên liên kết trực tiếp giữa bốn màn hình giáo viên.
 
-Các trang mở trực tiếp bằng đường dẫn `file://` và dùng tài nguyên tương đối. Bật JavaScript để dùng sidebar giáo viên, bộ lọc và hộp thoại. Google Fonts cần kết nối mạng để tải Plus Jakarta Sans và JetBrains Mono, với phông dự phòng được khai báo trong CSS.
+Các trang mở trực tiếp bằng đường dẫn `file://` và dùng tài nguyên tương đối. Bật JavaScript để dùng sidebar giáo viên, bộ lọc và hộp thoại. Giao diện dùng phông chữ sẵn có trên thiết bị. Từ Tổng quan, chọn một môn để mở ngay danh sách lớp tương ứng.
 
 | Màn hình | Tệp HTML |
 | --- | --- |
@@ -28,6 +28,8 @@ frontend/
 │   │   ├── layout.css       # Khung ứng dụng và lưới thẻ
 │   │   ├── components.css   # Thành phần giao diện dùng chung
 │   │   ├── animations.css   # Biến, keyframes, tiện ích và Reduce motion
+│   │   ├── responsive.css
+│   │   ├── workspace.css    # Khung và giao diện dùng chung
 │   │   ├── teacher-sidebar.css
 │   │   ├── index.css
 │   │   ├── admin-users.css
@@ -64,9 +66,8 @@ Các tệp `.gitkeep` đã có từ bước khởi tạo giúp Git lưu thư m�
 
 - Tên tệp và thư mục dùng chữ thường không dấu, theo dạng `kebab-case`, ví dụ `question-bank.html`.
 - Lưu tệp bằng UTF-8; nội dung giao diện và nhãn hiển thị dùng tiếng Việt.
-- Dùng HTML5, CSS3 và JavaScript thuần; không dùng framework hoặc thư viện ngoài, ngoại trừ Google Fonts với Plus Jakarta Sans và JetBrains Mono.
-- Layout desktop fluid từ 1280 px đến 1920 px và lớn hơn. Khung ứng dụng rộng 100%, cao tối thiểu 100vh. Grid chính gồm sidebar 16,25rem và vùng nội dung 1fr. Nội dung tối đa 100rem, căn giữa và dùng padding ngang clamp(). Lưới thẻ dùng fr/auto-fit; bảng rộng cuộn bên trong container.
-- Quy tắc fluid này áp dụng cho các trang hiện có và các trang bổ sung. Phạm vi thiết bị là desktop.
+- Dùng HTML5, CSS3 và JavaScript thuần.
+- Ở chiều rộng từ 64rem, sidebar rộng 14,5rem và vùng nội dung tối đa 96rem. Ở màn hình nhỏ hơn, nút menu mở ngăn điều hướng. Bảng điểm và bảng tài khoản chuyển sang thẻ khi màn hình hẹp hơn 48rem.
 - Tái sử dụng CSS và JavaScript trong `assets/`; không dùng inline style ngoài biến CSS động cho hiệu ứng (như `--i`, `--mx`, `--my`), không sao chép CSS giữa các trang.
 - Dùng thẻ HTML ngữ nghĩa, có nhãn cho trường nhập liệu; trạng thái có cả biểu tượng và nhãn chữ.
 - Dữ liệu hiện được khai báo trong HTML; xem trạng thái tích hợp bên dưới.
@@ -90,7 +91,7 @@ Bộ lọc, KPI và CSV xử lý ở trình duyệt từ dữ liệu trong HTML.
 
 ## Tái sử dụng thành phần
 
-Nạp CSS theo thứ tự `variables.css`, `base.css`, `layout.css`, `components.css`, rồi CSS của sidebar/trang và cuối cùng `animations.css`. Nạp `motion.js`, `ui.js` với `defer`. Trang giáo viên nạp tiếp `teacher-sidebar.js` rồi JavaScript của trang.
+Nạp CSS theo thứ tự `variables.css`, `base.css`, `layout.css`, `components.css`, rồi CSS của sidebar/trang, `animations.css`, `responsive.css` và `workspace.css`. Nạp `motion.js`, `ui.js` với `defer`. Trang giáo viên nạp tiếp `teacher-sidebar.js` rồi JavaScript của trang.
 
 Sidebar giáo viên dùng `aside[data-teacher-sidebar]` với `data-current-page` trùng tên trang. Đặt thông tin trường trong `[data-sidebar-workspace]`, tài khoản trong `[data-sidebar-user]` và vùng thông báo `#teacher-feedback` trong HTML. `teacher-sidebar.js` ghép phần điều hướng dùng chung và chọn mục hiện tại. `QuizFlowTeacher` cung cấp thông báo và chuẩn hóa tìm kiếm tiếng Việt.
 
@@ -98,7 +99,7 @@ Modal và drawer dùng thẻ `<dialog>`. Nút có `data-dialog-open="id"` để 
 
 ## Chuyển động và micro-interaction
 
-`animations.css` chứa biến thời gian/easing, keyframes và tiện ích chung. `motion.js` thêm nền aurora, sidebar vào trang, reveal thẻ một lần bằng `IntersectionObserver`, spotlight theo chuột và nghiêng thẻ có `data-motion-tilt`. Hiệu ứng riêng của mỗi màn hình nằm trong CSS/JS của màn hình đó và dùng lại keyframes chung khi phù hợp.
+`animations.css` chứa biến thời gian/easing, keyframes và tiện ích chung. Trang Tổng quan dùng CSS để chuyển động minh họa tập đề. Các trang nghiệp vụ dùng `motion.js` để tạo hiệu ứng vào cho sidebar, reveal thẻ một lần bằng `IntersectionObserver`, spotlight theo chuột và nghiêng thẻ có `data-motion-tilt`. Hiệu ứng riêng của mỗi màn hình nằm trong CSS/JS của màn hình đó và dùng lại keyframes chung khi phù hợp.
 
 ### Biến dùng chung
 
@@ -109,12 +110,11 @@ Modal và drawer dùng thẻ `<dialog>`. Nút có `data-dialog-open="id"` để 
 | `--dur-slow` | `400ms` | Sidebar, drawer, dock, sóng emerald |
 | `--dur-hero` | `700ms` | Quét sáng, mốc cho glow và viền chạy |
 | `--dur-count` | `900ms` | Count-up KPI |
-| `--dur-aurora` | `25s` | Nền aurora; lớp thứ hai dùng × 1,12 = 28s |
 | `--dur-toast` | `4500ms` | Thời gian hiện toast và thanh đếm ngược |
 | `--dur-copy` | `2100ms` | Thời gian giữ nhãn “Đã sao chép” |
 | `--ease-out` | `cubic-bezier(0.22, 1, 0.36, 1)` | Vào trang, đóng/mở, count-up |
 | `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Toggle và chip |
-| `--ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` | Glow, rung, aurora |
+| `--ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` | Glow, rung |
 | `--ease-linear` | `linear` | Viền xoay, thanh thời gian toast |
 | `--motion-stagger-step` | `50ms` | Khoảng cách reveal thẻ/hàng bảng |
 | `--motion-delay` | `0ms` | Độ trễ mặc định, được stagger ghi đè |
@@ -138,7 +138,7 @@ KPI thống kê có giá trị thật cập nhật ngay theo bộ lọc và mộ
 
 - Keyframes hiện dùng `transform`, `opacity`, `filter`. Giới hạn `box-shadow` ở phản hồi component nhỏ; glow lớn dùng bóng tĩnh trên lớp phủ rồi đổi opacity. Không animate kích thước, vị trí layout, màu nền, gradient hoặc `backdrop-filter`.
 - Không đặt `transition: all` hoặc `will-change` đại trà. Spotlight dùng một RAF đang chờ, đọc khung rồi cập nhật biến cho thẻ dưới chuột; hủy frame khi rời thẻ, cuộn, mất focus cửa sổ hoặc bật Reduce motion.
-- Aurora trôi chậm 25–28 giây và biểu tượng “Đang mở/Đang làm” là các vòng lặp liên tục. Glow mã lớp/cảnh báo, viền chạy, shimmer, nút công bố và các phản hồi khác có số lượt hữu hạn; không thêm vòng lặp trang trí không cần thiết.
+- Biểu tượng “Đang mở/Đang làm” lặp chuyển động để thể hiện trạng thái. Glow mã lớp/cảnh báo, viền chạy, shimmer, nút công bố và các phản hồi khác có số lượt hữu hạn; không thêm vòng lặp trang trí không cần thiết.
 - `@media (prefers-reduced-motion: reduce)` tắt animation/transition trên phần tử, pseudo-element và backdrop; tắt nền động/spotlight, hiện nội dung ngay. JavaScript dừng các hiệu ứng đang chạy. Bật lại chuyển động không phát lại các reveal đã xem.
 - Giữ chỗ số liệu bằng nguồn giá trị thật, đặt lớp số chuyển động tuyệt đối để tránh layout shift. `scrollbar-gutter: stable` giữ chiều rộng nội dung khi modal khóa cuộn. Biểu đồ và bảng phải nằm trong khung fluid; bảng rộng chỉ cuộn bên trong `.table-scroll`.
 - Mục tiêu là 60fps; kết quả còn phụ thuộc thiết bị, trình duyệt và GPU. Khi bổ sung hiệu ứng, dùng Performance/Rendering để kiểm tra frame dài, layout shift và vùng repaint, đặc biệt ở khung 2560px. Không coi kiểm tra headless là bảo đảm tốc độ trên mọi máy.

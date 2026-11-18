@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light">
   <title>QuizFlow — Quản lý người dùng</title>
   <link rel="stylesheet" href="../../assets/css/variables.css">
   <link rel="stylesheet" href="../../assets/css/base.css">
@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="../../assets/css/admin-users.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <link rel="stylesheet" href="../../assets/css/workspace.css">
   <script src="../../assets/js/motion.js" defer></script>
   <script src="../../assets/js/ui.js" defer></script>
   <script src="../../assets/js/admin-users.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#users">Đến nội dung chính</a>
   <svg class="visually-hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></symbol>
@@ -44,7 +46,6 @@
         <span class="brand-mark"><svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><use href="#icon-bolt"/></svg></span>
         QuizFlow
       </a>
-      <span class="badge admin-role-badge">◇ QUẢN TRỊ</span>
       <section class="sidebar-workspace" aria-labelledby="workspace-title">
         <p class="eyebrow" id="workspace-title">KHÔNG GIAN QUẢN TRỊ</p>
         <strong>Quản trị hệ thống</strong>
@@ -52,12 +53,10 @@
       </section>
       <p class="sidebar-nav-label">QUẢN LÝ TRUY CẬP</p>
       <nav class="sidebar-nav" aria-label="Menu quản trị">
+        <a class="sidebar-nav-item" href="../../index.html"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-grid"/></svg>Tổng quan</a>
         <a class="sidebar-nav-item" href="#users" aria-current="page">
           <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-users"/></svg>Quản lý người dùng
         </a>
-        <button class="sidebar-nav-item" type="button" data-admin-note="Hồ sơ cá nhân · Chức năng chưa sẵn sàng.">
-          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-user"/></svg>Hồ sơ cá nhân
-        </button>
       </nav>
       <div class="sidebar-bottom">
         <section class="notice admin-security" aria-labelledby="security-title">
@@ -65,9 +64,6 @@
           <div><strong id="security-title">Quyền hạn đi cùng trách nhiệm</strong>
             <p>Mọi thay đổi quyền đều có hiệu lực ngay lập tức. Kiểm tra kỹ trước khi xác nhận.</p></div>
         </section>
-        <button class="sidebar-nav-item" type="button" data-admin-note="Đăng xuất · Chức năng chưa sẵn sàng.">
-          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-logout"/></svg>Đăng xuất
-        </button>
         <div class="sidebar-user">
           <span class="avatar" aria-hidden="true">QT</span>
           <div><strong>Quản trị hệ thống</strong><small>Quản trị viên gốc</small></div>
@@ -75,11 +71,11 @@
       </div>
     </aside>
 
-    <main class="app-main" id="users" aria-labelledby="page-title">
+    <main class="app-main" id="users" tabindex="-1" aria-labelledby="page-title">
       <header class="topbar">
         <nav class="breadcrumb" aria-label="Đường dẫn trang">
           <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#icon-grid"/></svg>
-          <ol><li>Không gian quản trị</li><li aria-hidden="true">/</li>
+          <ol><li><a href="../../index.html">Không gian quản trị</a></li><li aria-hidden="true">/</li>
             <li><span aria-current="page">Quản lý người dùng</span></li></ol>
         </nav>
         <div class="topbar-actions">
@@ -93,9 +89,9 @@
       </header>
 
       <section class="page-heading">
-        <div><p class="eyebrow">QUẢN LÝ TRUY CẬP / TRUNG TÂM ĐIỀU HÀNH</p>
+        <div><p class="eyebrow">QUẢN TRỊ HỆ THỐNG</p>
           <h1 id="page-title">Quản lý người dùng</h1>
-          <p>Đúng người. Đúng quyền. Một hệ thống được bảo vệ.</p></div>
+          <p>Tra cứu tài khoản, điều chỉnh vai trò và quản lý quyền truy cập.</p></div>
       </section>
 
       <section class="bento-grid bento-grid--three admin-stats" aria-label="Tổng quan tài khoản">

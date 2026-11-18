@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light">
   <title>QuizFlow — Kết quả &amp; thống kê</title>
   <link rel="stylesheet" href="../../assets/css/variables.css">
   <link rel="stylesheet" href="../../assets/css/base.css">
@@ -13,12 +13,14 @@
   <link rel="stylesheet" href="../../assets/css/exam-analytics.css">
   <link rel="stylesheet" href="../../assets/css/animations.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <link rel="stylesheet" href="../../assets/css/workspace.css">
   <script src="../../assets/js/motion.js" defer></script>
   <script src="../../assets/js/ui.js" defer></script>
   <script src="../../assets/js/teacher-sidebar.js" defer></script>
   <script src="../../assets/js/exam-analytics.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#workspace">Đến nội dung chính</a>
   <div class="app app--exam-analytics teacher-page">
     <aside class="sidebar teacher-sidebar" data-teacher-sidebar data-current-page="exam-analytics" aria-label="Điều hướng giáo viên">
       <section class="sidebar-workspace" data-sidebar-workspace>
@@ -31,16 +33,16 @@
         <div><strong>Trần Minh Kiệt</strong><small>Giáo viên</small></div>
       </div>
     </aside>
-    <main class="app-main" id="workspace" aria-labelledby="page-title">
+    <main class="app-main" id="workspace" tabindex="-1" aria-labelledby="page-title">
       <header class="topbar">
         <nav class="breadcrumb" aria-label="Đường dẫn trang">
-          <ol><li>Không gian làm việc</li><li aria-hidden="true">/</li><li aria-current="page">Kết quả &amp; thống kê</li></ol>
+          <ol><li><a href="../../index.html">Không gian làm việc</a></li><li aria-hidden="true">/</li><li aria-current="page">Kết quả &amp; thống kê</li></ol>
         </nav>
         <span class="badge teacher-term">Học kỳ I · 2026–2027</span>
       </header>
       <section class="page-heading">
         <div>
-          <p class="eyebrow">KẾT QUẢ THI / THEO DÕI TIẾN ĐỘ</p>
+          <p class="eyebrow">KẾT QUẢ &amp; THỐNG KÊ</p>
           <h1 id="page-title">Kiểm tra Giữa kỳ Lập trình Web</h1>
           <div class="cluster analytics-metadata">
             <span class="badge">EX-2026-01</span>
@@ -127,88 +129,88 @@
             </thead>
             <tbody>
               <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A1" data-correct="16" data-total="20" data-reason="MANUAL">
-                <td class="text-mono" data-field="id">SV2026001</td>
-                <td><div class="identity"><span class="avatar" aria-hidden="true">HS</span><div><strong data-field="name">Nguyễn Hoàng Sơn</strong><small>Sinh viên</small></div></div></td>
-                <td><div class="cluster"><span class="badge">L_A1</span></div></td>
-                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
-                <td class="text-mono" data-field="correct">16/20</td>
-                <td class="analytics-score" data-field="score">8,00</td>
-                <td>
+                <td data-label="Mã sinh viên" class="text-mono" data-field="id">SV2026001</td>
+                <td data-label="Họ và tên"><div class="identity"><span class="avatar" aria-hidden="true">HS</span><div><strong data-field="name">Nguyễn Hoàng Sơn</strong><small>Sinh viên</small></div></div></td>
+                <td data-label="Lớp ghi nhận"><div class="cluster"><span class="badge">L_A1</span></div></td>
+                <td data-label="Trạng thái"><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td data-label="Câu đúng" class="text-mono" data-field="correct">16/20</td>
+                <td data-label="Điểm" class="analytics-score" data-field="score">8,00</td>
+                <td data-label="Bắt đầu / Nộp bài">
                   <time data-field="start" datetime="2026-11-10T08:02:00+07:00">08:02:00</time>
                   <time data-field="end" datetime="2026-11-10T08:25:14+07:00">08:25:14</time>
                 </td>
-                <td><span class="badge" data-field="reason">Nộp sớm</span></td>
-                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Nguyễn Hoàng Sơn">Chi tiết ↗</button></td>
+                <td data-label="Kết thúc"><span class="badge" data-field="reason">Nộp sớm</span></td>
+                <td data-label="Bài làm"><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Nguyễn Hoàng Sơn">Chi tiết ↗</button></td>
               </tr>
               <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A1 L_A2" data-correct="18" data-total="20" data-reason="TIMEOUT">
-                <td class="text-mono" data-field="id">SV2026002</td>
-                <td><div class="identity"><span class="avatar" aria-hidden="true">TA</span><div><strong data-field="name">Trần Tuấn Anh</strong><small>Sinh viên</small></div></div></td>
-                <td><div class="cluster"><span class="badge">L_A1</span><span class="badge">L_A2</span></div></td>
-                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
-                <td class="text-mono" data-field="correct">18/20</td>
-                <td class="analytics-score" data-field="score">9,00</td>
-                <td>
+                <td data-label="Mã sinh viên" class="text-mono" data-field="id">SV2026002</td>
+                <td data-label="Họ và tên"><div class="identity"><span class="avatar" aria-hidden="true">TA</span><div><strong data-field="name">Trần Tuấn Anh</strong><small>Sinh viên</small></div></div></td>
+                <td data-label="Lớp ghi nhận"><div class="cluster"><span class="badge">L_A1</span><span class="badge">L_A2</span></div></td>
+                <td data-label="Trạng thái"><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td data-label="Câu đúng" class="text-mono" data-field="correct">18/20</td>
+                <td data-label="Điểm" class="analytics-score" data-field="score">9,00</td>
+                <td data-label="Bắt đầu / Nộp bài">
                   <time data-field="start" datetime="2026-11-10T08:01:00+07:00">08:01:00</time>
                   <time data-field="end" datetime="2026-11-10T08:31:00+07:00">08:31:00</time>
                 </td>
-                <td><span class="badge" data-field="reason">Hết giờ</span></td>
-                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Trần Tuấn Anh">Chi tiết ↗</button></td>
+                <td data-label="Kết thúc"><span class="badge" data-field="reason">Hết giờ</span></td>
+                <td data-label="Bài làm"><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Trần Tuấn Anh">Chi tiết ↗</button></td>
               </tr>
               <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A2" data-correct="15" data-total="20" data-reason="MANUAL">
-                <td class="text-mono" data-field="id">SV2026003</td>
-                <td><div class="identity"><span class="avatar" aria-hidden="true">NM</span><div><strong data-field="name">Lê Ngọc Mai</strong><small>Sinh viên</small></div></div></td>
-                <td><div class="cluster"><span class="badge">L_A2</span></div></td>
-                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
-                <td class="text-mono" data-field="correct">15/20</td>
-                <td class="analytics-score" data-field="score">7,50</td>
-                <td>
+                <td data-label="Mã sinh viên" class="text-mono" data-field="id">SV2026003</td>
+                <td data-label="Họ và tên"><div class="identity"><span class="avatar" aria-hidden="true">NM</span><div><strong data-field="name">Lê Ngọc Mai</strong><small>Sinh viên</small></div></div></td>
+                <td data-label="Lớp ghi nhận"><div class="cluster"><span class="badge">L_A2</span></div></td>
+                <td data-label="Trạng thái"><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td data-label="Câu đúng" class="text-mono" data-field="correct">15/20</td>
+                <td data-label="Điểm" class="analytics-score" data-field="score">7,50</td>
+                <td data-label="Bắt đầu / Nộp bài">
                   <time data-field="start" datetime="2026-11-10T08:03:00+07:00">08:03:00</time>
                   <time data-field="end" datetime="2026-11-10T08:28:21+07:00">08:28:21</time>
                 </td>
-                <td><span class="badge" data-field="reason">Nộp sớm</span></td>
-                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Lê Ngọc Mai">Chi tiết ↗</button></td>
+                <td data-label="Kết thúc"><span class="badge" data-field="reason">Nộp sớm</span></td>
+                <td data-label="Bài làm"><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Lê Ngọc Mai">Chi tiết ↗</button></td>
               </tr>
               <tr data-result-row data-base-state="progress" data-state="progress" data-classes="L_A2" data-correct="" data-total="20" data-reason="" data-timeout-correct="14" data-timeout-at="2026-11-10T09:00:00+07:00">
-                <td class="text-mono" data-field="id">SV2026004</td>
-                <td><div class="identity"><span class="avatar" aria-hidden="true">TV</span><div><strong data-field="name">Phạm Thảo Vy</strong><small>Sinh viên</small></div></div></td>
-                <td><div class="cluster"><span class="badge">L_A2</span></div></td>
-                <td><span class="status status--warning" data-field="state"><span data-state-icon aria-hidden="true">◐</span><span data-state-label>Đang làm</span></span></td>
-                <td class="text-mono" data-field="correct"></td>
-                <td class="analytics-score" data-field="score"></td>
-                <td>
+                <td data-label="Mã sinh viên" class="text-mono" data-field="id">SV2026004</td>
+                <td data-label="Họ và tên"><div class="identity"><span class="avatar" aria-hidden="true">TV</span><div><strong data-field="name">Phạm Thảo Vy</strong><small>Sinh viên</small></div></div></td>
+                <td data-label="Lớp ghi nhận"><div class="cluster"><span class="badge">L_A2</span></div></td>
+                <td data-label="Trạng thái"><span class="status status--warning" data-field="state"><span data-state-icon aria-hidden="true">◐</span><span data-state-label>Đang làm</span></span></td>
+                <td data-label="Câu đúng" class="text-mono" data-field="correct"></td>
+                <td data-label="Điểm" class="analytics-score" data-field="score"></td>
+                <td data-label="Bắt đầu / Nộp bài">
                   <time data-field="start" datetime="2026-11-10T08:35:00+07:00">08:35:00</time>
                   <time data-field="end" datetime=""></time>
                 </td>
-                <td><span class="badge" data-field="reason"></span></td>
-                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Phạm Thảo Vy" disabled>Chi tiết ↗</button></td>
+                <td data-label="Kết thúc"><span class="badge" data-field="reason"></span></td>
+                <td data-label="Bài làm"><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Phạm Thảo Vy" disabled>Chi tiết ↗</button></td>
               </tr>
               <tr data-result-row data-base-state="complete" data-state="complete" data-classes="L_A1" data-correct="17" data-total="20" data-reason="MANUAL">
-                <td class="text-mono" data-field="id">SV2026005</td>
-                <td><div class="identity"><span class="avatar" aria-hidden="true">MH</span><div><strong data-field="name">Nguyễn Minh Huy</strong><small>Sinh viên</small></div></div></td>
-                <td><div class="cluster"><span class="badge">L_A1</span></div></td>
-                <td><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
-                <td class="text-mono" data-field="correct">17/20</td>
-                <td class="analytics-score" data-field="score">8,50</td>
-                <td>
+                <td data-label="Mã sinh viên" class="text-mono" data-field="id">SV2026005</td>
+                <td data-label="Họ và tên"><div class="identity"><span class="avatar" aria-hidden="true">MH</span><div><strong data-field="name">Nguyễn Minh Huy</strong><small>Sinh viên</small></div></div></td>
+                <td data-label="Lớp ghi nhận"><div class="cluster"><span class="badge">L_A1</span></div></td>
+                <td data-label="Trạng thái"><span class="status status--success" data-field="state"><span data-state-icon aria-hidden="true">✓</span><span data-state-label>Hoàn tất</span></span></td>
+                <td data-label="Câu đúng" class="text-mono" data-field="correct">17/20</td>
+                <td data-label="Điểm" class="analytics-score" data-field="score">8,50</td>
+                <td data-label="Bắt đầu / Nộp bài">
                   <time data-field="start" datetime="2026-11-10T08:07:00+07:00">08:07:00</time>
                   <time data-field="end" datetime="2026-11-10T08:29:40+07:00">08:29:40</time>
                 </td>
-                <td><span class="badge" data-field="reason">Nộp sớm</span></td>
-                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Nguyễn Minh Huy">Chi tiết ↗</button></td>
+                <td data-label="Kết thúc"><span class="badge" data-field="reason">Nộp sớm</span></td>
+                <td data-label="Bài làm"><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Nguyễn Minh Huy">Chi tiết ↗</button></td>
               </tr>
               <tr data-result-row data-base-state="unstarted" data-state="unstarted" data-classes="L_A1 L_A2" data-correct="" data-total="20" data-reason="">
-                <td class="text-mono" data-field="id">SV2026006</td>
-                <td><div class="identity"><span class="avatar" aria-hidden="true">HĐ</span><div><strong data-field="name">Đỗ Hải Đăng</strong><small>Sinh viên</small></div></div></td>
-                <td><div class="cluster"><span class="badge">L_A1</span><span class="badge">L_A2</span></div></td>
-                <td><span class="status status--accent" data-field="state"><span data-state-icon aria-hidden="true">○</span><span data-state-label>Chưa thi</span></span></td>
-                <td class="text-mono" data-field="correct"></td>
-                <td class="analytics-score" data-field="score"></td>
-                <td>
+                <td data-label="Mã sinh viên" class="text-mono" data-field="id">SV2026006</td>
+                <td data-label="Họ và tên"><div class="identity"><span class="avatar" aria-hidden="true">HĐ</span><div><strong data-field="name">Đỗ Hải Đăng</strong><small>Sinh viên</small></div></div></td>
+                <td data-label="Lớp ghi nhận"><div class="cluster"><span class="badge">L_A1</span><span class="badge">L_A2</span></div></td>
+                <td data-label="Trạng thái"><span class="status status--accent" data-field="state"><span data-state-icon aria-hidden="true">○</span><span data-state-label>Chưa thi</span></span></td>
+                <td data-label="Câu đúng" class="text-mono" data-field="correct"></td>
+                <td data-label="Điểm" class="analytics-score" data-field="score"></td>
+                <td data-label="Bắt đầu / Nộp bài">
                   <time data-field="start" datetime=""></time>
                   <time data-field="end" datetime=""></time>
                 </td>
-                <td><span class="badge" data-field="reason"></span></td>
-                <td><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Đỗ Hải Đăng" disabled>Chi tiết ↗</button></td>
+                <td data-label="Kết thúc"><span class="badge" data-field="reason"></span></td>
+                <td data-label="Bài làm"><button class="btn btn--small btn--ghost" type="button" data-result-detail data-dialog-open="result-detail" aria-controls="result-detail" aria-haspopup="dialog" aria-label="Chi tiết kết quả của Đỗ Hải Đăng" disabled>Chi tiết ↗</button></td>
               </tr>
               <tr id="result-empty" hidden><td colspan="9" class="table-empty">○ Không có sinh viên phù hợp với bộ lọc.</td></tr>
             </tbody>

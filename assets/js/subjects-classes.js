@@ -201,5 +201,6 @@
     hideRemoveConfirmation(true);
   });
 
-  filterClasses();
+  const initialSubject = new URLSearchParams(window.location.search).get('mon');
+  selectSubject(subjects.some((subject) => subject.dataset.subjectId === initialSubject) ? initialSubject : 'web');
 })();

@@ -115,12 +115,6 @@
       .filter((card) => !card.closest('.builder-dock, dialog'));
     let observer;
 
-    // Lớp nền trang trí có khung cắt riêng để chuyển động không làm tràn trang.
-    const aurora = document.createElement('div');
-    aurora.className = 'motion-aurora';
-    aurora.setAttribute('aria-hidden', 'true');
-    app.prepend(aurora);
-
     function finishCard(card) {
       observer?.unobserve(card);
       card.dataset.motionReveal = 'entered';

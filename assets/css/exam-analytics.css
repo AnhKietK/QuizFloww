@@ -109,7 +109,7 @@
 
 /* Mỗi hàng chờ viewport rồi dùng lại fade-up và stagger chung. */
 .analytics-row-pending {
-  opacity: 0;
+  opacity: 1;
 }
 
 /* Sóng emerald chỉ chạy một lượt khi công bố đáp án được bật. */
@@ -150,4 +150,20 @@
   .analytics-count.is-counting .analytics-count-visual {
     opacity: 0;
   }
+}
+
+/* Mỗi kết quả có nhãn riêng khi bảng chuyển sang dạng thẻ trên điện thoại. */
+@media (max-width: 47.99rem) {
+  .table-scroll .analytics-table { display: block; min-width: 0; }
+  .analytics-table colgroup { display: none; }
+  .analytics-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .analytics-table tbody { display: grid; gap: 12px; padding: 12px; }
+  .analytics-table tr[data-result-row] { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; }
+  .analytics-table tbody td[data-label] { position: static; padding: 0; border: 0; background: transparent; }
+  .analytics-table td[data-label]::after { content: none; }
+  .analytics-table tbody td[data-label]::before { content: attr(data-label); display: block; position: static; margin-bottom: 3px; background: none; color: var(--muted); font: 600 .73rem/1.5 var(--sans); opacity: 1; }
+  .analytics-table td:nth-child(2) { grid-row: 1; grid-column: 1 / -1; }
+  .analytics-table tbody td:nth-child(2)::before, .analytics-table tbody td:last-child::before { display: none; }
+  .analytics-table td:last-child { grid-column: 1 / -1; }
+  .analytics-table td:last-child .btn { width: 100%; }
 }

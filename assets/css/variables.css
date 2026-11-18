@@ -1,60 +1,57 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* Nền tối và các lớp kính. */
-  --bg: #07070c;
-  --surface: #12121a;
-  --surface-inset: #09090f;
-  --glass: rgba(18, 18, 26, 0.72);
-  --glass-fallback: #12121a;
+  /* Nền giấy và các bề mặt nội dung. */
+  --bg: #f7f7f2;
+  --surface: #fff;
+  --surface-inset: #f5f5ee;
+  --glass: #fff;
+  --glass-fallback: #fff;
   --glass-blur: 24px;
   --glass-blur-overlay: 32px;
-  --line: #ffffff13;
-  --line-subtle: #ffffff08;
-  --line-strong: #ffffff26;
-  --line-top: #ffffff1a;
-  --overlay: #030309a6;
+  --line: #dedfd6;
+  --line-subtle: #e9eae2;
+  --line-strong: #b5b9ad;
+  --line-top: var(--line);
+  --overlay: #24271e70;
 
-  /* Chữ và điểm nhấn tím. */
-  --text: #eeedf5;
-  --muted: #92859f;
-  --muted-admin: #8b829c;
-  --text-subtle: #786f88;
-  --text-nav: #9a90a8;
-  --text-accent: #d8c3fa;
-  --purple: #b79ae9;
-  --violet: #8b5cf6;
-  --violet-light: #a78bfa;
-  --fuchsia: #d946ef;
-  --focus: #bda0f8;
+  /* Chữ màu mực và điểm nhấn cam. */
+  --text: #232720;
+  --muted: #62665c;
+  --muted-admin: #62665c;
+  --text-subtle: #606559;
+  --text-nav: #53584c;
+  --text-accent: #854417;
+  --purple: #925025;
+  --violet: #a35424;
+  --violet-light: #d5844b;
+  --fuchsia: #cb7843;
+  --focus: #a14d17;
   --white: #ffffff;
 
   /* Gradient nền, sidebar và vùng đang chọn. */
-  --gradient: linear-gradient(110deg, var(--violet), var(--fuchsia));
-  --aurora:
-    radial-gradient(ellipse 650px 480px at 10% 0%, #8b5cf61f, transparent 75%),
-    radial-gradient(ellipse 520px 500px at 100% 100%, #ec489914, transparent 75%);
-  --sidebar-gradient: linear-gradient(155deg, #1d1828dc, #101017eb 40%);
-  --selection-gradient: linear-gradient(90deg, #8b5cf626, #8b5cf60a);
-  --selection-line: #8b5cf630;
-  --surface-hover: #ffffff04;
+  --gradient: linear-gradient(115deg,#985029,#bb6534);
+  --sidebar-gradient: none;
+  --selection-gradient: #fbe5d2;
+  --selection-line: #ead3bc;
+  --surface-hover: #f1f2eb;
 
   /*
    * Ba họ màu trạng thái: emerald / amber / crimson.
    * Khi dùng trong HTML phải kèm biểu tượng và nhãn chữ.
    */
-  --emerald: #10b981;
-  --emerald-text: #4bd3ab;
-  --emerald-bg: #052e1680;
-  --emerald-line: #10b9811a;
-  --amber: #f59e0b;
-  --amber-text: #e9b35f;
-  --amber-bg: #451a0366;
-  --amber-line: #f59e0b22;
-  --crimson: #f43f5e;
-  --crimson-text: #f58ba3;
-  --crimson-bg: #4c051966;
-  --crimson-line: #f43f5e22;
+  --emerald: #33805a;
+  --emerald-text: #246545;
+  --emerald-bg: #e9f5ed;
+  --emerald-line: #bcdcc6;
+  --amber: #a86d13;
+  --amber-text: #80530a;
+  --amber-bg: #fff4d9;
+  --amber-line: #ead5a6;
+  --crimson: #b5474f;
+  --crimson-text: #9c3240;
+  --crimson-bg: #fcedef;
+  --crimson-line: #ecc7cc;
 
   --status-success: var(--emerald);
   --status-success-text: var(--emerald-text);
@@ -70,14 +67,14 @@
   --status-danger-line: var(--crimson-line);
 
   /* Phông chữ và thang chữ theo bản desktop tham khảo. */
-  --sans: 'Plus Jakarta Sans', Arial, sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --text-2xs: 0.875rem;
-  --text-xs: 0.875rem;
+  --sans: Inter, "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, monospace;
+  --text-2xs: .76rem;
+  --text-xs: .82rem;
   --text-sm: 0.875rem;
   --text-base: 0.9375rem;
-  --text-lg: 15px;
-  --text-xl: 16px;
+  --text-lg: 1.04rem;
+  --text-xl: 1.12rem;
   --text-2xl: 24px;
   --text-3xl: 30px;
   --line-height: 1.65;
@@ -95,8 +92,8 @@
   --radius-xs: 6px;
   --radius-sm: 9px;
   --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 23px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
   --radius-pill: 999px;
 
   /* Breakpoint chuẩn: 48rem (768), 64rem (1024), 80rem (1280).
@@ -109,7 +106,7 @@
   --nav-drawer-width: 20rem;
 
   /* Khung fluid từ điện thoại, sidebar và giới hạn nội dung dùng chung. */
-  --sidebar-width: 16.25rem;
+  --sidebar-width: 14.5rem;
   --content-max-width: 100rem;
   --app-gutter: clamp(0.75rem, 1.5vw, 1.75rem);
   --app-gap: clamp(1.25rem, 2vw, 2.5rem);
@@ -117,13 +114,13 @@
   --bento-gap: 18px;
   --split-gap: 20px;
 
-  /* Viền sáng và bóng neon tiết chế như HTML tham khảo. */
-  --shadow-inset: inset 0 1px 0 #ffffff20;
-  --shadow-neon: 0 0 24px -4px #8b5cf645;
-  --shadow-active: 0 0 12px #8b5cf6;
-  --shadow-glass: 0 12px 40px #0006;
-  --shadow-overlay: 0 35px 120px #000b;
-  --shadow-drawer: -30px 0 90px #0006;
+  /* Độ nổi của thẻ, thông báo và hộp thoại. */
+  --shadow-inset: none;
+  --shadow-neon: none;
+  --shadow-active: none;
+  --shadow-glass: 0 4px 18px #302b1c16;
+  --shadow-overlay: 0 18px 70px #282b252e;
+  --shadow-drawer: 0 0 48px #282b251f;
 
   --focus-width: 2px;
   --focus-offset: 4px;

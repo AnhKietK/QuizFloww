@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="color-scheme" content="dark">
+    <meta name="color-scheme" content="light">
     <title>QuizFlow — Môn học &amp; lớp học</title>
     <link rel="stylesheet" href="../../assets/css/variables.css">
     <link rel="stylesheet" href="../../assets/css/base.css">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../assets/css/subjects-classes.css">
     <link rel="stylesheet" href="../../assets/css/animations.css">
   <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <link rel="stylesheet" href="../../assets/css/workspace.css">
     <script src="../../assets/js/motion.js" defer></script>
     <script src="../../assets/js/ui.js" defer>
     </script>
@@ -22,6 +23,7 @@
     </script>
   </head>
   <body>
+  <a class="skip-link" href="#workspace">Đến nội dung chính</a>
     <div class="app teacher-page">
       <aside class="sidebar teacher-sidebar" aria-label="Điều hướng giáo viên" data-teacher-sidebar data-current-page="subjects-classes">
         <section class="sidebar-workspace" data-sidebar-workspace aria-labelledby="workspace-school-title">
@@ -37,14 +39,14 @@
           </div>
         </div>
       </aside>
-      <main class="app-main" id="workspace" aria-labelledby="page-title">
+      <main class="app-main" id="workspace" tabindex="-1" aria-labelledby="page-title">
         <header class="topbar">
           <nav class="breadcrumb" aria-label="Đường dẫn trang">
             <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <use href="#teacher-icon-grid"/>
             </svg>
             <ol>
-              <li>Không gian làm việc</li>
+              <li><a href="../../index.html">Không gian làm việc</a></li>
               <li aria-hidden="true">/</li>
               <li>
                 <span aria-current="page">Môn học &amp; lớp học</span>
@@ -62,9 +64,9 @@
         </header>
         <section class="page-heading">
           <div>
-            <p class="eyebrow">KHÔNG GIAN GIÁO VIÊN / KẾT NỐI TRI THỨC</p>
+            <p class="eyebrow">GIẢNG DẠY</p>
             <h1 id="page-title">Môn học &amp; lớp học</h1>
-            <p>Tổ chức tri thức. Kết nối sinh viên. Tạo nên những lớp học của bạn.</p>
+            <p>Chọn môn để xem lớp học, mã tham gia và danh sách thành viên.</p>
           </div>
           <button class="btn btn--primary" type="button" data-create-class data-dialog-open="create-class-dialog" aria-controls="create-class-dialog" aria-haspopup="dialog">
             <span class="icon" aria-hidden="true">＋</span>Tạo lớp học mới

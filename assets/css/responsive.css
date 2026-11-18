@@ -22,7 +22,6 @@ h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
 .table-card { padding: 0; }
 .cluster, .identity > div, .topbar-actions { min-width: 0; }
 .identity { align-items: flex-start; }
-.motion-aurora { display: none; }
 
 /* Menu dùng cùng dialog và luồng trả focus với modal. */
 .nav-open { flex: 0 0 auto; }
@@ -184,7 +183,6 @@ h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
 .analytics-table time { font-size: 0.875rem; }
 .analytics-detail-summary > div { flex-wrap: wrap; gap: 0.5rem; }
 .analytics-publish > :last-child { flex-wrap: wrap; }
-.catalog-card .btn { align-self: stretch; }
 
 /* ≥768px / 48rem: tablet dọc. */
 @media (min-width: 48rem) {
@@ -233,7 +231,6 @@ h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
   .builder-page { padding-bottom: 0; }
   .builder-dock { position: sticky; inset: auto; bottom: max(1rem, env(safe-area-inset-bottom)); margin-top: 1.375rem; padding: 1rem; border-radius: var(--radius-lg); }
   .builder-page > .toast { bottom: max(var(--app-gutter), env(safe-area-inset-bottom)); }
-  .motion-aurora { display: block; }
 }
 
 /* ≥1280px / 80rem: desktop, nội dung giới hạn 100rem trong layout.css. */
@@ -246,7 +243,7 @@ h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 /* Cảm ứng không phụ thuộc trạng thái hover có thể bị giữ lại. */
 @media (hover: none), (pointer: coarse) {
-  .motion-card-light, .motion-aurora, .builder-publish-glow { display: none; }
+  .motion-card-light, .builder-publish-glow { display: none; }
   .teacher-page .workspace-class.motion-card { transform: none; }
   .workspace-class::after { display: none; }
   .btn:not(:disabled):active, .sidebar-nav-item:active { opacity: 0.8; }
@@ -256,6 +253,5 @@ h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
   .builder-publish-wrap:hover .builder-publish-glow::before { animation: motion-border-drift calc(var(--dur-hero) * 4) var(--ease-linear) 2; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .motion-aurora { display: none; }
   .workspace-subject-strip { scroll-snap-type: none; }
 }

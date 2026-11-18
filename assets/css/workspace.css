@@ -1,0 +1,121 @@
+/* Khung làm việc chung cho trang tổng quan, giáo viên và quản trị. */
+.ink-icon { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.app { gap: 0; background: var(--bg); padding: 0; }
+.app-main { max-width: 96rem; padding: 0 clamp(16px,3.2vw,54px) 32px; }
+.app > .sidebar, .nav-drawer > .sidebar { padding: 26px 16px 18px; background: #faf9f5; border-radius: 0; backdrop-filter: none; }
+.sidebar-brand { padding-inline: 8px; gap: 10px; font-size: 1.58rem; letter-spacing: -.07em; color: #252620; }
+.brand-mark { position: relative; width: 35px; height: 35px; border-radius: 10px; background: #ff9858; box-shadow: none; }
+.brand-mark svg { display: none; }
+.brand-mark::before, .brand-mark::after { content: ''; position: absolute; width: 14px; height: 18px; border: 2px solid #27261d; border-radius: 3px; transform: rotate(-12deg); }
+.brand-mark::before { translate: -3px -1px; background: #282920; }
+.brand-mark::after { translate: 2px 1px; background: linear-gradient(#292923,#292923) 3px 5px / 7px 2px no-repeat, linear-gradient(#292923,#292923) 3px 9px / 5px 2px no-repeat,#ffa96f; }
+.sidebar-workspace { margin: 27px 0 24px; padding: 12px 14px; border: 1px solid #deded4; border-radius: 10px; background: #f1f1e9; }
+.sidebar-workspace .eyebrow, .sidebar-nav-label, .page-heading .eyebrow, .eyebrow { font: 700 .68rem/1.6 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.sidebar-workspace strong { margin: 3px 0 0; font-size: .94rem; }
+.sidebar-workspace p { font-size: .78rem; }
+.sidebar-nav-label { padding: 0 12px; margin-bottom: 7px; color: #64675e; }
+.nav-group { margin-top: 24px; }
+.sidebar-nav { gap: 3px; }
+.sidebar-nav-item { gap: 12px; min-height: 43px; padding: 9px 12px; font-size: .9rem; font-weight: 550; border-radius: 8px; }
+.sidebar-nav-item[aria-current='page'] { color: #853910; }
+.sidebar-nav-item[aria-current='page']::before { display: none; }
+.sidebar-user { align-items: center; }
+.sidebar-user strong { color: var(--text); }
+.avatar { background: #eadfca; color: #594c33; border-radius: 50%; }
+.sidebar-user small { font-size: .75rem; }
+.topbar { min-height: 61px; padding-block: 8px; border-bottom: 1px solid var(--line); }
+.breadcrumb { font-size: .8rem; }
+.breadcrumb > svg { width: 16px; }
+.breadcrumb ol { gap: 9px; }
+.breadcrumb li[aria-hidden] { color: #9c9d93; }
+h1 { font-size: clamp(1.85rem,2.5vw,2.7rem); letter-spacing: -.05em; line-height: 1.25; }
+.page-heading { margin-block: 26px 24px; }
+.page-heading .eyebrow { display: flex; align-items: center; gap: 8px; color: var(--text-accent); }
+.page-heading .eyebrow::before { content: ''; width: 16px; height: 2px; background: #d36e36; }
+.page-heading p:not(.eyebrow) { font-size: .94rem; }
+.page-footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .78rem; }
+.glass-card { backdrop-filter: none; box-shadow: 0 2px 4px #39372a06; }
+.status { font-weight: 600; border-radius: 6px; }
+.badge, .chip { background: #f6f5ef; }
+.field { color: var(--text); font-weight: 600; }
+.field-hint { font-weight: 400; }
+:is(.input,.select,.textarea) { background: #fff; border-color: #cbcdc3; }
+:is(.input,.select,.textarea):focus-visible { outline-color: var(--focus); outline-offset: 2px; }
+.btn { background-color: #fff; }
+.btn--primary { border-color: #252821; background: #282b25; color: #fff; box-shadow: none; }
+.btn--ghost { background: transparent; }
+.btn--danger { background: var(--crimson-bg); }
+.segmented { background: #f3f3ed; border-color: var(--line); }
+.segmented-button[aria-pressed='true'] { border-color: #d2d3c9; background: #fff; color: var(--text); box-shadow: 0 1px 3px #36392b14; }
+.data-table th { background: #f5f5ef; color: #54594e; font-weight: 650; }
+.data-table tbody tr:hover > td { background-color: #fafaf5; }
+.data-table .btn { opacity: 1; }
+.modal, .drawer, .admin-user-confirm { background: var(--surface); }
+.toast, .toast--danger { background: #fffaf2; }
+.notice:not(.notice--warning) { background-color: #faf4e9; }
+.toggle[aria-checked='true'] .toggle-track::after { border-color: #286447; background: #317d58; }
+.toggle-track { background: #eceee5; }
+.builder-dock { background: #fffcf7; box-shadow: 0 5px 24px #302b1c21; }
+.builder-title-card { border-left: 4px solid #e38a51; }
+.builder-title-input { border-radius: 0; border-bottom: 1px solid var(--line); }
+.builder-dial:has(.builder-easy), .builder-preview-options .builder-correct, .question-option--correct { background: var(--emerald-bg); }
+.builder-dial:has(.builder-medium) { background: var(--amber-bg); }
+.builder-dial:has(.builder-hard) { background: var(--crimson-bg); }
+.builder-publish-glow::before { background: conic-gradient(#ec8547,#ffd6ab,#ec8547); }
+.question-card h3 { font-size: 1.03rem; line-height: 1.6; margin-block: 18px; }
+.question-option--correct .badge { color: var(--emerald-text); border-color: var(--emerald-line); background: white; }
+.import-dropzone { background: #fff8f1; border-color: #b97d4c; }
+.import-dropzone[data-dragging='true'] { background: #ffe7d2; }
+.workspace-subject[data-active='true'] { border-color: #cb7640; background: #fff5e9; box-shadow: inset 0 3px #e58c52; }
+.workspace-subject-strip { scrollbar-color: #bbb9ab var(--surface-inset); }
+.workspace-subject-symbol--rose { color: #97385f; }
+.workspace-join-code { border-color: #c59c77; background: #faf5e9; }
+.workspace-join-code code { color: #714c29; text-shadow: none; }
+.admin-filter-panel { background: var(--surface); }
+.admin-confirm-target { background: var(--surface-inset); }
+.admin-stats .admin-stat, .analytics-kpis .glass-card { background-image: none; border-top: 3px solid #dc9160; }
+.admin-stat.admin-stat--active, .analytics-kpis .glass-card:nth-child(2) { border-top-color: #6b9c7e; }
+.admin-stat.admin-stat--locked, .analytics-kpis .glass-card:nth-child(3) { border-top-color: #9c89bd; }
+.analytics-kpi--score .analytics-count.has-value::after { display: none; }
+.analytics-publish { background: #f1f8f1; }
+.analytics-bar { background: #d37e48; }
+.analytics-chart { background: repeating-linear-gradient(to top,transparent 0 24%, var(--line-subtle) 24% 25%); }
+.skip-link { position: fixed; z-index: 40; top: .75rem; left: .75rem; padding: .5rem 1rem; border-radius: 6px; background: var(--text); color: #fff; transform: translateY(-200%); }
+.skip-link:focus { transform: none; }
+@media (hover:hover) {
+  .btn:not(:disabled,[aria-disabled='true']):hover { background-color: #f6f3ec; border-color: #acafa2; box-shadow: none; }
+  .btn--primary:not(:disabled,[aria-disabled='true']):hover { background: #41463b; color: white; }
+}
+@media (min-width:64rem) {
+  .app > .sidebar { inset: 0 auto 0 0; border: 0; border-right: 1px solid var(--line); }
+}
+@media (max-width:63.99rem) {
+  .topbar { justify-content: flex-start; }
+  .topbar > :last-child:not(.breadcrumb) { margin-left: auto; }
+  .nav-drawer > .sidebar { padding-top: max(14px, env(safe-area-inset-top)); }
+}
+@media (max-width:40rem) {
+  .topbar { gap: 9px; }
+  .topbar .breadcrumb ol li:not(:last-child) { display: none; }
+  .topbar .breadcrumb > svg { display: none; }
+  .topbar .teacher-term, .topbar .admin-session { display: none; }
+  .page-heading { margin: 19px 0; }
+  .page-heading h1 { font-size: 1.8rem; }
+  .page-heading .btn--primary { width: 100%; }
+}
+
+.breadcrumb a:hover { text-decoration: underline; }
+.admin-search kbd { flex: none; white-space: nowrap; }
+#workspace:focus, #users:focus { outline: none; }
+#workspace:focus-visible, #users:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+@media (min-width: 48rem) {
+  .question-filter-subject { flex: 1 1 12rem; }
+  .question-filter-row { align-items: end; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: workspace-leave 110ms ease-out both; }
+  ::view-transition-new(root) { animation: workspace-enter 210ms ease-out both; }
+}
+@keyframes workspace-leave { to { opacity: 0; } }
+@keyframes workspace-enter { from { opacity: .35; transform: translateY(4px); } }

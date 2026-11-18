@@ -5,7 +5,6 @@
   --dur-slow: 400ms;
   --dur-hero: 700ms;
   --dur-count: 900ms;
-  --dur-aurora: 25s;
   --dur-toast: 4500ms;
   --dur-copy: 2100ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -14,7 +13,7 @@
   --ease-linear: linear;
   --motion-stagger-step: 50ms;
   --motion-delay: 0ms;
-  --motion-accent: #8b5cf633;
+  --motion-accent: #bd703433;
 }
 
 /* Hiệu ứng vào: kết thúc sẽ trả transform về CSS gốc để thao tác tiếp tục tự nhiên. */
@@ -58,37 +57,8 @@
   --motion-slide-distance: -1rem;
 }
 
-[data-motion-reveal='pending'] {
-  opacity: 0;
-  transform: translateY(0.75rem);
-}
-
-/* Hai lớp aurora được cắt trong khung cố định, nằm sau nội dung và bỏ qua con trỏ. */
-.motion-aurora {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.motion-aurora::before,
-.motion-aurora::after {
-  position: absolute;
-  inset: -12%;
-  content: '';
-  animation: motion-aurora-drift var(--dur-aurora) var(--ease-in-out) infinite;
-}
-
-.motion-aurora::before {
-  background: radial-gradient(ellipse 38% 50% at 18% 16%, #8b5cf617, transparent 75%);
-}
-
-.motion-aurora::after {
-  background: radial-gradient(ellipse 35% 45% at 85% 90%, #d946ef12, transparent 75%);
-  animation-duration: calc(var(--dur-aurora) * 1.12);
-  animation-direction: reverse;
-}
+/* Nội dung luôn đọc được trong lúc chờ IntersectionObserver. */
+[data-motion-reveal='pending'] { opacity: 1; }
 
 /* Phản hồi nhẹ chạy một lượt, chỉ áp dụng tại phần tử có ý nghĩa trạng thái. */
 .anim-pulse-soft {
@@ -216,7 +186,7 @@ button.motion-card:not(:disabled, [aria-disabled='true']):active {
 }
 
 :is(.input, .select, .textarea):focus {
-  box-shadow: 0 0 0 0.1875rem #8b5cf61f;
+  box-shadow: 0 0 0 0.1875rem #ba723022;
 }
 
 .field > label {
@@ -659,20 +629,6 @@ button.motion-card:not(:disabled, [aria-disabled='true']):active {
   }
 }
 
-/* Vòng nền 25–28 giây nối liền hai đầu, chỉ dịch lớp sáng và đổi độ trong. */
-@keyframes motion-aurora-drift {
-  from,
-  to {
-    opacity: 0.65;
-    transform: translate3d(-2%, -1%, 0) scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translate3d(2%, 2%, 0) scale(1.04);
-  }
-}
-
 /* Giảm chuyển động trên toàn giao diện, gồm cả lớp phủ và component hiện có. */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -689,9 +645,6 @@ button.motion-card:not(:disabled, [aria-disabled='true']):active {
     transform: none;
   }
 
-  .motion-aurora {
-    display: none;
-  }
 
   .btn,
   .segmented-button,
