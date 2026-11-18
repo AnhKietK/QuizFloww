@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Sảnh chờ thi (Kiểm tra Giữa kỳ Lập trình Web)</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/student.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/student.js" defer></script>
+  <script src="../../assets/js/dashboard.js" defer></script>
+  <script src="../../assets/js/exam-lobby.js" defer></script>
+</head>
+<body>
+  <div class="app student-app">
+
+    <!-- Sidebar Sinh viên dùng chung -->
+    <aside class="sidebar student-sidebar" aria-label="Điều hướng sinh viên" data-student-sidebar data-current-page="lobby">
+      <section class="sidebar-workspace" data-sidebar-workspace aria-labelledby="workspace-title">
+        <p class="eyebrow" id="workspace-title">KHÔNG GIAN HỌC TẬP</p>
+        <strong>Học kỳ I · 2026–2027</strong>
+        <p>Lớp học, kỳ thi và hành trình của bạn.</p>
+      </section>
+      <div class="sidebar-user" data-sidebar-user>
+        <span class="avatar" aria-hidden="true">HS</span>
+        <div>
+          <strong>Nguyễn Hoàng Sơn</strong>
+          <small class="text-mono">SV2026001</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Khung nội dung chính -->
+    <main class="app-main" id="student-main" aria-labelledby="page-title">
+
+      <!-- Thanh điều hướng trên cùng -->
+      <header class="topbar">
+        <nav class="breadcrumb" aria-label="Đường dẫn trang">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#student-icon-grid"/>
+          </svg>
+          <ol>
+            <li>Không gian sinh viên</li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <span aria-current="page">Sảnh chờ thi</span>
+            </li>
+          </ol>
+        </nav>
+        <div class="topbar-actions">
+          <span class="badge">Học kỳ I · 2026–2027</span>
+          <button class="btn btn--icon btn--ghost" type="button" aria-label="Thông báo" data-student-note="Đề thi EX-2026-01 đang mở và sẽ đóng lúc 09:00. Hãy sẵn sàng.">
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <use href="#student-icon-bell"/>
+            </svg>
+          </button>
+          <span class="status status--success">
+            <span aria-hidden="true">●</span>Không gian sinh viên
+          </span>
+        </div>
+      </header>
+
+      <!-- Tiêu đề trang -->
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">STUDENT LOBBY / YOUR NEXT CHALLENGE</p>
+          <h1 id="page-title">Sẵn sàng cho bước tiến mới, Sơn.</h1>
+          <p>Lớp học, kỳ thi và cơ hội thể hiện kiến thức — ngay tại đây.</p>
+        </div>
+      </section>
+
+      <!-- Thanh thao tác nhanh vào lớp / tìm đề -->
+      <section class="student-actions-grid" aria-label="Thao tác nhanh tham gia và tìm kiếm" data-motion-enter>
+        <article class="student-action-card">
+          <div class="student-action-header">
+            <div class="student-action-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.6" class="icon"><use href="#student-icon-key"/></svg>
+            </div>
+            <div>
+              <h2>Nhập mã tham gia lớp</h2>
+              <p>Kết nối với lớp học của bạn bằng mã do giáo viên chia sẻ.</p>
+            </div>
+          </div>
+          <form class="student-action-form" id="form-join-class" novalidate>
+            <input class="student-action-input" type="text" id="input-class-code" name="classCode" placeholder="Mã lớp · VD: QF-892A" autocomplete="off" maxlength="7" required aria-label="Nhập mã lớp học">
+            <button class="btn btn--primary" type="submit">Vào lớp →</button>
+          </form>
+        </article>
+
+        <article class="student-action-card">
+          <div class="student-action-header">
+            <div class="student-action-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.6" class="icon"><use href="#student-icon-target"/></svg>
+            </div>
+            <div>
+              <h2>Tìm đề thi bằng mã đề</h2>
+              <p>Nhập mã đề để mở thông tin và vào thẳng sảnh chờ thi.</p>
+            </div>
+          </div>
+          <form class="student-action-form" id="form-search-exam" novalidate>
+            <input class="student-action-input" type="text" id="input-exam-code" name="examCode" placeholder="Mã đề · VD: EX-2026-01" autocomplete="off" maxlength="10" required aria-label="Nhập mã đề thi">
+            <button class="btn btn--primary" type="submit">Mở đề →</button>
+          </form>
+        </article>
+      </section>
+
+      <!-- THẺ SẢNH CHỜ THI NỔI BẬT (EXAM LOBBY CARD - F07) -->
+      <section class="lobby-hero-card" data-motion-surface aria-labelledby="lobby-exam-title" data-motion-enter>
+        <div class="lobby-main-layout">
+          <div>
+            <!-- Thanh trạng thái và mã đề -->
+            <div class="lobby-badges-bar">
+              <div class="cluster">
+                <span class="status status--success" id="lobby-exam-status">
+                  <span aria-hidden="true">●</span>Đang mở thi
+                </span>
+                <span class="badge">LIVE EXAM</span>
+                <span class="badge text-mono">EX-2026-01</span>
+              </div>
+              <span class="text-muted text-xs text-mono" id="lobby-exam-deadline">ĐÓNG LÚC 09:00 · GMT+7</span>
+            </div>
+
+            <!-- Tiêu đề và thông tin giảng viên -->
+            <div class="lobby-title-group">
+              <p class="eyebrow">YOUR KNOWLEDGE. YOUR MOMENT.</p>
+              <h2 id="lobby-exam-title">Kiểm tra Giữa kỳ Lập trình Web</h2>
+              <p>GV. Trần Minh Kiệt · Lớp Lập trình Web N01, N02</p>
+
+              <div class="lobby-tags-cluster">
+                <span class="badge">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-folder"/></svg>
+                  Môn: Lập trình Web
+                </span>
+                <span class="status status--accent">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-bolt"/></svg>
+                  Tối đa 01 lượt thi duy nhất
+                </span>
+              </div>
+            </div>
+
+            <!-- 3 Bộ đếm thông số monospace lớn -->
+            <div class="lobby-counters-grid" aria-label="Thông số thời gian và câu hỏi">
+              <!-- Bộ đếm 1: Số câu hỏi -->
+              <div class="lobby-counter-item">
+                <span class="lobby-counter-label">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-document"/></svg>
+                  SỐ CÂU HỎI
+                </span>
+                <div class="lobby-counter-val-wrapper">
+                  <strong class="lobby-counter-num" id="counter-questions">20</strong>
+                  <span class="lobby-counter-unit">câu</span>
+                </div>
+                <span class="lobby-counter-note">Trắc nghiệm · 4 lựa chọn / câu</span>
+              </div>
+
+              <!-- Bộ đếm 2: Thời lượng gốc -->
+              <div class="lobby-counter-item">
+                <span class="lobby-counter-label">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+                  THỜI LƯỢNG GỐC
+                </span>
+                <div class="lobby-counter-val-wrapper">
+                  <strong class="lobby-counter-num" id="counter-duration">30</strong>
+                  <span class="lobby-counter-unit">phút</span>
+                </div>
+                <span class="lobby-counter-note">Theo cấu hình của giáo viên</span>
+              </div>
+
+              <!-- Bộ đếm 3: Thời gian thực tế nếu bắt đầu ngay -->
+              <div class="lobby-counter-item">
+                <span class="lobby-counter-label">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+                  NẾU BẮT ĐẦU NGAY
+                </span>
+                <div class="lobby-counter-val-wrapper">
+                  <strong class="lobby-counter-num lobby-counter-timer" id="counter-effective-time">15:00</strong>
+                </div>
+                <span class="lobby-counter-note">Thời gian thực tế còn được làm · Đóng 09:00</span>
+              </div>
+            </div>
+
+            <!-- Ghi chú giới hạn giờ đóng đề -->
+            <div class="notice mb-4" role="note">
+              <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+              <span>Thời gian làm bài bị giới hạn bởi giờ đóng đề. Hãy kiểm tra kết nối và sẵn sàng trước khi bắt đầu.</span>
+            </div>
+
+            <!-- Nút bấm bắt đầu bài thi -->
+            <div class="lobby-actions-footer">
+              <div id="lobby-start-wrapper">
+                <a class="btn btn--primary lobby-start-btn" id="btn-start-exam" href="exam-taking.html">
+                  <span class="icon" aria-hidden="true">🚀</span>
+                  Bắt đầu làm bài ngay →
+                </a>
+              </div>
+
+              <!-- Cảnh báo khi đề đã đóng (mặc định ẩn) -->
+              <div class="lobby-closed-explanation" id="lobby-closed-notice" hidden>
+                <strong>⛔ Đề thi đã đóng lúc 09:00 ngày 10/11/2026.</strong>
+                <p>Theo quy định kỳ thi trực tuyến, sinh viên không thể tạo lượt mới hoặc nộp bài sau mốc thời gian này. Vui lòng liên hệ giáo viên phụ trách môn nếu bạn có lý do chính đáng.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Huy hiệu công nghệ EXAM READY -->
+          <div class="lobby-ready-badge" aria-hidden="true">
+            <div class="lobby-ready-icon">⚡</div>
+            <span class="lobby-ready-text">EXAM READY</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- BỘ CHUYỂN TRẠNG THÁI XEM THỬ GIAO DIỆN (DEMO SWITCHER) -->
+      <section class="student-demo-bar" aria-label="Bộ chuyển đổi xem thử giao diện sảnh chờ thi" data-motion-enter>
+        <div class="student-demo-title">
+          <span aria-hidden="true">⚙</span>
+          <span>BỘ CHUYỂN XEM THỬ GIAO DIỆN (CHỈ DÙNG DEMO):</span>
+        </div>
+        <div class="segmented" role="group" aria-label="Chọn trạng thái sảnh chờ để xem">
+          <button class="segmented-button" type="button" data-lobby-state="not-started" aria-pressed="true">
+            1. Chưa bắt đầu (Đang mở)
+          </button>
+          <button class="segmented-button" type="button" data-lobby-state="in-progress" aria-pressed="false">
+            2. Đang làm dở (Tiếp tục)
+          </button>
+          <button class="segmented-button" type="button" data-lobby-state="closed" aria-pressed="false">
+            3. Đề đã đóng (Khóa nút)
+          </button>
+        </div>
+      </section>
+
+      <!-- Danh sách Lớp học của tôi -->
+      <section class="section-stack" aria-labelledby="lobby-classes-title" data-motion-enter>
+        <header class="section-header">
+          <div>
+            <h2 id="lobby-classes-title">Lớp học của tôi</h2>
+            <p>Những không gian học tập bạn đang tham gia.</p>
+          </div>
+          <span class="badge">02 lớp học</span>
+        </header>
+
+        <div class="classes-grid">
+          <!-- Lớp 1 -->
+          <article class="class-card">
+            <div class="class-card-top">
+              <span class="badge text-mono">QF-892A</span>
+              <span class="status status--success"><span aria-hidden="true">●</span>Đang tham gia</span>
+            </div>
+            <h3>Lập trình Web — Nhóm 01</h3>
+            <p class="class-card-teacher">GV. Trần Minh Kiệt · Học kỳ I / 2026–2027</p>
+            <div class="class-card-footer">
+              <span class="class-card-members">42 Sinh viên · 01 đề đang mở</span>
+              <a class="btn btn--small" href="exam-lobby.html">Xem đề thi →</a>
+            </div>
+          </article>
+
+          <!-- Lớp 2 -->
+          <article class="class-card">
+            <div class="class-card-top">
+              <span class="badge text-mono">QF-1C7D</span>
+              <span class="status status--success"><span aria-hidden="true">●</span>Đang tham gia</span>
+            </div>
+            <h3>Cơ sở dữ liệu — Nhóm 02</h3>
+            <p class="class-card-teacher">GV. Lê Thanh Hà · Học kỳ I / 2026–2027</p>
+            <div class="class-card-footer">
+              <span class="class-card-members">38 Sinh viên · Chưa có đề đang mở</span>
+              <button class="btn btn--small" type="button" data-student-note="Lớp Cơ sở dữ liệu hiện chưa có đề thi đang mở.">Xem đề thi →</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Ghi chú mô phỏng và chân trang -->
+      <footer class="page-footer mt-6">
+        <p class="text-muted text-xs">
+          ⓘ Thời điểm mô phỏng: 08:45 ngày 10/11/2026 · GMT+7. Đồng hồ đếm ngược thời gian thực tế còn lại trước giờ đóng đề lúc 09:00.
+        </p>
+        <div class="cluster">
+          <span>QuizFlow · Giữ nhịp học tập của bạn</span>
+          <span aria-hidden="true">·</span>
+          <span>Không gian sinh viên / Exam Lobby</span>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

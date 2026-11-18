@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Phòng thi (Kiểm tra Giữa kỳ Lập trình Web)</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/student.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/student.js" defer></script>
+  <script src="../../assets/js/exam-taking.js" defer></script>
+</head>
+<body class="exam-page">
+
+  <!-- Sprite SVG biểu tượng dùng chung -->
+  <svg class="visually-hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="student-icon-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></symbol>
+      <symbol id="student-icon-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="student-icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+      <symbol id="student-icon-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 7 3 7 3 8H3c0-1 3-1 3-8Zm4 11h4"/></symbol>
+      <symbol id="student-icon-shield" viewBox="0 0 24 24"><path d="m12 2 8 3v6c0 5-4 8-8 11-4-3-8-6-8-11V5Z"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="student-icon-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Thanh thương hiệu trên cùng: Focus Mode & Định danh thí sinh -->
+  <header class="exam-brand-topbar">
+    <div class="exam-brand-left">
+      <a class="sidebar-brand" href="../../index.html" aria-label="QuizFlow">
+        <span class="brand-mark" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-width="1.6"><use href="#student-icon-bolt"/></svg>
+        </span>
+        <span>QuizFlow</span>
+      </a>
+      <span class="exam-focus-mode-tag">
+        <svg class="icon" aria-hidden="true"><use href="#student-icon-bolt"/></svg>
+        FOCUS MODE / EXAM IN PROGRESS
+      </span>
+    </div>
+
+    <div class="exam-user-badge">
+      <div class="user-meta-right">
+        <strong>Nguyễn Hoàng Sơn</strong>
+        <small class="text-mono">SV2026001</small>
+      </div>
+      <span class="avatar" aria-hidden="true">HS</span>
+    </div>
+  </header>
+
+  <!-- Thanh HUD nổi phía trên (Floating HUD) -->
+  <div class="exam-hud-container">
+    <div class="exam-hud-content" data-motion-enter>
+
+      <!-- Cột trái HUD: Tên đề, tiến độ số câu, hạn nộp -->
+      <div class="exam-hud-left">
+        <span class="exam-hud-exam-code">EX-2026-01 / LẬP TRÌNH WEB</span>
+        <h1 class="exam-hud-title">Kiểm tra Giữa kỳ Lập trình Web</h1>
+        <div class="exam-hud-progress-wrapper">
+          <div class="exam-hud-progress-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Tiến độ bài thi">
+            <div class="exam-hud-progress-fill" id="hud-progress-fill" style="width: 85%;"></div>
+          </div>
+          <span class="exam-hud-progress-text" id="hud-progress-text">Đã làm 17/20 câu</span>
+        </div>
+        <span class="text-muted text-2xs mt-2">
+          ⏱ Hạn nộp: <span class="text-mono">09:00:00 · 10/11/2026</span>
+        </span>
+      </div>
+
+      <!-- Cột giữa HUD: Đồng hồ đếm ngược monospace -->
+      <div class="exam-hud-center">
+        <div class="hud-clock-box">
+          <span class="hud-clock-icon" aria-hidden="true">⏱</span>
+          <span class="hud-clock-time text-mono" id="hud-timer">14:28</span>
+        </div>
+        <span class="hud-clock-sub">HẠN NỘP MÁY CHỦ / GMT+7</span>
+      </div>
+
+      <!-- Cột phải HUD: Trạng thái lưu & Nộp bài sớm -->
+      <div class="exam-hud-right">
+        <div class="hud-save-pill status--success" id="hud-save-status" role="status" aria-live="polite">
+          <span class="icon" aria-hidden="true">✓</span>
+          <span id="hud-save-text">Đã lưu lên máy chủ</span>
+        </div>
+        <button class="btn btn--primary hud-submit-btn" type="button" id="btn-open-submit-dialog" data-dialog-open="dialog-confirm-submit" aria-haspopup="dialog" aria-controls="dialog-confirm-submit">
+          Nộp bài sớm ↗
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Thanh minh họa 4 trạng thái lưu (F09 Demo Bar) -->
+  <div class="exam-sync-demo-bar" data-motion-enter aria-label="Bộ chuyển đổi xem thử trạng thái lưu">
+    <span class="exam-sync-demo-label">SYNC STATES MINH HỌA:</span>
+    <button class="btn btn--small btn--ghost" type="button" data-sync-state="synced">
+      ✓ Đã lưu máy chủ
+    </button>
+    <button class="btn btn--small btn--ghost" type="button" data-sync-state="saving">
+      ⟳ Đang lưu...
+    </button>
+    <button class="btn btn--small btn--ghost" type="button" data-sync-state="disconnected">
+      ⚠ Mất kết nối
+    </button>
+    <button class="btn btn--small btn--ghost" type="button" data-sync-state="conflict">
+      ⛔ Xung đột
+    </button>
+  </div>
+
+  <!-- KHUNG NỘI DUNG CHÍNH (70% Câu hỏi / 30% Bảng điều hướng câu) -->
+  <main class="exam-main-container">
+    <div class="exam-layout-grid">
+
+      <!-- CỘT TRÁI (70%): KHU VỰC CÂU HỎI -->
+      <section class="question-column" aria-labelledby="question-text">
+        <article class="glass-card question-card">
+
+          <!-- Đầu thẻ câu hỏi -->
+          <div class="question-card-header">
+            <div class="question-eyebrows">
+              <span class="badge text-mono" id="question-index-badge">CÂU HỎI 04 / 20</span>
+              <span class="text-muted text-xs">Lập trình Web · Câu hỏi trắc nghiệm</span>
+            </div>
+            <span class="badge">Chọn một đáp án duy nhất</span>
+          </div>
+
+          <!-- Nội dung câu hỏi -->
+          <h2 class="question-text" id="question-text">
+            Phương thức HTTP nào thường được sử dụng để gửi dữ liệu từ biểu mẫu lên máy chủ nhằm tạo mới tài nguyên?
+          </h2>
+
+          <!-- Danh sách 4 đáp án -->
+          <div class="options-list" id="options-list" role="radiogroup" aria-label="Các lựa chọn đáp án">
+            <!-- Được render động bởi exam-taking.js -->
+          </div>
+
+          <!-- Chân thẻ câu hỏi: Gợi ý phím tắt & Bỏ chọn -->
+          <div class="question-card-footer">
+            <span class="text-muted text-xs">
+              Phím tắt <kbd class="badge text-mono">[A]</kbd> <kbd class="badge text-mono">[B]</kbd> <kbd class="badge text-mono">[C]</kbd> <kbd class="badge text-mono">[D]</kbd> để chọn đáp án
+            </span>
+            <button class="btn btn--ghost btn--small text-muted" type="button" id="btn-clear-choice">
+              Bỏ chọn đáp án
+            </button>
+          </div>
+
+        </article>
+
+        <!-- Thanh điều hướng câu trước / câu sau -->
+        <nav class="question-nav-bar" data-motion-enter aria-label="Điều hướng câu hỏi">
+          <button class="btn" type="button" id="btn-prev-question">
+            ← Câu trước
+          </button>
+          <span class="text-mono text-muted text-sm" id="question-pagination-indicator">04 / 20</span>
+          <button class="btn btn--primary" type="button" id="btn-next-question">
+            Câu tiếp theo →
+          </button>
+        </nav>
+
+        <!-- Ghi chú bảo mật dữ liệu theo đặc tả F08/F09 -->
+        <div class="question-security-note">
+          <svg class="icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+          <span>Chỉ xác nhận đã lưu khi máy chủ phản hồi thành công. Khi hết giờ, hệ thống chấm dữ liệu đã lưu trước hạn.</span>
+        </div>
+      </section>
+
+      <!-- CỘT PHẢI (30% - Desktop): BẢNG ĐIỀU HƯỚNG 20 CÂU HỎI -->
+      <aside class="palette-column-desktop" aria-labelledby="palette-title">
+        <div class="glass-card palette-card">
+
+          <div class="palette-card-header">
+            <h3 id="palette-title">Tiến độ bài thi</h3>
+            <span class="badge text-mono" id="palette-percentage">85%</span>
+          </div>
+          <p class="palette-card-sub">Chọn số câu để di chuyển trong bài thi.</p>
+
+          <!-- Lưới 5x4 gồm 20 câu hỏi -->
+          <div class="palette-grid" id="palette-grid-desktop" role="group" aria-label="Bảng chọn nhanh câu hỏi">
+            <!-- Được render động bởi exam-taking.js -->
+          </div>
+
+          <!-- Chú thích ký hiệu -->
+          <div class="palette-legend" aria-label="Chú thích trạng thái câu">
+            <span class="palette-legend-item">
+              <span class="legend-swatch is-answered" aria-hidden="true">✓</span>
+              <span>Đã trả lời</span>
+            </span>
+            <span class="palette-legend-item">
+              <span class="legend-swatch is-unanswered" aria-hidden="true"></span>
+              <span>Chưa trả lời</span>
+            </span>
+            <span class="palette-legend-item">
+              <span class="legend-swatch is-current" aria-hidden="true"></span>
+              <span>Đang xem</span>
+            </span>
+          </div>
+
+          <!-- Thông báo câu chưa trả lời -->
+          <div class="notice notice--warning palette-unanswered-notice" id="palette-unanswered-warning">
+            <svg class="icon" aria-hidden="true"><use href="#student-icon-bell"/></svg>
+            <span id="unanswered-warning-text">⚠ Còn 03 câu chưa trả lời: 08, 15, 20.</span>
+          </div>
+
+          <!-- Thẻ bảo vệ phiên thi -->
+          <div class="palette-protection-card">
+            <strong>
+              <svg class="icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+              Phiên thi được bảo vệ
+            </strong>
+            <p>Hạn nộp được xác định bởi máy chủ. Tải lại hoặc tiếp tục phiên không làm tăng thời gian làm bài.</p>
+            <small class="text-mono simulation-note">Mốc mô phỏng: 08:45:32 · GMT+7</small>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- NÚT MỞ BẢNG CÂU HỎI DƯỚI ĐÁY TRÊN MOBILE -->
+  <button class="btn btn--primary mobile-palette-toggle-btn" type="button" id="btn-mobile-palette-toggle" data-dialog-open="drawer-palette" aria-haspopup="dialog" aria-controls="drawer-palette">
+    <span class="icon" aria-hidden="true">▦</span>
+    <span>Danh sách 20 câu (17/20 đã làm · 85%)</span>
+  </button>
+
+  <!-- DRAWER NGĂN KÉO BẢNG CÂU HỎI TRÊN MOBILE -->
+  <dialog class="drawer" id="drawer-palette" aria-label="Danh sách câu hỏi thi">
+    <div class="dialog-header">
+      <div>
+        <h2>Danh sách câu hỏi</h2>
+        <p class="dialog-description">Chọn câu hỏi bất kỳ để chuyển đến câu đó.</p>
+      </div>
+      <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng bảng câu hỏi">×</button>
+    </div>
+
+    <div class="palette-grid" id="palette-grid-drawer" role="group" aria-label="Bảng chọn nhanh câu hỏi trên điện thoại">
+      <!-- Render động -->
+    </div>
+
+    <div class="palette-legend" aria-label="Chú thích trạng thái câu">
+      <span class="palette-legend-item">
+        <span class="legend-swatch is-answered" aria-hidden="true">✓</span>
+        <span>Đã trả lời</span>
+      </span>
+      <span class="palette-legend-item">
+        <span class="legend-swatch is-unanswered" aria-hidden="true"></span>
+        <span>Chưa trả lời</span>
+      </span>
+      <span class="palette-legend-item">
+        <span class="legend-swatch is-current" aria-hidden="true"></span>
+        <span>Đang xem</span>
+      </span>
+    </div>
+
+    <div class="dialog-actions">
+      <button class="btn btn--primary" type="button" data-dialog-close>Xong</button>
+    </div>
+  </dialog>
+
+  <!-- HỘP THOẠI XÁC NHẬN NỘP BÀI SỚM (F10 - MANUAL) -->
+  <dialog class="modal" id="dialog-confirm-submit" aria-labelledby="modal-submit-title">
+    <div class="dialog-header">
+      <div>
+        <h2 id="modal-submit-title">Xác nhận nộp bài thi</h2>
+        <p class="dialog-description">Kiểm tra Giữa kỳ Lập trình Web (EX-2026-01)</p>
+      </div>
+      <button class="btn btn--icon btn--ghost" type="button" data-dialog-close aria-label="Đóng hộp thoại">×</button>
+    </div>
+
+    <div id="modal-submit-summary">
+      <!-- Được render động bởi JS -->
+    </div>
+
+    <div class="exam-confirm-rows">
+      <div class="exam-confirm-row">
+        <span class="text-muted">Phương thức nộp:</span>
+        <strong>Nộp chủ động (MANUAL)</strong>
+      </div>
+      <div class="exam-confirm-row">
+        <span class="text-muted">Hạn đóng đề thi:</span>
+        <span class="text-mono">09:00:00 · 10/11/2026</span>
+      </div>
+      <div class="exam-confirm-row">
+        <span class="text-muted">Quy định điểm số:</span>
+        <span>Bài thi chấm tự động ngay sau khi xác nhận.</span>
+      </div>
+    </div>
+
+    <div class="dialog-actions">
+      <button class="btn btn--ghost" type="button" data-dialog-close>
+        ← Quay lại làm tiếp
+      </button>
+      <button class="btn btn--primary" type="button" id="btn-confirm-submit">
+        Chốt điểm &amp; Nộp bài ngay →
+      </button>
+    </div>
+  </dialog>
+
+  <!-- HỘP THOẠI HẾT GIỜ LÀM BÀI (F10 - TIMEOUT) -->
+  <dialog class="modal" id="dialog-timeout" aria-labelledby="modal-timeout-title">
+    <div class="dialog-header">
+      <div>
+        <h2 id="modal-timeout-title" class="timeout-title">⏱ ĐÃ HẾT GIỜ LÀM BÀI!</h2>
+        <p class="dialog-description">Hạn nộp máy chủ 09:00:00 đã đến.</p>
+      </div>
+    </div>
+
+    <div class="notice notice--warning">
+      <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+      <div>
+        <strong>Hệ thống đã tự động thu bài của bạn.</strong>
+        <p>Tất cả các câu trả lời hợp lệ đã lưu lên máy chủ trước mốc thời gian này sẽ được dùng để chấm điểm (Lý do kết thúc: TIMEOUT).</p>
+      </div>
+    </div>
+
+    <div class="dialog-actions">
+      <a class="btn btn--primary" href="exam-result.html">
+        Xem kết quả bài thi →
+      </a>
+    </div>
+  </dialog>
+
+</body>
+</html>

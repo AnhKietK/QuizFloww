@@ -3,84 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="light">
-  <title>QuizFlow — Tổng quan</title>
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Mục lục tất cả màn hình</title>
   <link rel="stylesheet" href="assets/css/variables.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/index.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
-  <link rel="stylesheet" href="assets/css/workspace.css">
-  <link rel="stylesheet" href="assets/css/index.css">
+  <script src="assets/js/motion.js" defer></script>
   <script src="assets/js/ui.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#workspace">Đến nội dung chính</a>
-  <svg class="visually-hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
-    <symbol id="ink-home" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
-    <symbol id="ink-folder" viewBox="0 0 24 24"><path d="M3 8V5a1 1 0 0 1 1-1h6l3 3h7a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Zm0 2h18"/></symbol>
-    <symbol id="ink-cards" viewBox="0 0 24 24"><rect x="7" y="7" width="13" height="14" rx="2"/><path d="M16 4H5a2 2 0 0 0-2 2v10m8-4h5m-5 4h3"/></symbol>
-    <symbol id="ink-pen" viewBox="0 0 24 24"><path d="m5 15 11-11 4 4L9 19l-5 1 1-5Zm8-8 4 4"/></symbol>
-    <symbol id="ink-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M8 16v-4m5 4V6m5 10V9"/></symbol>
-    <symbol id="ink-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2m0-15a3 3 0 0 1 0 6m2 3a5 5 0 0 1 4 5"/></symbol>
-    <symbol id="ink-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
-    <symbol id="ink-up" viewBox="0 0 24 24"><path d="M6 18 18 6M7 6h11v11"/></symbol>
-    <symbol id="ink-school" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 3v5c3 3 9 3 12 0v-5m4-3v7"/></symbol>
-    <symbol id="ink-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18"/></symbol>
-    <symbol id="ink-code" viewBox="0 0 24 24"><path d="m7 7-5 5 5 5m10-10 5 5-5 5m-4-14-2 18"/></symbol>
-    <symbol id="ink-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></symbol>
-    <symbol id="ink-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-5 9-8 10-3-1-8-5-8-10V6Zm-4 10 3 3 5-6"/></symbol>
-    <symbol id="ink-book" viewBox="0 0 24 24"><path d="M12 7C9 4 5 4 2 5v14c3-1 7-1 10 2 3-3 7-3 10-2V5c-3-1-7-1-10 2Zm0 0v14"/></symbol>
-  </defs></svg>
   <div class="app">
     <aside class="sidebar" aria-label="Điều hướng QuizFlow">
-      <a class="sidebar-brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>QuizFlow</a>
-      <section class="sidebar-workspace"><p class="eyebrow">Không gian làm việc</p><strong>THPT Lê Quý Đôn</strong><p>Học kỳ I · 2026–2027</p></section>
-      <p class="sidebar-nav-label">Giảng dạy</p>
-      <nav class="sidebar-nav" aria-label="Giảng dạy">
-        <a class="sidebar-nav-item" href="index.html" aria-current="page"><svg class="ink-icon" aria-hidden="true"><use href="#ink-home"/></svg>Tổng quan</a>
-        <a class="sidebar-nav-item" href="pages/teacher/subjects-classes.html"><svg class="ink-icon" aria-hidden="true"><use href="#ink-folder"/></svg>Môn học &amp; lớp học</a>
-        <a class="sidebar-nav-item" href="pages/teacher/question-bank.html"><svg class="ink-icon" aria-hidden="true"><use href="#ink-cards"/></svg>Ngân hàng câu hỏi</a>
-        <a class="sidebar-nav-item" href="pages/teacher/exam-builder.html"><svg class="ink-icon" aria-hidden="true"><use href="#ink-pen"/></svg>Studio đề thi</a>
-        <a class="sidebar-nav-item" href="pages/teacher/exam-analytics.html"><svg class="ink-icon" aria-hidden="true"><use href="#ink-chart"/></svg>Kết quả &amp; thống kê</a>
+      <a class="sidebar-brand" href="index.html"><span class="brand-mark" aria-hidden="true">ϟ</span>QuizFlow</a>
+      <section class="sidebar-workspace" aria-labelledby="catalog-workspace">
+        <p class="eyebrow">KHÔNG GIAN LÀM VIỆC</p>
+        <strong id="catalog-workspace">Hệ thống thi QuizFlow</strong>
+      </section>
+      <nav class="sidebar-nav" aria-label="Các màn hình">
+        <a class="sidebar-nav-item" href="index.html" aria-current="page"><span class="icon" aria-hidden="true">▦</span>Tổng quan</a>
+
+        <p class="sidebar-nav-label sidebar-nav-section-title">QUẢN TRỊ &amp; GIÁO VIÊN</p>
+        <a class="sidebar-nav-item" href="pages/admin/users.html">Quản lý người dùng</a>
+        <a class="sidebar-nav-item" href="pages/teacher/subjects-classes.html">Môn học &amp; lớp học</a>
+        <a class="sidebar-nav-item" href="pages/teacher/question-bank.html">Ngân hàng câu hỏi</a>
+        <a class="sidebar-nav-item" href="pages/teacher/exam-builder.html">Tạo đề thi</a>
+        <a class="sidebar-nav-item" href="pages/teacher/exam-analytics.html">Kết quả &amp; thống kê</a>
+
+        <p class="sidebar-nav-label sidebar-nav-section-title--student">SINH VIÊN &amp; TÀI KHOẢN</p>
+        <a class="sidebar-nav-item" href="pages/auth/auth-profile.html">Đăng nhập &amp; Hồ sơ</a>
+        <a class="sidebar-nav-item" href="pages/student/dashboard.html">Trang chủ sinh viên</a>
+        <a class="sidebar-nav-item" href="pages/student/exam-lobby.html">Sảnh chờ thi</a>
+        <a class="sidebar-nav-item" href="pages/student/exam-taking.html">Phòng thi trực tuyến</a>
+        <a class="sidebar-nav-item" href="pages/student/exam-result.html">Kết quả bài thi</a>
       </nav>
-      <p class="sidebar-nav-label nav-group">Quản trị</p>
-      <nav class="sidebar-nav" aria-label="Quản trị"><a class="sidebar-nav-item" href="pages/admin/users.html"><svg class="ink-icon" aria-hidden="true"><use href="#ink-users"/></svg>Quản lý người dùng</a></nav>
-      <div class="sidebar-bottom"><div class="sidebar-user"><span class="avatar" aria-hidden="true">MK</span><div><strong>Trần Minh Kiệt</strong><small>Giáo viên</small></div></div></div>
     </aside>
-    <main class="app-main dashboard" id="workspace" tabindex="-1" aria-labelledby="page-title">
-      <header class="topbar">
-        <nav class="breadcrumb" aria-label="Đường dẫn trang"><svg class="ink-icon" aria-hidden="true"><use href="#ink-home"/></svg><ol><li>Không gian làm việc</li><li aria-hidden="true">/</li><li aria-current="page">Tổng quan</li></ol></nav>
-        <span class="term-label"><svg class="ink-icon" aria-hidden="true"><use href="#ink-calendar"/></svg>Học kỳ I · 2026–2027</span>
-      </header>
-      <section class="dashboard-heading"><h1 id="page-title">Tổng quan</h1><p>Quản lý giảng dạy và tổ chức kỳ thi tại một nơi.</p></section>
-      <section class="studio-banner" aria-labelledby="studio-title">
-        <div class="studio-intro"><p class="studio-kicker"><span></span>Công cụ soạn đề</p><h2 id="studio-title">Studio đề thi<span>.</span></h2>
-          <p>Chọn câu hỏi, thiết lập lịch thi và giao đề cho lớp học của bạn.</p>
-          <a class="studio-link" href="pages/teacher/exam-builder.html"><svg class="ink-icon" aria-hidden="true"><use href="#ink-pen"/></svg>Soạn đề thi <svg class="ink-icon" aria-hidden="true"><use href="#ink-arrow"/></svg></a>
-        </div>
-        <div class="studio-art" aria-hidden="true"><div class="art-grid"></div><div class="art-object">
-          <div class="paper-under"></div><div class="exam-paper"><div class="paper-binding"></div><div class="paper-body"><span>QUIZFLOW</span><b>Quiz<span>.</span></b><div class="paper-rule"></div>
-          <div class="answer-line"><i>A</i><em></em></div><div class="answer-line marked"><i>B</i><em></em></div><div class="answer-line"><i>C</i><em></em></div></div></div>
-          <div class="paper-stamp"><span>✓</span></div><div class="pencil"></div></div>
+    <main class="app-main" aria-labelledby="page-title">
+      <header class="topbar"><nav class="breadcrumb" aria-label="Đường dẫn trang"><ol><li>QuizFlow</li><li aria-hidden="true">/</li><li aria-current="page">Tổng quan</li></ol></nav></header>
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">DANH MỤC MÀN HÌNH GIAO DIỆN</p>
+          <h1 id="page-title">Tổng quan hệ thống</h1>
+          <p>Mục lục điều hướng 10 màn hình: 5 màn hình Quản trị/Giáo viên (Kiệt) và 5 màn hình Sinh viên/Tài khoản (Sơn).</p>
         </div>
       </section>
-      <section class="dashboard-section" aria-labelledby="tools-title"><header><h2 id="tools-title">Truy cập nhanh</h2></header>
-        <div class="tool-grid">
-          <a href="pages/teacher/subjects-classes.html" class="tool-card mint"><span class="tool-top"><span class="tool-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-folder"/></svg></span><svg class="ink-icon" aria-hidden="true"><use href="#ink-up"/></svg></span><h3>Môn học &amp; lớp học</h3><p>Quản lý môn học, lớp và thành viên.</p></a>
-          <a href="pages/teacher/question-bank.html" class="tool-card lilac"><span class="tool-top"><span class="tool-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-cards"/></svg></span><svg class="ink-icon" aria-hidden="true"><use href="#ink-up"/></svg></span><h3>Ngân hàng câu hỏi</h3><p>Biên soạn và nhập câu hỏi từ Excel.</p></a>
-          <a href="pages/teacher/exam-analytics.html" class="tool-card peach"><span class="tool-top"><span class="tool-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-chart"/></svg></span><svg class="ink-icon" aria-hidden="true"><use href="#ink-up"/></svg></span><h3>Kết quả &amp; thống kê</h3><p>Theo dõi điểm số và tiến độ làm bài.</p></a>
-          <a href="pages/admin/users.html" class="tool-card blue"><span class="tool-top"><span class="tool-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-users"/></svg></span><svg class="ink-icon" aria-hidden="true"><use href="#ink-up"/></svg></span><h3>Quản lý người dùng</h3><p>Quản lý tài khoản và phân quyền.</p></a>
+
+      <!-- PHÂN HỆ 1: QUẢN TRỊ VIÊN & GIÁO VIÊN (KIỆT) -->
+      <section class="section-header">
+        <div>
+          <p class="eyebrow eyebrow-purple">PHÂN HỆ QUẢN TRỊ &amp; GIÁO VIÊN</p>
+          <h2>Quản trị và tổ chức kỳ thi</h2>
+          <p>Quản lý tài khoản, lớp học, ngân hàng câu hỏi, soạn đề và phân tích kết quả.</p>
         </div>
+        <span class="badge">05 màn hình</span>
       </section>
-      <section class="dashboard-section" aria-labelledby="subjects-title"><header><h2 id="subjects-title">Môn học của bạn</h2><a href="pages/teacher/subjects-classes.html">Xem tất cả <svg class="ink-icon" aria-hidden="true"><use href="#ink-arrow"/></svg></a></header>
-        <div class="course-list">
-          <a class="course-row peach" href="pages/teacher/subjects-classes.html?mon=web"><span class="course-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-code"/></svg></span><strong>Lập trình Web</strong><span>3 lớp học</span><span>128 câu hỏi</span><svg class="ink-icon" aria-hidden="true"><use href="#ink-arrow"/></svg></a>
-          <a class="course-row mint" href="pages/teacher/subjects-classes.html?mon=database"><span class="course-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-db"/></svg></span><strong>Cơ sở dữ liệu</strong><span>2 lớp học</span><span>86 câu hỏi</span><svg class="ink-icon" aria-hidden="true"><use href="#ink-arrow"/></svg></a>
-          <a class="course-row lilac" href="pages/teacher/subjects-classes.html?mon=security"><span class="course-icon"><svg class="ink-icon" aria-hidden="true"><use href="#ink-shield"/></svg></span><strong>An toàn hệ thống</strong><span>1 lớp học</span><span>54 câu hỏi</span><svg class="ink-icon" aria-hidden="true"><use href="#ink-arrow"/></svg></a>
+
+      <section class="bento-grid bento-grid--two" aria-label="Chức năng quản trị viên và giáo viên">
+        <article class="glass-card catalog-card">
+          <span class="status status--warning"><span aria-hidden="true">◇</span>Quản trị viên</span>
+          <h2>Quản lý người dùng</h2><p>Tìm và lọc tài khoản, quản lý vai trò, khóa hoặc mở khóa và bảo vệ tài khoản quản trị.</p>
+          <a class="btn btn--primary" href="pages/admin/users.html">Mở quản lý người dùng ↗</a>
+        </article>
+        <article class="glass-card catalog-card">
+          <span class="status status--accent"><span aria-hidden="true">◇</span>Giáo viên</span>
+          <h2>Môn học &amp; lớp học</h2><p>Chọn môn, tìm lớp, sao chép mã lớp và xem danh sách thành viên.</p>
+          <a class="btn" href="pages/teacher/subjects-classes.html">Mở môn học &amp; lớp học ↗</a>
+        </article>
+        <article class="glass-card catalog-card">
+          <span class="status status--accent"><span aria-hidden="true">◇</span>Giáo viên</span>
+          <h2>Ngân hàng câu hỏi</h2><p>Lọc câu hỏi theo môn và độ khó, quản lý nội dung câu hỏi và nhập dữ liệu từ Excel.</p>
+          <a class="btn" href="pages/teacher/question-bank.html">Mở ngân hàng câu hỏi ↗</a>
+        </article>
+        <article class="glass-card catalog-card">
+          <span class="status status--accent"><span aria-hidden="true">◇</span>Giáo viên</span>
+          <h2>Tạo đề thi</h2><p>Cấu hình lịch thi, lớp giao và hai tùy chọn trộn. Kiểm tra cơ cấu độ khó và xem trước đáp án.</p>
+          <a class="btn" href="pages/teacher/exam-builder.html">Mở trang tạo đề thi ↗</a>
+        </article>
+        <article class="glass-card catalog-card bento-span-full">
+          <span class="status status--accent"><span aria-hidden="true">◇</span>Giáo viên</span>
+          <h2>Kết quả &amp; thống kê</h2><p>Lọc bảng điểm, theo dõi tiến độ hoàn tất, điểm trung bình và xuất CSV.</p>
+          <a class="btn" href="pages/teacher/exam-analytics.html">Mở kết quả &amp; thống kê ↗</a>
+        </article>
+      </section>
+
+      <!-- PHÂN HỆ 2: SINH VIÊN & QUẢN LÝ TÀI KHOẢN (SƠN) -->
+      <section class="section-header section-header-student">
+        <div>
+          <p class="eyebrow eyebrow-emerald">PHÂN HỆ SINH VIÊN &amp; QUẢN LÝ TÀI KHOẢN</p>
+          <h2>Không gian học tập và phòng thi</h2>
+          <p>Xác thực người dùng, tham gia lớp học, vào sảnh thi, làm bài trực tuyến và xem đối chiếu kết quả.</p>
         </div>
+        <span class="badge">05 màn hình</span>
       </section>
+
+      <section class="bento-grid bento-grid--two" aria-label="Chức năng sinh viên và tài khoản">
+        <!-- Card 1: Auth & Profile -->
+        <article class="glass-card catalog-card">
+          <span class="status status--accent"><span aria-hidden="true">◇</span>Tài khoản</span>
+          <h2>Đăng nhập, đăng ký &amp; hồ sơ</h2>
+          <p>Thẻ xác thực giữa màn hình, vai trò mặc định Sinh viên, hồ sơ chỉ đọc và form đổi mật khẩu an toàn.</p>
+          <a class="btn" href="pages/auth/auth-profile.html">Mở đăng nhập &amp; hồ sơ ↗</a>
+        </article>
+
+        <!-- Card 2: Student Dashboard -->
+        <article class="glass-card catalog-card">
+          <span class="status status--success"><span aria-hidden="true">●</span>Sinh viên</span>
+          <h2>Trang chủ sinh viên</h2>
+          <p>Nhập mã tham gia lớp (QF-892A), tìm đề thi bằng mã (EX-2026-01), đề nổi bật và quản lý lớp học của tôi.</p>
+          <a class="btn btn--primary" href="pages/student/dashboard.html">Mở trang chủ sinh viên ↗</a>
+        </article>
+
+        <!-- Card 3: Exam Lobby -->
+        <article class="glass-card catalog-card">
+          <span class="status status--success"><span aria-hidden="true">●</span>Sinh viên</span>
+          <h2>Sảnh chờ thi</h2>
+          <p>3 bộ đếm monospace (số câu, thời lượng gốc, thời gian thực tế nếu vào ngay) và bộ chuyển 3 trạng thái xem thử.</p>
+          <a class="btn" href="pages/student/exam-lobby.html">Mở sảnh chờ thi ↗</a>
+        </article>
+
+        <!-- Card 4: Exam Taking -->
+        <article class="glass-card catalog-card">
+          <span class="status status--success"><span aria-hidden="true">●</span>Sinh viên</span>
+          <h2>Phòng thi trực tuyến</h2>
+          <p>Giao diện tập trung, HUD đồng hồ đếm ngược, lưới 20 câu 5×4, tự lưu máy chủ và phím tắt A-D.</p>
+          <a class="btn btn--primary" href="pages/student/exam-taking.html">Mở phòng thi ↗</a>
+        </article>
+
+        <!-- Card 5: Exam Result -->
+        <article class="glass-card catalog-card bento-span-full">
+          <span class="status status--success"><span aria-hidden="true">●</span>Sinh viên</span>
+          <h2>Kết quả &amp; đối chiếu đáp án</h2>
+          <p>Vòng điểm phát sáng thang 10, thông tin nộp bài và khu đối chiếu đáp án bảo mật có điều kiện 2 trạng thái.</p>
+          <a class="btn" href="pages/student/exam-result.html">Mở kết quả &amp; đối chiếu ↗</a>
+        </article>
+      </section>
+
+      <footer class="page-footer"><span>QuizFlow</span><span>Mục lục tổng quan tất cả màn hình</span></footer>
     </main>
   </div>
 </body>

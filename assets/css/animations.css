@@ -13,7 +13,7 @@
   --ease-linear: linear;
   --motion-stagger-step: 50ms;
   --motion-delay: 0ms;
-  --motion-accent: #bd703433;
+  --motion-accent: #8b5cf633;
 }
 
 /* Hiệu ứng vào: kết thúc sẽ trả transform về CSS gốc để thao tác tiếp tục tự nhiên. */
@@ -52,13 +52,10 @@
   --motion-delay: calc(var(--i, 0) * var(--motion-stagger-step));
 }
 
-/* Sidebar vào từ trái; thẻ chờ viewport vẫn giữ nguyên chỗ trong layout. */
+/* Sidebar vào từ trái. Nội dung chờ viewport vẫn đọc được. */
 .app > .sidebar.anim-slide-in-right {
   --motion-slide-distance: -1rem;
 }
-
-/* Nội dung luôn đọc được trong lúc chờ IntersectionObserver. */
-[data-motion-reveal='pending'] { opacity: 1; }
 
 /* Phản hồi nhẹ chạy một lượt, chỉ áp dụng tại phần tử có ý nghĩa trạng thái. */
 .anim-pulse-soft {
@@ -186,7 +183,7 @@ button.motion-card:not(:disabled, [aria-disabled='true']):active {
 }
 
 :is(.input, .select, .textarea):focus {
-  box-shadow: 0 0 0 0.1875rem #ba723022;
+  box-shadow: 0 0 0 0.1875rem #8b5cf61f;
 }
 
 .field > label {
@@ -639,12 +636,6 @@ button.motion-card:not(:disabled, [aria-disabled='true']):active {
     transition: none !important;
     scroll-behavior: auto !important;
   }
-
-  [data-motion-reveal='pending'] {
-    opacity: 1;
-    transform: none;
-  }
-
 
   .btn,
   .segmented-button,

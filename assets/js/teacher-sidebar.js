@@ -22,15 +22,21 @@
       <span class="brand-mark"><svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><use href="#teacher-icon-bolt"/></svg></span>QuizFlow
     </a>
     <div data-workspace-slot></div>
-    <p class="sidebar-nav-label">Giảng dạy</p>
+    <p class="sidebar-nav-label">KHÔNG GIAN GIÁO VIÊN</p>
     <nav class="sidebar-nav" aria-label="Menu giáo viên">
       <a class="sidebar-nav-item" href="../../index.html"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-grid"/></svg>Tổng quan</a>
       <a class="sidebar-nav-item" href="subjects-classes.html" data-teacher-page="subjects-classes"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-folder"/></svg>Môn học &amp; lớp học</a>
       <a class="sidebar-nav-item" href="question-bank.html" data-teacher-page="question-bank"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-copy"/></svg>Ngân hàng câu hỏi</a>
-      <a class="sidebar-nav-item" href="exam-builder.html" data-teacher-page="exam-builder"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-document"/></svg>Studio đề thi</a>
+      <a class="sidebar-nav-item" href="exam-builder.html" data-teacher-page="exam-builder"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-document"/></svg>Đề thi của tôi</a>
       <a class="sidebar-nav-item" href="exam-analytics.html" data-teacher-page="exam-analytics"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-chart"/></svg>Kết quả &amp; thống kê</a>
     </nav>
     <div class="sidebar-bottom">
+      <section class="notice teacher-sidebar-tip" aria-labelledby="teacher-tip-title">
+        <strong id="teacher-tip-title">◇ Kết nối lớp học, mở tri thức.</strong>
+        <p>Chia sẻ mã lớp để sinh viên tham gia. Mọi lớp học luôn gắn với một môn học cố định.</p>
+      </section>
+      <button class="sidebar-nav-item" type="button" data-teacher-note><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-user"/></svg>Hồ sơ cá nhân</button>
+      <button class="sidebar-nav-item" type="button" data-teacher-note><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><use href="#teacher-icon-logout"/></svg>Đăng xuất</button>
       <div data-user-slot></div>
     </div>`;
   template.content.querySelector('[data-workspace-slot]').replaceWith(workspace);

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Đăng nhập, Đăng ký &amp; Hồ sơ cá nhân</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/student.css">
+  <link rel="stylesheet" href="../../assets/css/auth-profile.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/student.js" defer></script>
+  <script src="../../assets/js/auth-profile.js" defer></script>
+</head>
+<body class="auth-page">
+
+  <!-- Quả cầu không gian 3D dạng lưới phát sáng trang trí góc trái và phải -->
+  <svg class="auth-mesh-sphere auth-mesh-sphere--left" viewBox="0 0 400 400" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="180" stroke="#8b5cf6" stroke-width="1.2" stroke-opacity="0.35"/>
+    <ellipse cx="200" cy="200" rx="180" ry="140" stroke="#8b5cf6" stroke-width="0.9" stroke-opacity="0.3"/>
+    <ellipse cx="200" cy="200" rx="180" ry="90" stroke="#8b5cf6" stroke-width="0.9" stroke-opacity="0.25"/>
+    <ellipse cx="200" cy="200" rx="180" ry="40" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.2"/>
+    <line x1="20" y1="200" x2="380" y2="200" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.25"/>
+    <ellipse cx="200" cy="200" rx="140" ry="180" stroke="#d946ef" stroke-width="0.9" stroke-opacity="0.28"/>
+    <ellipse cx="200" cy="200" rx="90" ry="180" stroke="#d946ef" stroke-width="0.9" stroke-opacity="0.24"/>
+    <ellipse cx="200" cy="200" rx="40" ry="180" stroke="#d946ef" stroke-width="0.8" stroke-opacity="0.2"/>
+    <line x1="200" y1="20" x2="200" y2="380" stroke="#d946ef" stroke-width="0.8" stroke-opacity="0.25"/>
+  </svg>
+
+  <svg class="auth-mesh-sphere auth-mesh-sphere--right" viewBox="0 0 400 400" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="180" stroke="#d946ef" stroke-width="1.2" stroke-opacity="0.32"/>
+    <ellipse cx="200" cy="200" rx="180" ry="135" stroke="#8b5cf6" stroke-width="0.9" stroke-opacity="0.28"/>
+    <ellipse cx="200" cy="200" rx="180" ry="85" stroke="#8b5cf6" stroke-width="0.9" stroke-opacity="0.22"/>
+    <ellipse cx="200" cy="200" rx="180" ry="35" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.18"/>
+    <line x1="20" y1="200" x2="380" y2="200" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.22"/>
+    <ellipse cx="200" cy="200" rx="135" ry="180" stroke="#8b5cf6" stroke-width="0.9" stroke-opacity="0.26"/>
+    <ellipse cx="200" cy="200" rx="85" ry="180" stroke="#8b5cf6" stroke-width="0.9" stroke-opacity="0.2"/>
+    <ellipse cx="200" cy="200" rx="35" ry="180" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.18"/>
+    <line x1="200" y1="20" x2="200" y2="380" stroke="#8b5cf6" stroke-width="0.8" stroke-opacity="0.22"/>
+  </svg>
+
+  <!-- Thanh tiêu đề điều hướng phía trên -->
+  <header class="auth-topbar">
+    <a class="auth-brand" href="../../index.html" aria-label="Về trang chủ QuizFlow">
+      <span class="brand-mark" aria-hidden="true">
+        <svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+          <use href="#student-icon-bolt"/>
+        </svg>
+      </span>
+      <span>QuizFlow</span>
+    </a>
+    <div class="topbar-actions">
+      <span class="badge">
+        <svg class="icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+        Không gian tài khoản
+      </span>
+      <a href="#help" class="auth-help-link" data-auth-help>Cần hỗ trợ? ↗</a>
+    </div>
+  </header>
+
+  <!-- Tiêu đề biểu ngữ chính -->
+  <section class="auth-hero" data-motion-enter aria-labelledby="auth-hero-title">
+    <p class="eyebrow">YOUR KNOWLEDGE. YOUR FLOW.</p>
+    <h1 id="auth-hero-title">Một tài khoản. Mở ngàn tri thức.</h1>
+    <p>Kết nối với lớp học, kỳ thi và hành trình học tập của bạn.</p>
+  </section>
+
+  <!-- Khung nội dung chính dạng 2 cột -->
+  <main class="auth-main-container">
+    <div class="auth-grid">
+
+      <!-- CỘT TRÁI: Thẻ xác thực đăng nhập / đăng ký -->
+      <section class="glass-card auth-card" aria-labelledby="auth-title">
+        <div class="auth-card-eyebrow">
+          <svg class="icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+          <span>QUIZFLOW / ACCESS PORTAL</span>
+        </div>
+
+        <div class="auth-card-heading">
+          <h2 id="auth-title">Bắt đầu hành trình của bạn.</h2>
+          <p id="auth-desc">Tạo tài khoản sinh viên để tham gia lớp học và kỳ thi.</p>
+        </div>
+
+        <!-- Bộ chuyển tab -->
+        <div class="auth-tabs" role="tablist" aria-label="Chọn hình thức xác thực">
+          <button class="auth-tab-btn" type="button" id="tab-login" role="tab" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#student-icon-logout"/></svg>
+            <span>Đăng nhập</span>
+          </button>
+          <button class="auth-tab-btn" type="button" id="tab-register" role="tab" aria-pressed="true">
+            <svg class="icon" aria-hidden="true"><use href="#student-icon-user"/></svg>
+            <span>Đăng ký Sinh viên</span>
+          </button>
+        </div>
+
+        <!-- Huy hiệu khóa vai trò mặc định -->
+        <div class="auth-role-notice" role="note">
+          <svg class="icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+          <span>Vai trò mặc định: <strong>Sinh viên</strong> — Không tự chọn GV/QT</span>
+        </div>
+
+        <!-- Form đăng ký / đăng nhập -->
+        <form id="auth-form" novalidate>
+
+          <!-- Họ và tên (chỉ đăng ký) -->
+          <div class="auth-field" id="field-fullname">
+            <div class="auth-field-header">
+              <label for="input-fullname">Họ và tên</label>
+              <span class="auth-field-hint">Thông tin sinh viên</span>
+            </div>
+            <div class="auth-input-wrapper">
+              <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-user"/></svg>
+              <input class="auth-input" type="text" id="input-fullname" name="fullname" placeholder="Nhập họ và tên của bạn" value="Nguyễn Hoàng Sơn" autocomplete="name" required>
+            </div>
+          </div>
+
+          <!-- Tên đăng nhập -->
+          <div class="auth-field" id="field-username">
+            <div class="auth-field-header">
+              <label for="input-username" id="label-username">Tên đăng nhập</label>
+            </div>
+            <div class="auth-input-wrapper">
+              <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-user"/></svg>
+              <input class="auth-input" type="text" id="input-username" name="username" placeholder="VD: son.nguyen" value="son.nguyen" autocomplete="username" required>
+            </div>
+          </div>
+
+          <!-- Mã sinh viên (chỉ đăng ký, bắt buộc) -->
+          <div class="auth-field" id="field-student-code">
+            <div class="auth-field-header">
+              <label for="input-student-code">Mã sinh viên</label>
+              <span class="badge">Bắt buộc</span>
+            </div>
+            <div class="auth-input-wrapper">
+              <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-document"/></svg>
+              <input class="auth-input text-mono" type="text" id="input-student-code" name="studentCode" placeholder="VD: SV2026001" value="SV2026001" autocomplete="off" required>
+            </div>
+          </div>
+
+          <!-- Mật khẩu -->
+          <div class="auth-field" id="field-password">
+            <div class="auth-field-header">
+              <label for="input-password">Mật khẩu</label>
+              <span class="auth-field-hint">Chọn mật khẩu bảo vệ tài khoản</span>
+            </div>
+            <div class="auth-input-wrapper">
+              <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+              <input class="auth-input auth-input-with-action" type="password" id="input-password" name="password" placeholder="Tối thiểu 8 ký tự" value="MatKhauBaoMat2026" autocomplete="new-password" required>
+              <button class="auth-toggle-pwd" type="button" data-toggle-password aria-label="Hiện mật khẩu">
+                <svg class="icon" aria-hidden="true"><use href="#student-icon-eye"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Nhập lại mật khẩu (chỉ đăng ký) -->
+          <div class="auth-field" id="field-confirm-password">
+            <div class="auth-field-header">
+              <label for="input-confirm-password">Nhập lại mật khẩu</label>
+            </div>
+            <div class="auth-input-wrapper">
+              <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+              <input class="auth-input auth-input-with-action" type="password" id="input-confirm-password" name="confirmPassword" placeholder="Nhập lại mật khẩu của bạn" value="MatKhauBaoMat2026" autocomplete="new-password" required>
+              <button class="auth-toggle-pwd" type="button" data-toggle-password aria-label="Hiện mật khẩu">
+                <svg class="icon" aria-hidden="true"><use href="#student-icon-eye"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <button class="btn btn--primary auth-submit-btn" type="submit" id="auth-submit-btn">
+            Tạo tài khoản sinh viên →
+          </button>
+
+          <div class="auth-switch-link-wrapper">
+            <span class="auth-switch-link" id="auth-switch-link" data-target-mode="login">
+              <span id="auth-switch-prompt">Đã có tài khoản? </span>
+              <strong>Đăng nhập ngay</strong>
+            </span>
+          </div>
+        </form>
+
+        <footer class="auth-card-footer">
+          <span class="auth-status-dot">Bản thiết kế tương tác</span>
+          <a href="#demo" class="auth-help-link" data-auth-help>Không gửi dữ liệu lên máy chủ ↗</a>
+        </footer>
+      </section>
+
+      <!-- CỘT PHẢI: Hồ sơ cá nhân & Đổi mật khẩu bảo mật -->
+      <aside class="auth-side-column" data-motion-enter>
+
+        <!-- Thẻ 1: Thông tin hồ sơ sinh viên -->
+        <article class="glass-card profile-card" aria-labelledby="profile-title">
+          <header class="profile-card-header">
+            <span class="eyebrow" id="profile-title">PERSONAL SPACE / HỒ SƠ</span>
+            <span class="badge">Dữ liệu minh họa</span>
+          </header>
+
+          <div class="profile-user-summary">
+            <div class="profile-avatar" aria-hidden="true">HS</div>
+            <div class="profile-user-info">
+              <strong>Nguyễn Hoàng Sơn</strong>
+              <p>Không gian học tập của bạn</p>
+              <span class="status status--success">
+                <span aria-hidden="true">●</span>
+                Hoạt động
+              </span>
+            </div>
+          </div>
+
+          <div class="auth-readonly-list" aria-label="Thông tin tài khoản đã khóa">
+            <div class="auth-readonly-row">
+              <span class="auth-readonly-label">
+                <svg class="icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+                Mã sinh viên
+              </span>
+              <span class="badge text-mono">SV2026001</span>
+            </div>
+            <div class="auth-readonly-row">
+              <span class="auth-readonly-label">
+                <svg class="icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+                Tên đăng nhập
+              </span>
+              <span class="badge text-mono">son.nguyen</span>
+            </div>
+            <div class="auth-readonly-row">
+              <span class="auth-readonly-label">
+                <svg class="icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+                Vai trò
+              </span>
+              <span class="status status--accent">
+                <span aria-hidden="true">◇</span>
+                Sinh viên
+              </span>
+            </div>
+          </div>
+
+          <p class="profile-card-hint">
+            <span aria-hidden="true">◇</span>
+            <span>Thông tin định danh chỉ đọc. Vai trò được quản lý bởi hệ thống quản trị.</span>
+          </p>
+        </article>
+
+        <!-- Thẻ 2: Đổi mật khẩu bảo mật -->
+        <article class="glass-card password-card" aria-labelledby="password-card-title">
+          <header class="password-card-header">
+            <div class="password-card-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.6"><use href="#student-icon-shield"/></svg>
+            </div>
+            <div>
+              <h2 id="password-card-title">Đổi mật khẩu bảo mật</h2>
+              <p>Giữ tài khoản an toàn với mật khẩu của riêng bạn.</p>
+            </div>
+          </header>
+
+          <form id="password-form" novalidate>
+            <!-- Mật khẩu hiện tại -->
+            <div class="auth-field">
+              <div class="auth-field-header">
+                <label for="input-old-password">Mật khẩu hiện tại</label>
+              </div>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+                <input class="auth-input auth-input-with-action" type="password" id="input-old-password" name="oldPassword" placeholder="Nhập mật khẩu hiện tại" autocomplete="current-password" required>
+                <button class="auth-toggle-pwd" type="button" data-toggle-password aria-label="Hiện mật khẩu">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-eye"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Mật khẩu mới -->
+            <div class="auth-field">
+              <div class="auth-field-header">
+                <label for="input-new-password">Mật khẩu mới</label>
+              </div>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-lock"/></svg>
+                <input class="auth-input auth-input-with-action" type="password" id="input-new-password" name="newPassword" placeholder="Tối thiểu 8 ký tự" autocomplete="new-password" required>
+                <button class="auth-toggle-pwd" type="button" data-toggle-password aria-label="Hiện mật khẩu">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-eye"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Xác nhận mật khẩu mới -->
+            <div class="auth-field">
+              <div class="auth-field-header">
+                <label for="input-confirm-new-password">Xác nhận mật khẩu mới</label>
+              </div>
+              <div class="auth-input-wrapper">
+                <svg class="auth-input-icon icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+                <input class="auth-input auth-input-with-action" type="password" id="input-confirm-new-password" name="confirmNewPassword" placeholder="Nhập lại mật khẩu mới" autocomplete="new-password" required>
+                <button class="auth-toggle-pwd" type="button" data-toggle-password aria-label="Hiện mật khẩu">
+                  <svg class="icon" aria-hidden="true"><use href="#student-icon-eye"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn btn--primary auth-submit-btn" type="submit">
+              Cập nhật mật khẩu →
+            </button>
+
+            <!-- Ghi chú bảo mật theo đặc tả F01 -->
+            <div class="notice password-notice" role="note">
+              <svg class="icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+              <span>Hủy các phiên đăng nhập cũ nhưng giữ nguyên thời gian và dữ liệu lượt thi đang diễn ra.</span>
+            </div>
+
+            <footer class="password-card-footer">
+              <span>Chưa kết nối máy chủ · Không thay đổi mật khẩu thật</span>
+            </footer>
+          </form>
+        </article>
+
+      </aside>
+    </div>
+  </main>
+
+  <!-- Chân trang -->
+  <footer class="auth-page-footer">
+    <span>● QuizFlow · Không gian học tập trực tuyến</span>
+    <span>© 2026 QuizFlow · Your knowledge. Your flow.</span>
+  </footer>
+
+</body>
+</html>

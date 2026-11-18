@@ -4,16 +4,48 @@
 
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const mousePreference = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const feedbackAnimations = new WeakMap();
+
+  function syncBackgroundPlayback() {
+    document.documentElement.classList.toggle('bg-paused', document.hidden);
+  }
+
+  document.addEventListener('visibilitychange', syncBackgroundPlayback);
+  syncBackgroundPlayback();
+
+  function animateChange(element) {
+    if (!element || preference.matches || typeof element.animate !== 'function') return;
+    feedbackAnimations.get(element)?.cancel();
+    const style = getComputedStyle(document.documentElement);
+    const animation = element.animate(
+      [{ opacity: 0.78, translate: '0 4px' }, { opacity: 1, translate: '0 0' }],
+      {
+        duration: parseFloat(style.getPropertyValue('--dur-base')),
+        easing: style.getPropertyValue('--ease-out').trim()
+      }
+    );
+    feedbackAnimations.set(element, animation);
+    const cleanup = () => {
+      if (feedbackAnimations.get(element) === animation) feedbackAnimations.delete(element);
+      preference.removeEventListener('change', cancelOnPreference);
+    };
+    const cancelOnPreference = () => {
+      if (preference.matches) animation.cancel();
+    };
+    preference.addEventListener('change', cancelOnPreference);
+    animation.finished.then(cleanup, cleanup);
+  }
 
   // Các hiệu ứng JavaScript đọc tùy chọn hiện tại, kể cả khi đổi trong phiên xem.
   window.QuizFlowMotion = Object.freeze({
+    animateChange,
     get reducedMotion() {
       return preference.matches;
     }
   });
 
-  function initializeComponentMotion() {
-    const cards = document.querySelectorAll('.glass-card:not(.builder-dock)');
+  function initializeComponentMotion(root) {
+    const cards = root.querySelectorAll('.glass-card:not(.builder-dock), [data-motion-surface]');
     cards.forEach((card) => {
       const light = document.createElement('span');
       light.className = 'motion-card-light';
@@ -63,7 +95,8 @@
     }
 
     document.addEventListener('pointermove', (event) => {
-      if (event.pointerType !== 'mouse' || preference.matches || !mousePreference.matches) {
+      if (event.pointerType !== 'mouse' || preference.matches || !mousePreference.matches
+        || !(event.target instanceof Element)) {
         return;
       }
       const card = event.target.closest('.motion-card');
@@ -103,16 +136,17 @@
   }
 
   function initializeMotion() {
-    const app = document.querySelector('.app');
-    if (!app) {
+    const root = document.querySelector('.app') || document.body;
+    if (!root.matches('.app, .auth-page, .exam-page')) {
       return;
     }
 
-    initializeComponentMotion();
+    initializeComponentMotion(root);
 
-    const sidebar = app.querySelector(':scope > .sidebar');
-    const cards = Array.from(app.querySelectorAll('.app-main .glass-card'))
-      .filter((card) => !card.closest('.builder-dock, dialog'));
+    const sidebar = root.querySelector(':scope > .sidebar');
+    const candidates = root.querySelectorAll('.glass-card, .page-heading, [data-motion-enter]');
+    const cards = [...candidates].filter((card) => !card.closest('.builder-dock, dialog')
+      && !card.parentElement.closest('.glass-card, [data-motion-enter]'));
     let observer;
 
     function finishCard(card) {
@@ -132,14 +166,15 @@
           const card = entry.target;
           observer.unobserve(card);
           card.dataset.motionReveal = 'entered';
-          card.style.setProperty('--i', String(index));
+          card.style.setProperty('--i', String(Math.min(index, 3)));
           card.classList.add('anim-stagger', 'anim-fade-up');
 
           // Promise nhận cả trường hợp bộ lọc hủy hiệu ứng trước lúc bắt đầu.
-          const entrance = card.getAnimations().find((animation) =>
+          const entrance = card.getAnimations?.().find((animation) =>
             animation.animationName === 'motion-fade-up');
           const cleanup = () => finishCard(card);
-          entrance?.finished.then(cleanup, cleanup);
+          if (entrance) entrance.finished.then(cleanup, cleanup);
+          else cleanup();
         });
       }, { rootMargin: '0px 0px -24px 0px', threshold: 0 });
 
@@ -154,14 +189,14 @@
     }
 
     // Dọn transform của sidebar sau khi vào trang để giữ định vị ban đầu.
-    app.addEventListener('animationend', (event) => {
+    root.addEventListener('animationend', (event) => {
       if (event.target === sidebar && event.animationName === 'motion-slide-in-right') {
         sidebar.classList.remove('anim-slide-in-right');
       }
     });
 
     // Focus bàn phím bỏ qua phần chờ để trường nhập và nút luôn hiện rõ khi thao tác.
-    app.addEventListener('focusin', (event) => {
+    root.addEventListener('focusin', (event) => {
       const card = event.target.closest('[data-motion-reveal]');
       if (card) {
         finishCard(card);

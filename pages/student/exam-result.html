@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Kết quả bài thi (Kiểm tra Giữa kỳ Lập trình Web)</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/student.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/student.js" defer></script>
+  <script src="../../assets/js/exam-result.js" defer></script>
+</head>
+<body>
+  <div class="app student-app">
+
+    <!-- Sidebar Sinh viên dùng chung -->
+    <aside class="sidebar student-sidebar" aria-label="Điều hướng sinh viên" data-student-sidebar data-current-page="result">
+      <section class="sidebar-workspace" data-sidebar-workspace aria-labelledby="workspace-title">
+        <p class="eyebrow" id="workspace-title">KHÔNG GIAN HỌC TẬP</p>
+        <strong>Học kỳ I · 2026–2027</strong>
+        <p>Lớp học, kỳ thi và hành trình của bạn.</p>
+      </section>
+      <div class="sidebar-user" data-sidebar-user>
+        <span class="avatar" aria-hidden="true">HS</span>
+        <div>
+          <strong>Nguyễn Hoàng Sơn</strong>
+          <small class="text-mono">SV2026001</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Khung nội dung chính -->
+    <main class="app-main" id="student-main" aria-labelledby="page-title">
+
+      <!-- Thanh điều hướng trên cùng -->
+      <header class="topbar">
+        <nav class="breadcrumb" aria-label="Đường dẫn trang">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#student-icon-grid"/>
+          </svg>
+          <ol>
+            <li>Không gian sinh viên</li>
+            <li aria-hidden="true">/</li>
+            <li>Lịch sử thi</li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <span aria-current="page">Kết quả bài thi</span>
+            </li>
+          </ol>
+        </nav>
+        <div class="topbar-actions">
+          <span class="badge">Học kỳ I · 2026–2027</span>
+          <button class="btn btn--icon btn--ghost" type="button" aria-label="Thông báo" data-student-note="Điểm bài thi Lập trình Web đã được cập nhật vào bảng điểm cá nhân.">
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <use href="#student-icon-bell"/>
+            </svg>
+          </button>
+          <a class="btn btn--small btn--ghost" href="exam-lobby.html">
+            ← Trở về sảnh thi
+          </a>
+        </div>
+      </header>
+
+      <!-- Tiêu đề trang -->
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">EXAM RESULT / ANOTHER STEP FORWARD</p>
+          <h1 id="page-title">Một bước tiến đáng ghi nhận.</h1>
+          <p>Kiểm tra Giữa kỳ Lập trình Web · Mã đề: <span class="text-mono text-accent">EX-2026-01</span></p>
+        </div>
+      </section>
+
+      <!-- THẺ ĐIỂM SỐ LỚN (SCORE SHOWCASE CARD - F11) -->
+      <section class="result-score-card" data-motion-surface aria-labelledby="score-card-title" data-motion-enter>
+        <div class="result-score-layout">
+
+          <!-- Vòng tròn điểm phát sáng SVG (Circular Gauge) -->
+          <div class="score-gauge-box" aria-label="Điểm đạt được: 8,00 trên 10">
+            <svg class="score-gauge-svg" viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <linearGradient id="score-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+              <circle class="score-gauge-bg" cx="100" cy="100" r="90" />
+              <circle class="score-gauge-meter" id="score-gauge-meter" cx="100" cy="100" r="90" />
+            </svg>
+            <div class="score-gauge-content">
+              <span class="score-gauge-label">ĐIỂM CỦA BẠN</span>
+              <strong class="score-gauge-number" id="score-number">8,00</strong>
+              <span class="score-gauge-scale">/ 10</span>
+            </div>
+          </div>
+
+          <!-- Thông tin chi tiết hoàn thành bài thi -->
+          <div class="result-score-details">
+            <span class="result-score-eyebrow">COMPLETED / KẾT QUẢ ĐÃ ĐƯỢC GHI NHẬN</span>
+            <h2 id="score-card-title">Bạn đã hoàn thành bài thi!</h2>
+            <p>Kết quả được chấm tự động theo đáp án chuẩn của đề thi.</p>
+
+            <div class="result-pills-cluster">
+              <span class="status status--success">
+                <span aria-hidden="true">✓</span>
+                Hoàn tất — Nộp chủ động (MANUAL)
+              </span>
+              <span class="badge text-mono">Số câu đúng: 16 / 20</span>
+            </div>
+
+            <div class="result-meta-grid">
+              <div class="result-meta-item">
+                <span class="result-meta-label">THỜI GIAN NỘP</span>
+                <span class="result-meta-value text-mono">08:25:14</span>
+              </div>
+              <div class="result-meta-item">
+                <span class="result-meta-label">NGÀY THI · GMT+7</span>
+                <span class="result-meta-value">10/11/2026</span>
+              </div>
+              <div class="result-meta-item">
+                <span class="result-meta-label">MÔN HỌC</span>
+                <span class="result-meta-value">Lập trình Web</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- KHU VỰC ĐỐI CHIẾU ĐÁP ÁN (ANSWER REVIEW - F11) -->
+      <section class="section-stack review-section" aria-labelledby="review-heading" data-motion-enter>
+        <header class="section-header">
+          <div>
+            <h2 id="review-heading">Đối chiếu bài làm</h2>
+            <p>Chi tiết đáp án được mở theo điều kiện công bố của đề thi.</p>
+          </div>
+          <span class="status" id="review-lock-pill">
+            <span aria-hidden="true">🔒</span>Đáp án đang được bảo mật
+          </span>
+        </header>
+
+        <!-- TRẠNG THÁI 1: KHÓA BẢO MẬT (ANSWER VAULT LOCKED) -->
+        <article class="vault-locked-card" id="vault-locked-card">
+          <div class="vault-lock-badge" aria-hidden="true">🔒</div>
+          <span class="vault-eyebrow">ANSWER VAULT / LOCKED</span>
+          <h3>Chi tiết đáp án đúng/sai đang được bảo mật.</h3>
+          <p>Đối chiếu từng câu chỉ mở sau khi đề thi đóng và giáo viên bật công bố đáp án.</p>
+
+          <div class="vault-conditions-cluster">
+            <span class="badge">
+              <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+              Chờ đề thi đóng (09:00)
+            </span>
+            <span class="badge">
+              <svg class="icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+              Chờ giáo viên công bố
+            </span>
+          </div>
+
+          <span class="vault-security-hint">
+            <svg class="icon" aria-hidden="true"><use href="#student-icon-shield"/></svg>
+            Điểm tổng và số câu đúng vẫn được bảo toàn hiển thị.
+          </span>
+        </article>
+
+        <!-- TRẠNG THÁI 2: DANH SÁCH 20 CÂU ĐỐI CHIẾU (CHỈ NẠP KHI CÔNG BỐ QUA JS) -->
+        <div id="review-questions-container">
+          <!-- Rỗng lúc ban đầu để bảo vệ đáp án không bị lộ trong source code -->
+        </div>
+
+        <!-- Thông báo lưu ý hoàn tất bài thi -->
+        <div class="notice mt-4" role="note">
+          <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+          <span>Bài thi đã hoàn tất. Bạn có thể quay lại xem đối chiếu sau khi đủ cả hai điều kiện; không cần làm lại hoặc nộp lại bài.</span>
+        </div>
+      </section>
+
+      <!-- BỘ CHUYỂN TRẠNG THÁI XEM THỬ GIAO DIỆN (DEMO SWITCHER) -->
+      <section class="student-demo-bar" aria-label="Bộ chuyển đổi xem thử trạng thái công bố đáp án" data-motion-enter>
+        <div class="student-demo-title">
+          <span aria-hidden="true">⚙</span>
+          <span>TRẠNG THÁI THIẾT KẾ (CHỈ DÙNG DEMO):</span>
+        </div>
+        <div class="segmented" role="group" aria-label="Chọn trạng thái đối chiếu">
+          <button class="segmented-button" type="button" data-result-state="locked" aria-pressed="true">
+            01 · Đáp án bảo mật (Đang khóa)
+          </button>
+          <button class="segmented-button" type="button" data-result-state="published" aria-pressed="false">
+            02 · Đã đóng &amp; đã công bố (Mở đối chiếu 20 câu)
+          </button>
+        </div>
+      </section>
+
+      <!-- Nút điều hướng chân trang -->
+      <div class="result-footer-nav">
+        <span class="text-muted text-xs">
+          ◇ Mỗi đề thi chỉ có 01 lượt thi duy nhất. Kết quả hoàn tất không thể chỉnh sửa.
+        </span>
+        <a class="btn btn--primary" href="dashboard.html">
+          Về lớp học của tôi →
+        </a>
+      </div>
+
+      <!-- Chân trang -->
+      <footer class="page-footer">
+        <span>QuizFlow · Tiếp tục hành trình tri thức</span>
+        <span>Dữ liệu minh họa / Student Result</span>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

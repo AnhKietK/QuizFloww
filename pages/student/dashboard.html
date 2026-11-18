@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>QuizFlow — Trang chủ Sinh viên</title>
+  <link rel="stylesheet" href="../../assets/css/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/student.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/responsive.css">
+  <script src="../../assets/js/motion.js" defer></script>
+  <script src="../../assets/js/ui.js" defer></script>
+  <script src="../../assets/js/student.js" defer></script>
+  <script src="../../assets/js/dashboard.js" defer></script>
+</head>
+<body>
+  <div class="app student-app">
+
+    <!-- Sidebar Sinh viên dùng chung -->
+    <aside class="sidebar student-sidebar" aria-label="Điều hướng sinh viên" data-student-sidebar data-current-page="dashboard">
+      <section class="sidebar-workspace" data-sidebar-workspace aria-labelledby="workspace-title">
+        <p class="eyebrow" id="workspace-title">KHÔNG GIAN HỌC TẬP</p>
+        <strong>Học kỳ I · 2026–2027</strong>
+        <p>Lớp học, kỳ thi và hành trình của bạn.</p>
+      </section>
+      <div class="sidebar-user" data-sidebar-user>
+        <span class="avatar" aria-hidden="true">HS</span>
+        <div>
+          <strong>Nguyễn Hoàng Sơn</strong>
+          <small class="text-mono">SV2026001</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Khung nội dung chính -->
+    <main class="app-main" id="student-main" aria-labelledby="page-title">
+
+      <!-- Thanh điều hướng trên cùng -->
+      <header class="topbar">
+        <nav class="breadcrumb" aria-label="Đường dẫn trang">
+          <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <use href="#student-icon-grid"/>
+          </svg>
+          <ol>
+            <li>Không gian sinh viên</li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <span aria-current="page">Trang chủ &amp; Lớp học</span>
+            </li>
+          </ol>
+        </nav>
+        <div class="topbar-actions">
+          <span class="badge">Học kỳ I · 2026–2027</span>
+          <button class="btn btn--icon btn--ghost" type="button" aria-label="Thông báo" data-student-note="Bạn có 01 đề thi đang mở: Kiểm tra Giữa kỳ Lập trình Web (EX-2026-01).">
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <use href="#student-icon-bell"/>
+            </svg>
+          </button>
+          <span class="status status--success">
+            <span aria-hidden="true">●</span>Không gian sinh viên
+          </span>
+        </div>
+      </header>
+
+      <!-- Tiêu đề trang -->
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">STUDENT WORKSPACE / KHỞI ĐẦU BỨC PHÁ</p>
+          <h1 id="page-title">Chào buổi sáng, Hoàng Sơn!</h1>
+          <p>Kết nối lớp học, nắm bắt kỳ thi và sẵn sàng cho kết quả tốt nhất hôm nay.</p>
+        </div>
+      </section>
+
+      <!-- Thanh thao tác nhanh: Nhập mã lớp & Tìm đề thi (F07, F17) -->
+      <section class="student-actions-grid" aria-label="Thao tác nhanh tham gia và tìm kiếm" data-motion-enter>
+
+        <!-- Thẻ 1: Nhập mã tham gia lớp (F17) -->
+        <article class="student-action-card">
+          <div class="student-action-header">
+            <div class="student-action-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.6" class="icon"><use href="#student-icon-key"/></svg>
+            </div>
+            <div>
+              <h2>Nhập mã tham gia lớp</h2>
+              <p>Kết nối với lớp học của bạn bằng mã do giáo viên chia sẻ.</p>
+            </div>
+          </div>
+          <form class="student-action-form" id="form-join-class" novalidate>
+            <input class="student-action-input" type="text" id="input-class-code" name="classCode" placeholder="Mã lớp (VD: QF-892A)" autocomplete="off" maxlength="7" required aria-label="Nhập mã lớp học">
+            <button class="btn btn--primary" type="submit">Vào lớp →</button>
+          </form>
+        </article>
+
+        <!-- Thẻ 2: Tìm đề thi bằng mã đề (F07) -->
+        <article class="student-action-card">
+          <div class="student-action-header">
+            <div class="student-action-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" stroke-width="1.6" class="icon"><use href="#student-icon-target"/></svg>
+            </div>
+            <div>
+              <h2>Tìm đề thi bằng mã đề</h2>
+              <p>Nhập mã đề để mở thông tin và vào thẳng sảnh chờ thi.</p>
+            </div>
+          </div>
+          <form class="student-action-form" id="form-search-exam" novalidate>
+            <input class="student-action-input" type="text" id="input-exam-code" name="examCode" placeholder="Mã đề (VD: EX-2026-01)" autocomplete="off" maxlength="10" required aria-label="Nhập mã đề thi">
+            <button class="btn btn--primary" type="submit">Mở đề →</button>
+          </form>
+        </article>
+
+      </section>
+
+      <!-- Đề thi nổi bật đang mở hôm nay (F07) -->
+      <section class="live-exam-card" data-motion-surface aria-labelledby="live-exam-title" data-motion-enter>
+        <div class="live-exam-top">
+          <div class="live-exam-badges">
+            <span class="status status--success">
+              <span aria-hidden="true">●</span>Đang mở thi
+            </span>
+            <span class="badge text-mono">EX-2026-01</span>
+            <span class="badge">LIVE EXAM</span>
+          </div>
+          <span class="live-exam-deadline">ĐÓNG LÚC 09:00 · 10/11/2026 (GMT+7)</span>
+        </div>
+
+        <p class="live-exam-eyebrow">YOUR KNOWLEDGE. YOUR MOMENT.</p>
+        <h2 class="live-exam-title" id="live-exam-title">Kiểm tra Giữa kỳ Lập trình Web</h2>
+        <p class="live-exam-meta">
+          <span>GV. Trần Minh Kiệt</span>
+          <span aria-hidden="true">·</span>
+          <span>Lớp Lập trình Web — Nhóm 01 (QF-892A)</span>
+        </p>
+
+        <div class="live-exam-metrics" aria-label="Thông tin cơ bản bài thi">
+          <div class="live-metric-item">
+            <span class="live-metric-label">Số câu hỏi</span>
+            <span class="live-metric-value">20 câu</span>
+            <span class="live-metric-sub">Trắc nghiệm 4 lựa chọn</span>
+          </div>
+          <div class="live-metric-item">
+            <span class="live-metric-label">Thời lượng gốc</span>
+            <span class="live-metric-value">30 phút</span>
+            <span class="live-metric-sub">Tính từ lúc bắt đầu</span>
+          </div>
+          <div class="live-metric-item">
+            <span class="live-metric-label">Quy định lượt</span>
+            <span class="live-metric-value">01 lượt</span>
+            <span class="live-metric-sub">Duy nhất cho mỗi sinh viên</span>
+          </div>
+        </div>
+
+        <div class="live-exam-bottom">
+          <span class="text-muted text-xs">
+            <svg class="icon" aria-hidden="true"><use href="#student-icon-clock"/></svg>
+            Thời gian kết thúc cố định lúc 09:00. Hãy vào sảnh thi để kiểm tra kết nối.
+          </span>
+          <a class="btn btn--primary" href="exam-lobby.html">
+            Vào sảnh thi ngay →
+          </a>
+        </div>
+      </section>
+
+      <!-- Mục 01: Lớp học của tôi (F17) -->
+      <section class="section-stack" aria-labelledby="classes-title" data-motion-enter>
+        <header class="section-header">
+          <div>
+            <h2 id="classes-title">
+              <span class="text-muted text-mono" aria-hidden="true">01 / </span>Lớp học của tôi
+            </h2>
+            <p>Các lớp học bạn đang tham gia trong học kỳ này.</p>
+          </div>
+          <div class="cluster">
+            <span class="badge" id="class-count-badge">02 lớp học</span>
+            <button class="btn btn--small btn--ghost" type="button" id="btn-toggle-empty-state" aria-controls="classes-container classes-empty-view">
+              Chuyển xem: Danh sách rỗng (0 lớp)
+            </button>
+          </div>
+        </header>
+
+        <!-- Lưới danh sách lớp -->
+        <div class="classes-grid" id="classes-container">
+
+          <!-- Lớp 1: Lập trình Web -->
+          <article class="class-card">
+            <div class="class-card-top">
+              <span class="badge text-mono">QF-892A</span>
+              <span class="status status--success"><span aria-hidden="true">●</span>Đang tham gia</span>
+            </div>
+            <h3>Lập trình Web — Nhóm 01</h3>
+            <p class="class-card-teacher">GV. Trần Minh Kiệt · Học kỳ I / 2026–2027</p>
+            <div class="class-card-footer">
+              <span class="class-card-members">👥 42 Sinh viên</span>
+              <span class="status status--accent"><span aria-hidden="true">●</span>01 đề đang mở</span>
+              <a class="btn btn--small" href="exam-lobby.html">Xem đề thi →</a>
+            </div>
+          </article>
+
+          <!-- Lớp 2: Cơ sở dữ liệu -->
+          <article class="class-card">
+            <div class="class-card-top">
+              <span class="badge text-mono">QF-1C7D</span>
+              <span class="status status--success"><span aria-hidden="true">●</span>Đang tham gia</span>
+            </div>
+            <h3>Cơ sở dữ liệu — Nhóm 02</h3>
+            <p class="class-card-teacher">GV. Lê Thanh Hà · Học kỳ I / 2026–2027</p>
+            <div class="class-card-footer">
+              <span class="class-card-members">👥 38 Sinh viên</span>
+              <span class="status"><span aria-hidden="true">○</span>Chưa có đề mới</span>
+              <button class="btn btn--small" type="button" data-student-note="Lớp Cơ sở dữ liệu hiện chưa có đề thi mới nào.">Xem chi tiết</button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Trạng thái rỗng khi chưa có lớp (Empty State) -->
+        <div class="student-empty-state" id="classes-empty-view" hidden>
+          <div class="student-empty-icon" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5"><use href="#student-icon-folder"/></svg>
+          </div>
+          <h3>Bạn chưa tham gia lớp học nào</h3>
+          <p>Hãy liên hệ giáo viên bộ môn để nhận mã lớp học dạng <code class="badge text-mono">QF-XXXX</code> và nhập vào thanh thao tác phía trên.</p>
+          <button class="btn btn--primary" type="button" onclick="document.getElementById('input-class-code').focus();">
+            Nhập mã lớp ngay
+          </button>
+        </div>
+      </section>
+
+      <!-- Mục 02: Danh sách đề thi liên quan (F07) -->
+      <section class="section-stack mt-6" aria-labelledby="exams-title" data-motion-enter>
+        <header class="section-header">
+          <div>
+            <h2 id="exams-title">
+              <span class="text-muted text-mono" aria-hidden="true">02 / </span>Kỳ thi của tôi
+            </h2>
+            <p>Tất cả đề thi đang mở, sắp diễn ra và đã hoàn thành.</p>
+          </div>
+        </header>
+
+        <div class="table-card glass-card">
+          <div class="table-scroll">
+            <table class="data-table" aria-label="Bảng danh sách đề thi">
+              <thead>
+                <tr>
+                  <th scope="col">Tên đề thi</th>
+                  <th scope="col">Mã đề</th>
+                  <th scope="col">Lớp học</th>
+                  <th scope="col">Thời gian thi</th>
+                  <th scope="col">Trạng thái</th>
+                  <th scope="col" class="text-right">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Kiểm tra Giữa kỳ Lập trình Web</strong>
+                    <small class="text-muted d-block">20 câu · 30 phút</small>
+                  </td>
+                  <td><span class="badge text-mono">EX-2026-01</span></td>
+                  <td>Lập trình Web — N01</td>
+                  <td>08:00 – 09:00, 10/11/2026</td>
+                  <td>
+                    <span class="status status--success">
+                      <span aria-hidden="true">●</span>Đang mở thi
+                    </span>
+                  </td>
+                  <td class="text-right">
+                    <a class="btn btn--small btn--primary" href="exam-lobby.html">Vào sảnh thi →</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Kiểm tra 15 phút Kiến trúc Web</strong>
+                    <small class="text-muted d-block">10 câu · 15 phút</small>
+                  </td>
+                  <td><span class="badge text-mono">EX-2026-02</span></td>
+                  <td>Lập trình Web — N01</td>
+                  <td>14:00 – 14:45, 15/11/2026</td>
+                  <td>
+                    <span class="status status--warning">
+                      <span aria-hidden="true">○</span>Sắp mở (15/11)
+                    </span>
+                  </td>
+                  <td class="text-right">
+                    <button class="btn btn--small" type="button" data-student-note="Đề thi EX-2026-02 sẽ mở lúc 14:00 ngày 15/11/2026.">Thông tin</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Thi thử SQL &amp; RDBMS</strong>
+                    <small class="text-muted d-block">15 câu · 20 phút</small>
+                  </td>
+                  <td><span class="badge text-mono">EX-2026-03</span></td>
+                  <td>Cơ sở dữ liệu — N02</td>
+                  <td>09:00 – 09:45, 05/11/2026</td>
+                  <td>
+                    <span class="status">
+                      <span aria-hidden="true">✓</span>Đã nộp (8,00/10)
+                    </span>
+                  </td>
+                  <td class="text-right">
+                    <a class="btn btn--small" href="exam-result.html">Xem kết quả →</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chân trang -->
+      <footer class="page-footer">
+        <span>QuizFlow · Không gian học tập sinh viên</span>
+        <span>Học kỳ I · 2026–2027</span>
+      </footer>
+
+    </main>
+  </div>
+</body>
+</html>

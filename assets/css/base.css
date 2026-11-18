@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400..800&family=Plus+Jakarta+Sans:wght@400..800&display=swap');
+
 *,
 *::before,
 *::after {
@@ -10,6 +12,12 @@ html {
   /* Giữ bố cục đứng yên khi dialog khóa cuộn trang. */
   scrollbar-gutter: stable;
   background-color: var(--bg);
+  /* Phủ màu nền lên tile nhiễu để điều chỉnh độ đậm mà không cần thêm phần tử. */
+  --bg-noise-cover: rgb(7 7 12 / calc(1 - var(--bg-noise-opacity)));
+  background-image:
+    linear-gradient(var(--bg-noise-cover), var(--bg-noise-cover)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='noise' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-attachment: fixed;
 }
 
 body {
@@ -17,12 +25,106 @@ body {
   min-width: 0;
   min-height: 100dvh;
   margin: 0;
-  background-color: var(--bg);
   color: var(--text);
   font-family: var(--sans);
   font-size: var(--text-base);
   font-weight: 400;
   line-height: var(--line-height);
+}
+
+/* Các lớp fixed dùng stacking context của trang và nằm sau nội dung. */
+body::before,
+body::after,
+html::before,
+html::after {
+  position: fixed;
+  pointer-events: none;
+  content: '';
+}
+
+body::before,
+body::after {
+  inset: -20%;
+  z-index: -2;
+  opacity: var(--bg-aurora-opacity);
+  will-change: transform;
+  animation: background-aurora var(--bg-aurora-speed) ease-in-out infinite alternate;
+}
+
+body::before {
+  background:
+    radial-gradient(ellipse 39% 40% at 76% 26%, #8b5cf6, transparent 76%),
+    radial-gradient(ellipse 42% 37% at 24% 73%, #6366f1, transparent 77%);
+}
+
+body::after {
+  background:
+    radial-gradient(ellipse 30% 32% at 30% 66%, #d946ef99, transparent 78%),
+    radial-gradient(ellipse 34% 34% at 70% 37%, #22d3ee3d, transparent 79%);
+  animation-duration: calc(var(--bg-aurora-speed) * 1.1);
+  animation-delay: calc(var(--bg-aurora-speed) * -0.48);
+  animation-direction: alternate-reverse;
+}
+
+/* Vệt sáng có hai đầu trong suốt và chỉ sáng rõ sau khi đã vào khung hình. */
+html::before {
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(113deg, transparent 39%, #dfcfff 50%, transparent 61%);
+  opacity: 0;
+  will-change: transform;
+  animation: background-sweep 60s ease-in-out -12s infinite;
+}
+
+html::after {
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle, rgb(223 207 255 / var(--bg-grid-opacity)) 1px, transparent 1.25px) 0 0 / 28px 28px;
+  mask-image: radial-gradient(ellipse at center, #000 8%, #0009 48%, transparent 83%);
+}
+
+@keyframes background-aurora {
+  from { transform: translate3d(-1.5%, 1%, 0) rotate(-2deg) scale(1); }
+  to { transform: translate3d(1.5%, -1%, 0) rotate(2deg) scale(1.12); }
+}
+
+@keyframes background-sweep {
+  0% { transform: translate3d(-82%, 0, 0); opacity: 0; }
+  26% { opacity: var(--bg-sweep-opacity); }
+  69% { opacity: var(--bg-sweep-opacity); }
+  100% { transform: translate3d(82%, 0, 0); opacity: 0; }
+}
+
+html.bg-paused::before,
+html.bg-paused body::before,
+html.bg-paused body::after,
+html.bg-paused .auth-mesh-sphere {
+  animation-play-state: paused;
+}
+
+@media (max-width: 767.98px), (hover: none), (pointer: coarse) {
+  body::before {
+    opacity: calc(var(--bg-aurora-opacity) * 0.62);
+    animation-duration: calc(var(--bg-aurora-speed) * 1.4);
+  }
+
+  body::after,
+  html::before {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+    will-change: auto;
+  }
+
+  html::before {
+    display: none;
+    will-change: auto;
+  }
 }
 
 h1,
@@ -53,17 +155,17 @@ h6 {
 h1 {
   font-size: var(--text-3xl);
   font-weight: 800;
-  letter-spacing: -1px;
+  letter-spacing: -0.025em;
 }
 
 h2 {
   font-size: var(--text-xl);
-  letter-spacing: -0.4px;
+  letter-spacing: -0.015em;
 }
 
 h3 {
   font-size: var(--text-lg);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.01em;
 }
 
 h4,
@@ -181,11 +283,11 @@ hr {
 
 .eyebrow {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--text-2xs);
-  font-weight: 400;
+  font-weight: 600;
   line-height: var(--line-height);
-  letter-spacing: 1.8px;
+  letter-spacing: 0.07em;
 }
 
 /* Nhãn hỗ trợ công nghệ đọc màn hình, vẫn có mặt trong cây truy cập. */

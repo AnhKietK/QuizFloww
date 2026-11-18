@@ -13,7 +13,6 @@
 }
 .app-main { min-width: 0; }
 :where(h1, h2, h3, p, small, strong, code, dt, dd, label, button, a) { overflow-wrap: anywhere; }
-h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
 .page-heading { margin-block: 1.5rem; gap: 1rem; }
 .topbar, .section-header, .card-header, .card-footer { gap: 0.75rem; }
 .breadcrumb { min-width: 0; }
@@ -183,6 +182,7 @@ h1 { font-size: clamp(1.5rem, 3vw, 2rem); }
 .analytics-table time { font-size: 0.875rem; }
 .analytics-detail-summary > div { flex-wrap: wrap; gap: 0.5rem; }
 .analytics-publish > :last-child { flex-wrap: wrap; }
+.catalog-card .btn { align-self: stretch; }
 
 /* ≥768px / 48rem: tablet dọc. */
 @media (min-width: 48rem) {
